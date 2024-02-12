@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private int numOfPlayers = 2;
     public List<Player> playerList;
     private TextMesh textMesh;
+    public int turnNumber;
     void Start()
     {
         textMesh = GetComponent<TextMesh>();
@@ -24,7 +25,29 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < playerCount; i++)
         {
             Player player = new();
+            player.playerNumber = i;
             playerList.Add(player);
         }
+
+        //Creating neutral territory for 2 players
+        if (playerCount == 2)
+        {
+            SetNeutralTerritory();
+        }
+    }
+
+    void SetNeutralTerritory()
+    {
+
+    }
+
+    void OnTerritoryCapture(Player player)
+    {
+
+    }
+
+    void NextTurn()
+    {
+
     }
 }

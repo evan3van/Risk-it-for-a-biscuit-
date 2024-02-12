@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 199921348}
+  - component: {fileID: 199921349}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -157,6 +158,20 @@ Transform:
   - {fileID: 1967978858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &199921349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199921347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ccc47469827364c92c79ded208a59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerList: []
+  turnNumber: 0
 --- !u!1 &225195921
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 294118997}
+  - component: {fileID: 294118998}
   m_Layer: 0
   m_Name: Africa
   m_TagString: Untagged
@@ -278,6 +294,19 @@ Transform:
   - {fileID: 785455635}
   m_Father: {fileID: 1967978858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &294118998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294118996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83a673c4b9d072479aa7dfa128faa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  territories: []
 --- !u!1 &396721780
 GameObject:
   m_ObjectHideFlags: 0

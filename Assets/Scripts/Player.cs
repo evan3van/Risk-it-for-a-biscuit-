@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int unitCount;
-    private List<Card> cards;
+    public int playerNumber;
+    public int unitCount;
+    public List<Card> cards;
+    void GiveCard()
+    {
+    }
 }
