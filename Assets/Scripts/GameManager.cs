@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int numOfPlayers = 3;
+    private int numOfPlayers = 2;
+    
     void Start()
     {
         InstantiateWorld(numOfPlayers); //Instantiating the world prefabs will happen here (see unity instantiation documentation)
