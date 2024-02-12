@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  origionalColor: {r: 1, g: 1, b: 1, a: 1}
+  origionalColor: {r: 0, g: 0.10434008, b: 1, a: 1}
   newColor: {r: 1, g: 0.017825976, b: 0, a: 1}
 --- !u!1 &907643687
 GameObject:

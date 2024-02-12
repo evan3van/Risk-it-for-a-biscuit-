@@ -11,6 +11,7 @@ public class OnHoverHighlight : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = origionalColor;
     }
 
     private void OnMouseEnter() {
