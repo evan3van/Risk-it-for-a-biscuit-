@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public int turnNumber;
     void Start()
     {
-        textMesh = GetComponent<TextMesh>();
-        InstantiateWorld(numOfPlayers); //Instantiating the world prefabs will happen here (see unity instantiation documentation)
+        textMesh = GetComponent<TextMesh>();  //Getting the UI text so we can edit it
+        InstantiateWorld(numOfPlayers);
     }
 
     void FixedUpdate()
@@ -19,13 +19,16 @@ public class GameManager : MonoBehaviour
         //Any checks for updates on things in the world will happen here
     }
 
+//method for instantiating the world initially taking into account the number of players
     private void InstantiateWorld(int playerCount)
     {
-        //method for instantiating the world initially taking into account the number of players
+        
         for (int i = 0; i < playerCount; i++)
         {
-            Player player = new();
-            player.playerNumber = i;
+            Player player = new()
+            {
+                playerNumber = i
+            };
             playerList.Add(player);
         }
 
@@ -41,12 +44,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void OnTerritoryCapture(Player player)
+    void OnTerritoryCapture(Player attacker, Player defender)
     {
 
     }
 
-    void NextTurn()
+    void NextTurn(Player prevPlayer)
     {
 
     }

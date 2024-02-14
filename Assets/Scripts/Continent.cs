@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Continent : MonoBehaviour
 {
-    public List<GameObject> territories;
-    private void Start() 
-    {
-    }
+    public List<GameObject> territories;   //List of all the territory objects in the continent (found in the hierarchy)
+    
+    
 }
