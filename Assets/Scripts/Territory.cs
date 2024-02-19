@@ -5,7 +5,7 @@ using UnityEngine;
 public class Territory : MonoBehaviour
 {
     public int troops = 0;
-    public Player controlledBy;
+    public Player controlledBy = null;
     
 }
  

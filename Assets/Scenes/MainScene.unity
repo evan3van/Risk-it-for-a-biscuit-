@@ -1078,6 +1078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList: []
   turnNumber: 0
+  map: {fileID: 0}
 --- !u!1 &225195921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,6 +1714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83a673c4b9d072479aa7dfa128faa7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  troops: 0
+  controlledBy: {fileID: 0}
   territories: []
 --- !u!1 &308311266
 GameObject:
@@ -2313,7 +2316,6 @@ GameObject:
   - component: {fileID: 400540885}
   - component: {fileID: 400540889}
   - component: {fileID: 400540888}
-  - component: {fileID: 400540887}
   m_Layer: 0
   m_Name: oceania 1
   m_TagString: Untagged
@@ -2388,21 +2390,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 649240849}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.396}
---- !u!114 &400540887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400540884}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dccdc44225a0a504a97fc39bec85169d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  origionalColor: {r: 0, g: 0, b: 0, a: 0}
-  newColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &400540888
 MonoBehaviour:
   m_ObjectHideFlags: 0
