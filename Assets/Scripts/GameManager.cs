@@ -32,10 +32,8 @@ public class GameManager : MonoBehaviour
         //Creating a list of players
         for (int i = 0; i < playerCount; i++)
         {
-            Player player = new()
-            {
-                playerNumber = i+1
-            };
+            GameObject playerObject = new GameObject("Player "+(i+1));
+            Player player = playerObject.AddComponent<Player>();
             playerList.Add(player);
         }
 
@@ -70,7 +68,10 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < territoriesPerPlayer; i++)
             {
-                Territory choice = territoryList[Random.Range(0,territoryList.Count)];
+                Debug.Log(territoryList.Count);
+                int randomNumber = Random.Range(0,territoryList.Count);
+                Territory choice = territoryList[randomNumber];            //Perhaps generate a list of random nums instead and remove duplicates
+                Debug.Log(randomNumber);
                 if(choice.controlledBy == null)
                 {
                     player.controlledTerritories.Add(choice);
@@ -83,11 +84,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    void UpdatePossibleTerritories(List<Territory> territories, Territory territory)
-    {
-        territories.Remove(territory);
     }
 
     void SetNeutralTerritory()
