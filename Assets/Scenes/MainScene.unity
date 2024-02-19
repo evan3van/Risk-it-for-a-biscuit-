@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 15051569}
   - component: {fileID: 15051568}
   m_Layer: 0
-  m_Name: NA 4
+  m_Name: 'Central America '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 63847502}
   - component: {fileID: 63847501}
   m_Layer: 0
-  m_Name: oceania 6
+  m_Name: Eastern Australia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 142252687}
   - component: {fileID: 142252686}
   m_Layer: 0
-  m_Name: A10
+  m_Name: Middle East
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 153541340}
   - component: {fileID: 153541339}
   m_Layer: 0
-  m_Name: A11
+  m_Name: Afghanistan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,7 +852,7 @@ GameObject:
   - component: {fileID: 160008439}
   - component: {fileID: 160008438}
   m_Layer: 0
-  m_Name: A9
+  m_Name: India
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 225195925}
   - component: {fileID: 225195924}
   m_Layer: 0
-  m_Name: NA 3
+  m_Name: 'Eastern United States '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1328,7 +1328,7 @@ GameObject:
   - component: {fileID: 261685789}
   - component: {fileID: 261685788}
   m_Layer: 0
-  m_Name: europ 1
+  m_Name: Ukraine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,7 +1512,7 @@ GameObject:
   - component: {fileID: 279725475}
   - component: {fileID: 279725474}
   m_Layer: 0
-  m_Name: A2
+  m_Name: Mongolia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1806,7 +1806,7 @@ GameObject:
   - component: {fileID: 325301903}
   - component: {fileID: 325301902}
   m_Layer: 0
-  m_Name: south america argentina
+  m_Name: Argentina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2004,7 +2004,7 @@ GameObject:
   - component: {fileID: 379895924}
   - component: {fileID: 379895923}
   m_Layer: 0
-  m_Name: A4
+  m_Name: 'Kamchatka '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2355,7 +2355,7 @@ GameObject:
   - component: {fileID: 400540889}
   - component: {fileID: 400540888}
   m_Layer: 0
-  m_Name: oceania 1
+  m_Name: New Zealand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2528,7 +2528,7 @@ GameObject:
   - component: {fileID: 505829016}
   - component: {fileID: 505829015}
   m_Layer: 0
-  m_Name: A6
+  m_Name: Siberia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2889,7 +2889,7 @@ GameObject:
   - component: {fileID: 526921496}
   - component: {fileID: 526921495}
   m_Layer: 0
-  m_Name: NA 5
+  m_Name: Quebec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3068,7 +3068,7 @@ GameObject:
   - component: {fileID: 610445666}
   - component: {fileID: 610445665}
   m_Layer: 0
-  m_Name: europ 4
+  m_Name: Southern Europe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3251,7 +3251,7 @@ GameObject:
   - component: {fileID: 637075020}
   - component: {fileID: 637075019}
   m_Layer: 0
-  m_Name: A3
+  m_Name: 'Irkutsk '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3487,7 +3487,7 @@ GameObject:
   - component: {fileID: 715402127}
   - component: {fileID: 715402126}
   m_Layer: 0
-  m_Name: europ 5
+  m_Name: 'Northern Europe '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3835,7 +3835,7 @@ GameObject:
   - component: {fileID: 785455637}
   - component: {fileID: 785455636}
   m_Layer: 0
-  m_Name: Africa_0
+  m_Name: 'South Africa '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4015,7 +4015,7 @@ GameObject:
   - component: {fileID: 795710454}
   - component: {fileID: 795710455}
   m_Layer: 0
-  m_Name: Africa_5
+  m_Name: 'North Africa '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4201,7 +4201,7 @@ GameObject:
   - component: {fileID: 896666062}
   - component: {fileID: 896666061}
   m_Layer: 0
-  m_Name: south america peru
+  m_Name: Peru
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4397,7 +4397,7 @@ GameObject:
   - component: {fileID: 900956257}
   - component: {fileID: 900956256}
   m_Layer: 0
-  m_Name: oceania 5
+  m_Name: Western Australia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4576,7 +4576,7 @@ GameObject:
   - component: {fileID: 907643691}
   - component: {fileID: 907643690}
   m_Layer: 0
-  m_Name: NA 2
+  m_Name: Greenland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4755,7 +4755,7 @@ GameObject:
   - component: {fileID: 922404299}
   - component: {fileID: 922404298}
   m_Layer: 0
-  m_Name: south america Brazil
+  m_Name: Brazil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4948,7 +4948,7 @@ GameObject:
   - component: {fileID: 984333773}
   - component: {fileID: 984333772}
   m_Layer: 0
-  m_Name: Africa_1
+  m_Name: Madagascar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5109,7 +5109,7 @@ GameObject:
   - component: {fileID: 1139466535}
   - component: {fileID: 1139466534}
   m_Layer: 0
-  m_Name: europ 2
+  m_Name: Scandinavia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5288,7 +5288,7 @@ GameObject:
   - component: {fileID: 1143865774}
   - component: {fileID: 1143865773}
   m_Layer: 0
-  m_Name: NA 6
+  m_Name: Western United States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5619,7 +5619,7 @@ GameObject:
   - component: {fileID: 1252698123}
   - component: {fileID: 1252698122}
   m_Layer: 0
-  m_Name: NA 1
+  m_Name: Cuba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5786,7 +5786,7 @@ GameObject:
   - component: {fileID: 1260206523}
   - component: {fileID: 1260206522}
   m_Layer: 0
-  m_Name: oceania 3
+  m_Name: Indonesia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5977,7 +5977,7 @@ GameObject:
   - component: {fileID: 1279730926}
   - component: {fileID: 1279730925}
   m_Layer: 0
-  m_Name: europ 7
+  m_Name: Iceland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6136,7 +6136,7 @@ GameObject:
   - component: {fileID: 1326760026}
   - component: {fileID: 1326760025}
   m_Layer: 0
-  m_Name: A8
+  m_Name: Siam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6314,7 +6314,7 @@ GameObject:
   - component: {fileID: 1375188994}
   - component: {fileID: 1375188993}
   m_Layer: 0
-  m_Name: europ 3
+  m_Name: Western Europe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6654,7 +6654,7 @@ GameObject:
   - component: {fileID: 1512491707}
   - component: {fileID: 1512491706}
   m_Layer: 0
-  m_Name: A7
+  m_Name: China
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6939,7 +6939,7 @@ GameObject:
   - component: {fileID: 1573714769}
   - component: {fileID: 1573714768}
   m_Layer: 0
-  m_Name: NA 10
+  m_Name: Alaska
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7109,7 +7109,7 @@ GameObject:
   - component: {fileID: 1627827433}
   - component: {fileID: 1627827432}
   m_Layer: 0
-  m_Name: NA 8
+  m_Name: Alberta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7268,7 +7268,7 @@ GameObject:
   - component: {fileID: 1663296644}
   - component: {fileID: 1663296643}
   m_Layer: 0
-  m_Name: oceania 4
+  m_Name: New Guine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7506,7 +7506,7 @@ GameObject:
   - component: {fileID: 1727890266}
   - component: {fileID: 1727890265}
   m_Layer: 0
-  m_Name: Africa_3
+  m_Name: Central Africa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7676,7 +7676,7 @@ GameObject:
   - component: {fileID: 1750111122}
   - component: {fileID: 1750111121}
   m_Layer: 0
-  m_Name: NA 7
+  m_Name: Ontario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7949,7 +7949,7 @@ GameObject:
   - component: {fileID: 1852908486}
   - component: {fileID: 1852908485}
   m_Layer: 0
-  m_Name: europ 6
+  m_Name: 'Great Britain '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8116,7 +8116,7 @@ GameObject:
   - component: {fileID: 1907805969}
   - component: {fileID: 1907805968}
   m_Layer: 0
-  m_Name: A1
+  m_Name: Japan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8343,7 +8343,7 @@ GameObject:
   - component: {fileID: 1944826323}
   - component: {fileID: 1944826322}
   m_Layer: 0
-  m_Name: A12
+  m_Name: Ural
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8518,7 +8518,7 @@ GameObject:
   - component: {fileID: 1967064888}
   - component: {fileID: 1967064887}
   m_Layer: 0
-  m_Name: oceania 2
+  m_Name: Fuck nows needs join indonesia ?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8720,7 +8720,7 @@ GameObject:
   - component: {fileID: 1985758807}
   - component: {fileID: 1985758806}
   m_Layer: 0
-  m_Name: Africa_4
+  m_Name: Egypt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8895,7 +8895,7 @@ GameObject:
   - component: {fileID: 1991270669}
   - component: {fileID: 1991270668}
   m_Layer: 0
-  m_Name: NA 9
+  m_Name: North West Territory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9076,7 +9076,7 @@ GameObject:
   - component: {fileID: 2036217150}
   - component: {fileID: 2036217149}
   m_Layer: 0
-  m_Name: A5
+  m_Name: Yakutsk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9251,7 +9251,7 @@ GameObject:
   - component: {fileID: 2040158996}
   - component: {fileID: 2040158995}
   m_Layer: 0
-  m_Name: Africa_2
+  m_Name: East Africa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
