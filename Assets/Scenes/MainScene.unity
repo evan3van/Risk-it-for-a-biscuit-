@@ -1078,7 +1078,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList: []
   turnNumber: 0
-  map: {fileID: 0}
+  continents:
+  - {fileID: 294118998}
+  - {fileID: 2101057247}
+  - {fileID: 649240850}
+  - {fileID: 308311268}
+  - {fileID: 1911346442}
+  - {fileID: 243241717}
 --- !u!1 &225195921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,6 +1271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 243241716}
+  - component: {fileID: 243241717}
   m_Layer: 0
   m_Name: South America
   m_TagString: Untagged
@@ -1293,6 +1300,21 @@ Transform:
   - {fileID: 1489548181}
   m_Father: {fileID: 1967978858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &243241717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243241715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83a673c4b9d072479aa7dfa128faa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  troops: 0
+  controlledBy: {fileID: 0}
+  territories: []
 --- !u!1 &261685785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1748,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 308311267}
+  - component: {fileID: 308311268}
   m_Layer: 0
   m_Name: Europe
   m_TagString: Untagged
@@ -1755,6 +1778,21 @@ Transform:
   - {fileID: 1279730924}
   m_Father: {fileID: 1967978858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &308311268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308311266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83a673c4b9d072479aa7dfa128faa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  troops: 0
+  controlledBy: {fileID: 0}
+  territories: []
 --- !u!1 &325301899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3392,6 +3430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649240849}
+  - component: {fileID: 649240850}
   m_Layer: 0
   m_Name: Oceania
   m_TagString: Untagged
@@ -3420,6 +3459,21 @@ Transform:
   - {fileID: 63847500}
   m_Father: {fileID: 1967978858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649240850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649240848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83a673c4b9d072479aa7dfa128faa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  troops: 0
+  controlledBy: {fileID: 0}
+  territories: []
 --- !u!1 &715402123
 GameObject:
   m_ObjectHideFlags: 0
@@ -8226,6 +8280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1911346441}
+  - component: {fileID: 1911346442}
   m_Layer: 0
   m_Name: Asia
   m_TagString: Untagged
@@ -8260,6 +8315,21 @@ Transform:
   - {fileID: 142252685}
   m_Father: {fileID: 1967978858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1911346442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911346440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83a673c4b9d072479aa7dfa128faa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  troops: 0
+  controlledBy: {fileID: 0}
+  territories: []
 --- !u!1 &1944826319
 GameObject:
   m_ObjectHideFlags: 0
@@ -8610,7 +8680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1967978858}
   m_Layer: 0
-  m_Name: Territories
+  m_Name: Continents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9344,6 +9414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2101057246}
+  - component: {fileID: 2101057247}
   m_Layer: 0
   m_Name: North America
   m_TagString: Untagged
@@ -9376,6 +9447,21 @@ Transform:
   - {fileID: 1573714767}
   m_Father: {fileID: 1967978858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2101057247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101057245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83a673c4b9d072479aa7dfa128faa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  troops: 0
+  controlledBy: {fileID: 0}
+  territories: []
 --- !u!1 &2120901605
 GameObject:
   m_ObjectHideFlags: 0

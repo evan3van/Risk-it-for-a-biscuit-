@@ -2,25 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEditor.Animations;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private int startArmySize;
+    private int totalTerritories = 47;
     private int numOfPlayers = 2;
     public List<Player> playerList;
     private TextMesh textMesh;
     public int turnNumber;
-    List<Continent> continents;
-    public GameObject continentList;
+    public List<Continent> continents;
     void Start()
     {
-        foreach (Transform child in continentList.transform)
-        {
-            Continent continent = child.gameObject.GetComponent<Continent>();
-            continents.Add(continent);
-        }
-        Debug.Log(continents.Count);
-
         textMesh = GetComponent<TextMesh>();  //Getting the UI text so we can edit it
 
         InstantiateWorld(numOfPlayers);
@@ -54,7 +49,45 @@ public class GameManager : MonoBehaviour
 
     void SetTerritories(List<Player> players)
     {
+        List<Territory> territoryList = new();
+        
+        foreach (Continent continent in continents)
+        {
+            foreach (Territory territory in continent.territories)
+            {
+                territoryList.Add(territory);
+            }
+        }
 
+        int playerCount = players.Count;
+
+        if (players.Count <= 2){
+            playerCount = 3;
+        }
+
+        int territoriesPerPlayer = totalTerritories/playerCount;
+        foreach (Player player in players)
+        {
+            for (int i = 0; i < territoriesPerPlayer; i++)
+            {
+                Territory choice = territoryList[Random.Range(0,territoryList.Count)];
+                if(choice.controlledBy == null)
+                {
+                    player.controlledTerritories.Add(choice);
+                    choice.controlledBy = player;
+                    territoryList.Remove(choice);
+                }
+                else
+                {
+                    Debug.Log("Error: trying to select occupied territory");
+                }
+            }
+        }
+    }
+
+    void UpdatePossibleTerritories(List<Territory> territories, Territory territory)
+    {
+        territories.Remove(territory);
     }
 
     void SetNeutralTerritory()
@@ -67,7 +100,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void NextTurn(Player prevPlayer)
+    void NextTurn()
     {
 
     }
