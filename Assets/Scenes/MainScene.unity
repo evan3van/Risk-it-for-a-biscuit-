@@ -1076,6 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ccc47469827364c92c79ded208a59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfPlayers: 4
   playerList: []
   turnNumber: 0
   continents:
@@ -1085,6 +1086,7 @@ MonoBehaviour:
   - {fileID: 308311268}
   - {fileID: 1911346442}
   - {fileID: 243241717}
+  allTerritories: []
 --- !u!1 &225195921
 GameObject:
   m_ObjectHideFlags: 0

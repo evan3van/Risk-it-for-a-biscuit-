@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -9,13 +10,22 @@ public class GameManager : MonoBehaviour
 {
     private int startArmySize;
     private int totalTerritories = 47;
-    private int numOfPlayers = 2;
+    public int numOfPlayers = 2;
     public List<Player> playerList;
     private TextMesh textMesh;
     public int turnNumber;
     public List<Continent> continents;
+    public List<Territory> allTerritories;
     void Start()
     {
+        foreach (Continent continent in continents)
+        {
+            foreach (Transform territory in continent.transform)
+            {
+                territory.AddComponent<Territory>();
+                continent.territories.Add(territory.GetComponent<Territory>());
+            }
+        }
         textMesh = GetComponent<TextMesh>();  //Getting the UI text so we can edit it
 
         InstantiateWorld(numOfPlayers);
@@ -38,14 +48,14 @@ public class GameManager : MonoBehaviour
         }
 
         //Setting up territories
-        SetTerritories(playerList);
+        SetTerritories();
         if (playerCount == 2)
         {
             SetNeutralTerritory();
         }
     }
 
-    void SetTerritories(List<Player> players)
+    void SetTerritories()
     {
         List<Territory> territoryList = new();
         
@@ -53,26 +63,30 @@ public class GameManager : MonoBehaviour
         {
             foreach (Territory territory in continent.territories)
             {
-                territoryList.Add(territory);
+                Territory newTerritoryReference = territory;
+                allTerritories.Add(territory);
+                territoryList.Add(newTerritoryReference);
             }
         }
 
-        int playerCount = players.Count;
+        int playerCount = playerList.Count;
 
-        if (players.Count <= 2){
+        if (playerList.Count <= 2){
+            GameObject neutralPlayer = new GameObject("Neutral");
+            Player neutral = neutralPlayer.AddComponent<Player>();
+            playerList.Add(neutral);
             playerCount = 3;
         }
 
         int territoriesPerPlayer = totalTerritories/playerCount;
-        foreach (Player player in players)
+        int remainderTerritories = totalTerritories%playerCount;
+        foreach (Player player in playerList)
         {
             for (int i = 0; i < territoriesPerPlayer; i++)
             {
-                Debug.Log(territoryList.Count);
                 int randomNumber = Random.Range(0,territoryList.Count);
-                Territory choice = territoryList[randomNumber];            //Perhaps generate a list of random nums instead and remove duplicates
-                Debug.Log(randomNumber);
-                if(choice.controlledBy == null)
+                Territory choice = territoryList[randomNumber];
+                if(choice != null && choice.controlledBy == null)
                 {
                     player.controlledTerritories.Add(choice);
                     choice.controlledBy = player;
@@ -84,6 +98,17 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        if (remainderTerritories != 0)
+        {
+            for (int i = 0; i < remainderTerritories-1  ; i++)
+            {
+                territoryList[i].controlledBy = playerList[i];                          //Bug for values > 6 here somewhere
+                playerList[i].controlledTerritories.Add(territoryList[i]);
+                territoryList.Remove(territoryList[i]);
+            }
+        }
+
+        foreach (Player player in playerList){Debug.Log($"Player:{player.name}, Territory count: {player.controlledTerritories.Count}");}   //debugging
     }
 
     void SetNeutralTerritory()
