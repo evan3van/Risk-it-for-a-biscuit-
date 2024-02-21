@@ -19,9 +19,9 @@ public class GameManager : MonoBehaviour
     public List<Color> playerColors;
     public Color neutralColor;
     public List<GameObject> counters;
+    public GameObject counterPrefab;
     void Start()
     {
-
         foreach (Continent continent in continents)
         {
             foreach (Transform territory in continent.transform)
@@ -135,7 +135,10 @@ public class GameManager : MonoBehaviour
         {
             foreach (Territory territory in player.controlledTerritories)
             {
-                
+                GameObject counter = Instantiate(counterPrefab,this.transform,true);
+                counter.name = "Counter: "+territory.name;
+                counter.transform.position = territory.transform.position;
+                counters.Add(counter);
             }
         }
 
