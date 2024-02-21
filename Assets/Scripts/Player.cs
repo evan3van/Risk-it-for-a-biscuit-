@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public int unitCount;
     public List<Card> cards;
     public List<Territory> controlledTerritories = new List<Territory>();
+    public Color playerColor;
     public void GiveCard(Card card)
     {
         //Some code to give the player a card

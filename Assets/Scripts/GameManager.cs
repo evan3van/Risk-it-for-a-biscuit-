@@ -8,16 +8,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int startArmySize;
+    private int maxArmySize = 40;
     private int totalTerritories = 47;
-    public int numOfPlayers = 2;
+    public static int numOfPlayers = 2;
     public List<Player> playerList;
     private TextMesh textMesh;
     public int turnNumber;
     public List<Continent> continents;
     public List<Territory> allTerritories;
+    public List<Color> playerColors;
+    public Color neutralColor;
+    public List<GameObject> counters;
     void Start()
     {
+
         foreach (Continent continent in continents)
         {
             foreach (Transform territory in continent.transform)
@@ -28,6 +32,17 @@ public class GameManager : MonoBehaviour
         }
         textMesh = GetComponent<TextMesh>();  //Getting the UI text so we can edit it
 
+        if(numOfPlayers > 6){
+            numOfPlayers = 6;
+        }
+        playerColors = new(){
+            Color.cyan,
+            Color.magenta,
+            Color.green,
+            Color.yellow,
+            Color.gray,
+            Color.white
+        };
         InstantiateWorld(numOfPlayers);
     }
 
@@ -44,15 +59,16 @@ public class GameManager : MonoBehaviour
         {
             GameObject playerObject = new GameObject("Player "+(i+1));
             Player player = playerObject.AddComponent<Player>();
+            player.playerColor = playerColors[i];
             playerList.Add(player);
         }
 
+        maxArmySize -= 5*(playerCount-2);
+
         //Setting up territories
         SetTerritories();
-        if (playerCount == 2)
-        {
-            SetNeutralTerritory();
-        }
+
+        PlaceArmies();
     }
 
     void SetTerritories()
@@ -74,6 +90,7 @@ public class GameManager : MonoBehaviour
         if (playerList.Count <= 2){
             GameObject neutralPlayer = new GameObject("Neutral");
             Player neutral = neutralPlayer.AddComponent<Player>();
+            neutral.playerColor = neutralColor;
             playerList.Add(neutral);
             playerCount = 3;
         }
@@ -88,6 +105,7 @@ public class GameManager : MonoBehaviour
                 Territory choice = territoryList[randomNumber];
                 if(choice != null && choice.controlledBy == null)
                 {
+                    choice.GetComponent<OnHoverHighlight>().origionalColor = player.playerColor;
                     player.controlledTerritories.Add(choice);
                     choice.controlledBy = player;
                     territoryList.Remove(choice);
@@ -102,7 +120,7 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < remainderTerritories-1  ; i++)
             {
-                territoryList[i].controlledBy = playerList[i];                          //Bug for values > 6 here somewhere
+                territoryList[i].controlledBy = playerList[i];
                 playerList[i].controlledTerritories.Add(territoryList[i]);
                 territoryList.Remove(territoryList[i]);
             }
@@ -111,18 +129,15 @@ public class GameManager : MonoBehaviour
         foreach (Player player in playerList){Debug.Log($"Player:{player.name}, Territory count: {player.controlledTerritories.Count}");}   //debugging
     }
 
-    void SetNeutralTerritory()
+    void PlaceArmies()
     {
-
-    }
-
-    void OnTerritoryCapture(Player attacker, Player defender)
-    {
-
-    }
-
-    void NextTurn()
-    {
+        foreach (Player player in playerList)
+        {
+            foreach (Territory territory in player.controlledTerritories)
+            {
+                
+            }
+        }
 
     }
 }
