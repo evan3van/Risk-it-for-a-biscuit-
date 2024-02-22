@@ -7,6 +7,9 @@ public class cammovement : MonoBehaviour
     [SerializeField]
     private Camera cam; // Make sure this is assigned in the Unity Inspector
 
+    [SerializeField]
+    private float zoomStep, minCamSize, maxCamSize;
+
     private Vector3 dragOrigin;
 
     // Unity uses "Update" with an uppercase "U" for its built-in method.
@@ -36,4 +39,20 @@ public class cammovement : MonoBehaviour
             cam.transform.position += difference;
         }
     }
+
+    
+    public void ZoomIn() 
+    {
+        float newSize = cam.orthographicSize - zoomStep;
+        cam.orthographicSize = Mathf.Clamp(newSize, minCamSize, maxCamSize);
+    }
+
+
+    public void ZoomOut() 
+    {
+        float newSize = cam.orthographicSize + zoomStep;
+        cam.orthographicSize = Mathf.Clamp(newSize, minCamSize, maxCamSize);
+    }
+
 }
+
