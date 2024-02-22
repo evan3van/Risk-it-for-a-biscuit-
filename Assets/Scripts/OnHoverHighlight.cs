@@ -13,6 +13,7 @@ public class OnHoverHighlight : MonoBehaviour
         newColor = Color.red;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = origionalColor;
+        Debug.Log($"{name}: {spriteRenderer.color}");
     }
 
     private void OnMouseEnter() {
