@@ -135,10 +135,10 @@ public class GameManager : MonoBehaviour
         {
             foreach (Territory territory in player.controlledTerritories)
             {
-                GameObject counter = Instantiate(counterPrefab,this.transform,true);
+                GameObject counter = Instantiate(counterPrefab,transform,true);
                 counter.name = "Counter: "+territory.name;
                 counter.transform.position = new Vector3(territory.transform.position.x,territory.transform.position.y,-2);
-                counter.transform.parent = territory.transform.parent;
+                counter.transform.parent = territory.transform;
                 counters.Add(counter);
             }
         }

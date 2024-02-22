@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public List<Card> cards;
     public List<Territory> controlledTerritories = new List<Territory>();
     public Color playerColor;
+    public bool isMyTurn = false;
     public void GiveCard(Card card)
     {
         //Some code to give the player a card
@@ -24,5 +25,11 @@ public class Player : MonoBehaviour
     {
         unitCount -= number;
         //More code to make something visually happen here
+    }
+
+    void StartTurn(int turnNumber)
+    {
+        isMyTurn = true;
+        //GiveTroops();
     }
 }
