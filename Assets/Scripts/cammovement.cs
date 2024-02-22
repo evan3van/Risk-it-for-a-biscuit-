@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class cammovement : MonoBehaviour
+{
+    [SerializeField]
+    private Camera cam; // Make sure this is assigned in the Unity Inspector
+
+    private Vector3 dragOrigin;
+
+    // Unity uses "Update" with an uppercase "U" for its built-in method.
+    private void Update() 
+    {
+        PanCamera();
+    }
+
+    private void PanCamera()
+    {
+        // Use "Input" with an uppercase "I", "GetMouseButtonDown" with proper casing
+        if (Input.GetMouseButtonDown(0))
+        {
+            // "cam.ScreenToWorldPoint" with proper casing and method name
+            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+            // Correct to only consider the X and Y, setting Z to a fixed value might be needed depending on your camera setup
+            dragOrigin.z = cam.transform.position.z;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
+            difference.z = 0; // Assuming you only want to pan in the X and Y directions
+
+            Debug.Log("origin" + dragOrigin + " newPosition" + cam.ScreenToWorldPoint(Input.mousePosition) + " = difference" + difference);
+
+            cam.transform.position += difference;
+        }
+    }
+}
