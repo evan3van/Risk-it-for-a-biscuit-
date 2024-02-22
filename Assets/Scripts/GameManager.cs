@@ -137,7 +137,8 @@ public class GameManager : MonoBehaviour
             {
                 GameObject counter = Instantiate(counterPrefab,this.transform,true);
                 counter.name = "Counter: "+territory.name;
-                counter.transform.position = territory.transform.position;
+                counter.transform.position = new Vector3(territory.transform.position.x,territory.transform.position.y,-2);
+                counter.transform.parent = territory.transform.parent;
                 counters.Add(counter);
             }
         }
