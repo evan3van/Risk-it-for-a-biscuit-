@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cammovement : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
     private Camera cam; // Make sure this is assigned in the Unity Inspector
@@ -16,6 +16,15 @@ public class cammovement : MonoBehaviour
     private void Update() 
     {
         PanCamera();
+        
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
+        {
+            ZoomIn();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) // backwards
+        {
+            ZoomOut();
+        }
     }
 
     private void PanCamera()
