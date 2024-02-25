@@ -12,11 +12,14 @@ public class CameraMovement : MonoBehaviour
 
     private Vector3 dragOrigin;
 
+    private int maxDragDistanceY;
+    private int maxDragDistanceX;
+
     // Unity uses "Update" with an uppercase "U" for its built-in method.
     private void Update() 
     {
         PanCamera();
-        
+
         if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
         {
             ZoomIn();
@@ -25,6 +28,17 @@ public class CameraMovement : MonoBehaviour
         {
             ZoomOut();
         }
+
+        /*    Work on this for max drag positions
+        if(cam.transform.position.y > (dragOrigin.y+maxDragDistanceY))
+        {
+            cam.transform.position = new Vector3(cam.transform.position.x,dragOrigin.y+maxDragDistanceY,cam.transform.position.z);
+        }
+        else if(cam.transform.position.y < (dragOrigin.y-maxDragDistanceY))
+        {
+            cam.transform.position = new Vector3(cam.transform.position.x,dragOrigin.y-maxDragDistanceY,cam.transform.position.z);
+        }
+        */
     }
 
     private void PanCamera()
