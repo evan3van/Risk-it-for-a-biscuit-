@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     private int maxArmySize = 40;
     private int totalTerritories = 47;
-    public static int numOfPlayers = 2;
+    public static int numOfPlayers = 3;
     public List<Player> playerList;
     private TextMesh textMesh;
     public int turnNumber;
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public List<Territory> allTerritories;
     public List<Color> playerColors;
     public Color neutralColor;
-    public List<GameObject> counters;
+    public List<Counter> counters;
     public GameObject counterPrefab;
     void Start()
     {
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        foreach (Player player in playerList){Debug.Log($"Player:{player.name}, Territory count: {player.controlledTerritories.Count}");}   //debugging
+        //foreach (Player player in playerList){Debug.Log($"Player:{player.name}, Territory count: {player.controlledTerritories.Count}");}   //debugging
     }
 
     void PlaceArmies()
@@ -139,9 +139,47 @@ public class GameManager : MonoBehaviour
                 counter.name = "Counter: "+territory.name;
                 counter.transform.position = new Vector3(territory.transform.position.x,territory.transform.position.y,-2);
                 counter.transform.parent = territory.transform;
-                counters.Add(counter);
+                Counter counterScript = counter.GetComponent<Counter>();
+                counterScript.ownedBy = player;
+                counters.Add(counterScript);
             }
         }
 
+
+        foreach (Player player in playerList)
+        {
+            player.unitCount = maxArmySize;
+
+            List<int> possibleTroops = new();
+            int iterationsNum = player.controlledTerritories.Count / playerList.Count;
+            int iterationsRemainder = player.controlledTerritories.Count % playerList.Count;
+            for (int i = 1; i < 6; i++)
+            {
+                for (int j = 0; j < iterationsNum; j++)
+                {
+                    possibleTroops.Add(i);
+                }
+            }
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                if(iterationsRemainder>0)
+                {
+                    for (int j = 0; j < iterationsRemainder; j++)
+                    {
+                        possibleTroops.Add(i);
+                    }
+                }
+            }
+            Debug.Log(possibleTroops.Count);
+
+            foreach (Counter counter in counters)
+            {
+                if (counter.ownedBy == player)
+                {
+                    TextMesh text = counter.gameObject.GetComponent<TextMesh>();
+                    
+                }
+            }
+        }
     }
 }

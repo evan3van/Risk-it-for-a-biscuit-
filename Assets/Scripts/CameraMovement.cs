@@ -72,7 +72,7 @@ public class CameraMovement : MonoBehaviour
             Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
             difference.z = 0; // Assuming you only want to pan in the X and Y directions
 
-            Debug.Log("origin" + dragOrigin + " newPosition" + cam.ScreenToWorldPoint(Input.mousePosition) + " = difference" + difference);
+            //Debug.Log("origin" + dragOrigin + " newPosition" + cam.ScreenToWorldPoint(Input.mousePosition) + " = difference" + difference);
 
             cam.transform.position += difference;
         }
