@@ -5306,7 +5306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 60.32, y: 60}
+  m_AnchoredPosition: {x: 60.319946, y: 60}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.49999976, y: 0.50000024}
 --- !u!114 &1147210426
@@ -5426,7 +5426,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.0030861194, w: 0.99999523}
   m_LocalPosition: {x: 309.0031, y: 123.4927, z: 1.9596387}
-  m_LocalScale: {x: 109.383446, y: 79.80686, z: 1}
+  m_LocalScale: {x: 150, y: 150, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 199921348}

@@ -11,9 +11,15 @@ public class CameraMovement : MonoBehaviour
     private float zoomStep, minCamSize, maxCamSize;
 
     private Vector3 dragOrigin;
+    private Vector3 origin;
 
-    private int maxDragDistanceY;
-    private int maxDragDistanceX;
+    private int maxDragDistanceY = 100;
+    private int maxDragDistanceX = 100;
+
+    private void Start() 
+    {
+        origin = cam.transform.position;
+    }
 
     // Unity uses "Update" with an uppercase "U" for its built-in method.
     private void Update() 
@@ -29,16 +35,25 @@ public class CameraMovement : MonoBehaviour
             ZoomOut();
         }
 
-        /*    Work on this for max drag positions
-        if(cam.transform.position.y > (dragOrigin.y+maxDragDistanceY))
+
+        //Work on this for max drag positions
+        if(cam.transform.position.y > (origin.y+maxDragDistanceY))
         {
-            cam.transform.position = new Vector3(cam.transform.position.x,dragOrigin.y+maxDragDistanceY,cam.transform.position.z);
+            cam.transform.position = new Vector3(cam.transform.position.x,origin.y + maxDragDistanceY,cam.transform.position.z);
         }
-        else if(cam.transform.position.y < (dragOrigin.y-maxDragDistanceY))
+        else if(cam.transform.position.y < (origin.y-maxDragDistanceY))
         {
-            cam.transform.position = new Vector3(cam.transform.position.x,dragOrigin.y-maxDragDistanceY,cam.transform.position.z);
+            cam.transform.position = new Vector3(cam.transform.position.x,origin.y - maxDragDistanceY,cam.transform.position.z);
         }
-        */
+        if(cam.transform.position.x > (origin.x + maxDragDistanceX))
+        {
+            cam.transform.position = new Vector3(origin.x + maxDragDistanceX,cam.transform.position.y,cam.transform.position.z);
+        }
+        else if(cam.transform.position.x < (origin.x - maxDragDistanceX))
+        {
+            cam.transform.position = new Vector3(origin.x - maxDragDistanceX,cam.transform.position.y,cam.transform.position.z);
+        }
+        
     }
 
     private void PanCamera()
