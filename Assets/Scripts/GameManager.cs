@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 
             // Adds the neutral player to the player list.
             playerList.Add(neutral);
-            
+
             // Adjusts the player count to 3.
             playerCount = 3;
         }
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         // Iterates through each player in the player list.
         foreach (Player player in playerList)
         {
-            // Distributes territories to each player.
+            // Distributes territories.
             for (int i = 0; i < territoriesPerPlayer; i++)
             {
                 // Selects a random territory from the territory list.
@@ -140,7 +140,8 @@ public class GameManager : MonoBehaviour
                 // Checks if the chosen territory is available for control.
                 if(choice != null && choice.controlledBy == null)
                 {
-                    // Sets the territory's original color for highlighting.
+                    // Sets the colors for the territory to the player's color.
+                    choice.GetComponent<SpriteRenderer>().color = player.playerColor;
                     choice.GetComponent<OnHoverHighlight>().origionalColor = player.playerColor;
                     
                     // Adds the territory to the player's controlled territories.
@@ -152,19 +153,18 @@ public class GameManager : MonoBehaviour
                     // Removes the chosen territory from the territory list.
                     territoryList.Remove(choice);
                 }
-                else
-                {
-                    // Outputs an error message if the chosen territory is already occupied. (This should never be the case)
-                    Debug.Log("Error: trying to select occupied territory");
-                }
             }
         }
-
         // Assigns remaining territories to the first player in the player list.
         foreach (Territory territory in territoryList.ToArray())
         {
             // Adds the remaining territories to the controlled territories of the first player.
             playerList[0].controlledTerritories.Add(territory);
+
+            // Sets the colors for the territories to the first player's color.
+            territory.GetComponent<SpriteRenderer>().color = playerList[0].playerColor;
+            territory.GetComponent<OnHoverHighlight>().origionalColor = playerList[0].playerColor;
+
             // Removes the territory from the territory list.
             territoryList.Remove(territory);
         }
