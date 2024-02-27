@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -244,13 +247,10 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            foreach (Counter counter in counters)
+            foreach (Counter counter in player.counters)
             {
-                if (counter.ownedBy == player)
-                {
-                    TextMesh textMesh = counter.gameObject.GetComponent<TextMesh>();
-                    
-                }
+                TextMeshPro tmp = counter.transform.GetChild(0).gameObject.GetComponent<TextMeshPro>();
+                tmp.text = counter.troopCount.ToString();
             }
         }
     }
