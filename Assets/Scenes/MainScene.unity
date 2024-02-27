@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 63847500}
   - component: {fileID: 63847499}
   - component: {fileID: 63847501}
+  - component: {fileID: 63847502}
   m_Layer: 0
   m_Name: Eastern Australia
   m_TagString: Untagged
@@ -400,6 +401,78 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   origionalColor: {r: 0.9858491, g: 0.8454366, b: 0.5440771, a: 1}
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+--- !u!60 &63847502
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63847498}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.21, y: 2.3302276}
+    newSize: {x: 2.21, y: 2.3302276}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.65847677, y: 0.095101476}
+      - {x: 0.59695333, y: 0.18738663}
+      - {x: 0.33035177, y: 0.53601944}
+      - {x: 0.34060568, y: 0.73084366}
+      - {x: 0.30984396, y: 0.86414444}
+      - {x: 0.23806661, y: 0.9974452}
+      - {x: 0.2073049, y: 1.017953}
+      - {x: 0.16628927, y: 1.017953}
+      - {x: 0.12527364, y: 0.9666835}
+      - {x: 0.094511926, y: 0.8231288}
+      - {x: -0.008027136, y: 0.6488124}
+      - {x: -0.07980448, y: 0.68982804}
+      - {x: -0.13107401, y: 0.70008194}
+      - {x: -0.21310526, y: 0.53601944}
+      - {x: -0.38742167, y: 0.15662491}
+      - {x: -0.5924998, y: -0.26378524}
+      - {x: -0.6335154, y: -0.32530868}
+      - {x: -0.6335154, y: -0.39708602}
+      - {x: -0.5822459, y: -0.5406407}
+      - {x: -0.38742167, y: -0.62267196}
+      - {x: -0.38742167, y: -0.725211}
+      - {x: -0.33615214, y: -0.78673446}
+      - {x: -0.1105662, y: -0.8277501}
+      - {x: -0.069550574, y: -0.8174962}
+      - {x: 0.17654318, y: -0.6944493}
+      - {x: 0.5456838, y: -0.30480087}
+      - {x: 0.65847677, y: 0.043831944}
+  m_UseDelaunayMesh: 0
 --- !u!1 &142252683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,6 +2337,7 @@ GameObject:
   - component: {fileID: 400540886}
   - component: {fileID: 400540885}
   - component: {fileID: 400540888}
+  - component: {fileID: 400540889}
   m_Layer: 0
   m_Name: New Zealand
   m_TagString: Untagged
@@ -2353,6 +2427,67 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   origionalColor: {r: 0.9858491, g: 0.8454366, b: 0.5440771, a: 1}
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+--- !u!60 &400540889
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400540884}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.7299999, y: 1.3401309}
+    newSize: {x: 1.47, y: 1.1001074}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5414055, y: 0.25592396}
+      - {x: 0.47988206, y: 0.3277013}
+      - {x: 0.40810472, y: 0.4917638}
+      - {x: 0.33632737, y: 0.4917638}
+      - {x: 0.30556566, y: 0.44049427}
+      - {x: 0.31581956, y: 0.26617786}
+      - {x: -0.1250984, y: -0.00042369962}
+      - {x: -0.21738356, y: -0.08245495}
+      - {x: -0.48398513, y: -0.22600964}
+      - {x: -0.48398513, y: -0.3490565}
+      - {x: -0.47373122, y: -0.37981823}
+      - {x: -0.40195388, y: -0.37981823}
+      - {x: -0.38144606, y: -0.36956432}
+      - {x: -0.2891609, y: -0.3080409}
+      - {x: 0.3978508, y: 0.10211536}
+      - {x: 0.5414055, y: 0.19440052}
+  m_UseDelaunayMesh: 0
 --- !u!1 &505829012
 GameObject:
   m_ObjectHideFlags: 0
@@ -4312,6 +4447,7 @@ GameObject:
   - component: {fileID: 900956255}
   - component: {fileID: 900956254}
   - component: {fileID: 900956256}
+  - component: {fileID: 900956257}
   m_Layer: 0
   m_Name: Western Australia
   m_TagString: Untagged
@@ -4401,6 +4537,83 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   origionalColor: {r: 0.9858491, g: 0.8454366, b: 0.5440771, a: 1}
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+--- !u!60 &900956257
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900956253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.4799998, y: 1.9501904}
+    newSize: {x: 2.4799998, y: 1.9501904}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.092128694, y: -0.613293}
+      - {x: 0.20523459, y: -0.5825313}
+      - {x: 0.379551, y: -0.613293}
+      - {x: 0.49234396, y: -0.41846877}
+      - {x: 0.63589865, y: -0.059582055}
+      - {x: 0.7589455, y: 0.16600388}
+      - {x: 0.83072287, y: 0.3403203}
+      - {x: 0.8819924, y: 0.41209763}
+      - {x: 0.8819924, y: 0.46336716}
+      - {x: 0.81021506, y: 0.60692185}
+      - {x: 0.8819924, y: 0.7094609}
+      - {x: 0.8819924, y: 0.76073045}
+      - {x: 0.76919943, y: 0.79149216}
+      - {x: 0.594883, y: 0.8222539}
+      - {x: 0.5436135, y: 0.8222539}
+      - {x: 0.43082052, y: 0.6786992}
+      - {x: 0.30777365, y: 0.62742966}
+      - {x: 0.2359963, y: 0.6376836}
+      - {x: -0.1023826, y: 0.30955857}
+      - {x: -0.31771463, y: 0.1967656}
+      - {x: -0.49203104, y: 0.17625779}
+      - {x: -0.66634744, y: -0.01856643}
+      - {x: -0.67660135, y: -0.2954219}
+      - {x: -0.64583963, y: -0.4492305}
+      - {x: -0.64583963, y: -0.6030391}
+      - {x: -0.7381248, y: -0.68507034}
+      - {x: -0.7381248, y: -0.7465938}
+      - {x: -0.69710916, y: -0.8183711}
+      - {x: -0.5945701, y: -0.8183711}
+      - {x: -0.48177713, y: -0.72608596}
+      - {x: -0.30746073, y: -0.73633987}
+      - {x: -0.21517557, y: -0.73633987}
+  m_UseDelaunayMesh: 0
 --- !u!1 &907643687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5605,6 +5818,7 @@ GameObject:
   - component: {fileID: 1260206521}
   - component: {fileID: 1260206520}
   - component: {fileID: 1260206522}
+  - component: {fileID: 1260206523}
   m_Layer: 0
   m_Name: Indonesia
   m_TagString: Untagged
@@ -5694,6 +5908,78 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   origionalColor: {r: 0.9858491, g: 0.8454366, b: 0.5440771, a: 1}
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+--- !u!60 &1260206523
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260206519}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.03, y: 2.3002245}
+    newSize: {x: 2.03, y: 2.3002245}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.20163095, y: -0.31018755}
+      - {x: 0.10934579, y: -0.61780477}
+      - {x: 0.10934579, y: -0.7203438}
+      - {x: 0.14010751, y: -0.8023751}
+      - {x: 0.16061532, y: -0.812629}
+      - {x: 0.2836622, y: -0.812629}
+      - {x: 0.39645517, y: -0.77161336}
+      - {x: 0.51950204, y: -0.45374224}
+      - {x: 0.51950204, y: -0.31018755}
+    - - {x: 0.14010751, y: -0.023078173}
+      - {x: 0.078584075, y: 0.017937452}
+      - {x: -0.023954988, y: 0.017937452}
+      - {x: -0.43411124, y: -0.25891802}
+      - {x: -0.44436514, y: -0.31018755}
+      - {x: -0.44436514, y: -0.5255196}
+      - {x: -0.34182608, y: -0.6895821}
+      - {x: -0.14700186, y: -0.7203438}
+      - {x: -0.034208894, y: -0.7203438}
+      - {x: 0.14010751, y: -0.3922188}
+    - - {x: 0.14010751, y: 0.8382499}
+      - {x: 0.08883798, y: 0.8177421}
+      - {x: 0.078584075, y: 0.74596477}
+      - {x: 0.078584075, y: 0.49987105}
+      - {x: 0.16061532, y: 0.4383476}
+      - {x: 0.23239267, y: 0.39733198}
+      - {x: 0.41696298, y: 0.39733198}
+      - {x: 0.41696298, y: 0.8382499}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1279730922
 GameObject:
   m_ObjectHideFlags: 0
@@ -6993,6 +7279,7 @@ GameObject:
   - component: {fileID: 1663296642}
   - component: {fileID: 1663296641}
   - component: {fileID: 1663296643}
+  - component: {fileID: 1663296644}
   m_Layer: 0
   m_Name: New Guine
   m_TagString: Untagged
@@ -7082,6 +7369,71 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   origionalColor: {r: 0.9858491, g: 0.8454366, b: 0.5440771, a: 1}
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+--- !u!60 &1663296644
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663296640}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.47, y: 1.1001074}
+    newSize: {x: 1.47, y: 1.1001074}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.2676555, y: 0.11990261}
+      - {x: 0.0010539293, y: 0.2532034}
+      - {x: -0.29630935, y: 0.22244167}
+      - {x: -0.41935623, y: 0.35574245}
+      - {x: -0.5629109, y: 0.35574245}
+      - {x: -0.5731648, y: 0.33523464}
+      - {x: -0.5731648, y: 0.29421902}
+      - {x: -0.552657, y: 0.2634573}
+      - {x: -0.46037185, y: 0.06863308}
+      - {x: -0.13224685, y: -0.04415989}
+      - {x: -0.16300857, y: -0.15695286}
+      - {x: -0.14250076, y: -0.2184763}
+      - {x: 0.05232346, y: -0.30050755}
+      - {x: 0.22663987, y: -0.30050755}
+      - {x: 0.2984172, y: -0.18771458}
+      - {x: 0.49324143, y: -0.35177708}
+      - {x: 0.5957805, y: -0.35177708}
+      - {x: 0.6265422, y: -0.32101536}
+      - {x: 0.6162883, y: -0.29025364}
+      - {x: 0.4522258, y: -0.04415989}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1704186334
 GameObject:
   m_ObjectHideFlags: 0
@@ -8164,6 +8516,7 @@ GameObject:
   - component: {fileID: 1967064886}
   - component: {fileID: 1967064885}
   - component: {fileID: 1967064887}
+  - component: {fileID: 1967064888}
   m_Layer: 0
   m_Name: Fuck nows needs join indonesia ?
   m_TagString: Untagged
@@ -8253,6 +8606,69 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   origionalColor: {r: 0.9858491, g: 0.8454366, b: 0.5440771, a: 1}
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
+--- !u!60 &1967064888
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967064884}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.46, y: 1.4601425}
+    newSize: {x: 1.46, y: 1.4601425}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.37635666, y: -0.27050498}
+      - {x: 0.32508713, y: -0.26025108}
+      - {x: 0.09950119, y: -0.16796592}
+      - {x: 0.08924729, y: -0.024411231}
+      - {x: -0.023545682, y: 0.13965127}
+      - {x: -0.07481521, y: 0.1909208}
+      - {x: -0.25938553, y: 0.40625283}
+      - {x: -0.44395584, y: 0.56006145}
+      - {x: -0.5464949, y: 0.56006145}
+      - {x: -0.5670027, y: 0.5087919}
+      - {x: -0.5670027, y: 0.43701455}
+      - {x: -0.30040115, y: 0.09863564}
+      - {x: -0.013291776, y: -0.3115206}
+      - {x: 0.32508713, y: -0.4550753}
+      - {x: 0.4276262, y: -0.4653292}
+      - {x: 0.6429582, y: -0.4653292}
+      - {x: 0.6429582, y: -0.40380576}
+      - {x: 0.560927, y: -0.33202842}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1967978857
 GameObject:
   m_ObjectHideFlags: 0
