@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public List<Territory> controlledTerritories = new List<Territory>();
     public Color playerColor;
     public bool isMyTurn = false;
-    public List<GameObject> counters;
+    public List<Counter> counters = new();
     public void GiveCard(Card card)
     {
         //Some code to give the player a card

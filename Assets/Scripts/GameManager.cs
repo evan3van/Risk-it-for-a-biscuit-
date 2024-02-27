@@ -98,10 +98,10 @@ public class GameManager : MonoBehaviour
             // Iterates through each territory within the continent.
             foreach (Territory territory in continent.territories)
             {
-                // Adds a reference to the territory to the allTerritories list.
+                // Adds a reference to the territory to the allTerritories list which should not be changed.
                 allTerritories.Add(territory);
                 
-                // Adds a reference to the territory to the territoryList for further processing.
+                // Adds a reference to the territory to the territoryList which can be changed.
                 territoryList.Add(territory);
             }
         }
@@ -207,8 +207,9 @@ public class GameManager : MonoBehaviour
                 // Retrieves the Counter script component attached to the counter object.
                 Counter counterScript = counter.GetComponent<Counter>();
                 
-                // Sets the owner of the counter.
+                // Sets the owner of the counter and puts the counter into the player's counters list.
                 counterScript.ownedBy = player;
+                player.counters.Add(counterScript);
                 
                 // Adds the counter script to the list of counters.
                 counters.Add(counterScript);
@@ -219,34 +220,35 @@ public class GameManager : MonoBehaviour
         foreach (Player player in playerList)
         {
             player.unitCount = maxArmySize;
+            int iterations = maxArmySize;
+            foreach (Counter counter in player.counters)
+            {
+                // Initialise all counters with value 1 by default.
+                counter.troopCount = 1;
 
-            List<int> possibleTroops = new();
-            int iterationsNum = player.controlledTerritories.Count / playerList.Count;
-            int iterationsRemainder = player.controlledTerritories.Count % playerList.Count;
-            for (int i = 1; i < 6; i++)
+                // Decrement iterations variable by 1 for each of these.
+                iterations -= 1;
+            }
+            
+
+            while (iterations > 0)
             {
-                for (int j = 0; j < iterationsNum; j++)
+                // Randomly select counter to add 1 to.
+                Counter choice = player.counters[Random.Range(0,player.counters.Count)];
+
+                if(choice.troopCount < 5)
                 {
-                    possibleTroops.Add(i);
+                    choice.troopCount += 1;
+
+                    iterations -= 1;
                 }
             }
-            for (int i = 0; i < playerList.Count; i++)
-            {
-                if(iterationsRemainder>0)
-                {
-                    for (int j = 0; j < iterationsRemainder; j++)
-                    {
-                        possibleTroops.Add(i);
-                    }
-                }
-            }
-            Debug.Log(possibleTroops.Count);
 
             foreach (Counter counter in counters)
             {
                 if (counter.ownedBy == player)
                 {
-                    TextMesh text = counter.gameObject.GetComponent<TextMesh>();
+                    TextMesh textMesh = counter.gameObject.GetComponent<TextMesh>();
                     
                 }
             }
