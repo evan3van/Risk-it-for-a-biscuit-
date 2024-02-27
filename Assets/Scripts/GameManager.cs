@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    int debugCounter = 0;
     private int maxArmySize = 40;
     private int totalTerritories = 47;
     public static int numOfPlayers = 3;
@@ -22,19 +23,30 @@ public class GameManager : MonoBehaviour
     public GameObject counterPrefab;
     void Start()
     {
+        // Iterates through each continent in the continents collection.
         foreach (Continent continent in continents)
         {
+            // Within each continent, it iterates through each territory in the continent.
             foreach (Transform territory in continent.transform)
             {
+                // Adds a Territory component to each territory game object.
                 territory.AddComponent<Territory>();
+                
+                // Adds the territory to the list of territories in the continent.
                 continent.territories.Add(territory.GetComponent<Territory>());
             }
         }
-        textMesh = GetComponent<TextMesh>();  //Getting the UI text so we can edit it
 
-        if(numOfPlayers > 6){
+        // Gets the TextMesh component attached to the current game object to edit UI text.
+        textMesh = GetComponent<TextMesh>();  
+
+        // If there are more than 6 players, sets the number of players to 6.
+        if(numOfPlayers > 6)
+        {
             numOfPlayers = 6;
         }
+
+        // Initializes an array of player colors.
         playerColors = new(){
             Color.cyan,
             Color.magenta,
@@ -43,18 +55,18 @@ public class GameManager : MonoBehaviour
             Color.gray,
             Color.white
         };
-        InstantiateWorld(numOfPlayers);
+
+        InstantiateWorld();
     }
 
-    void FixedUpdate()
+    private void InstantiateWorld()
     {
-        //Any checks for updates on things in the world will happen here
-    }
+        // Method for setting up the world initially.
 
-    //method for instantiating the world initially taking into account the number of players
-    private void InstantiateWorld(int playerCount)
-    {
-        //Creating a list of players
+        // Setting a player count variable to be equal to the number of players public in the editor.
+        int playerCount = numOfPlayers;
+
+        // Creating a list of players with player components.
         for (int i = 0; i < playerCount; i++)
         {
             GameObject playerObject = new GameObject("Player "+(i+1));
@@ -63,84 +75,142 @@ public class GameManager : MonoBehaviour
             playerList.Add(player);
         }
 
+        // Calculating the max army size starting at 40 and reducing by 5 for each player.
         maxArmySize -= 5*(playerCount-2);
 
-        //Setting up territories
+        // Calling the SetTerritories method.
         SetTerritories();
 
+        // Calling the PlaceArmies method.
         PlaceArmies();
     }
 
     void SetTerritories()
     {
-        List<Territory> territoryList = new();
-        
+        // This function sets up territories for players to control.
+
+        // Initializes a list to hold references to all territories.
+        List<Territory> territoryList = new List<Territory>();
+
+        // Iterates through each continent.
         foreach (Continent continent in continents)
         {
+            // Iterates through each territory within the continent.
             foreach (Territory territory in continent.territories)
             {
-                Territory newTerritoryReference = territory;
+                // Adds a reference to the territory to the allTerritories list.
                 allTerritories.Add(territory);
-                territoryList.Add(newTerritoryReference);
+                
+                // Adds a reference to the territory to the territoryList for further processing.
+                territoryList.Add(territory);
             }
         }
 
+        // Determines the number of players.
         int playerCount = playerList.Count;
 
+        // Checks if the number of players is less than or equal to 2.
         if (playerList.Count <= 2){
+
+            // If there are 2 or fewer players, creates a neutral player.
             GameObject neutralPlayer = new GameObject("Neutral");
             Player neutral = neutralPlayer.AddComponent<Player>();
             neutral.playerColor = neutralColor;
+
+            // Adds the neutral player to the player list.
             playerList.Add(neutral);
+            
+            // Adjusts the player count to 3.
             playerCount = 3;
         }
 
+        // Calculates the number of territories each player should control.
         int territoriesPerPlayer = totalTerritories/playerCount;
-        int remainderTerritories = totalTerritories%playerCount;
+
+        // Iterates through each player in the player list.
         foreach (Player player in playerList)
         {
+            // Distributes territories to each player.
             for (int i = 0; i < territoriesPerPlayer; i++)
             {
+                // Selects a random territory from the territory list.
                 int randomNumber = Random.Range(0,territoryList.Count);
                 Territory choice = territoryList[randomNumber];
+                
+                // Checks if the chosen territory is available for control.
                 if(choice != null && choice.controlledBy == null)
                 {
+                    // Sets the territory's original color for highlighting.
                     choice.GetComponent<OnHoverHighlight>().origionalColor = player.playerColor;
+                    
+                    // Adds the territory to the player's controlled territories.
                     player.controlledTerritories.Add(choice);
+                    
+                    // Sets the territory's owner to the current player.
                     choice.controlledBy = player;
+                    
+                    // Removes the chosen territory from the territory list.
                     territoryList.Remove(choice);
                 }
                 else
                 {
+                    // Outputs an error message if the chosen territory is already occupied. (This should never be the case)
                     Debug.Log("Error: trying to select occupied territory");
                 }
             }
         }
-        if (remainderTerritories != 0)
+
+        // Assigns remaining territories to the first player in the player list.
+        foreach (Territory territory in territoryList.ToArray())
         {
-            for (int i = 0; i < remainderTerritories-1  ; i++)
-            {
-                territoryList[i].controlledBy = playerList[i];
-                playerList[i].controlledTerritories.Add(territoryList[i]);
-                territoryList.Remove(territoryList[i]);
-            }
+            // Adds the remaining territories to the controlled territories of the first player.
+            playerList[0].controlledTerritories.Add(territory);
+            // Removes the territory from the territory list.
+            territoryList.Remove(territory);
         }
 
-        //foreach (Player player in playerList){Debug.Log($"Player:{player.name}, Territory count: {player.controlledTerritories.Count}");}   //debugging
+        // Debugging lines:
+        // foreach (Player player in playerList){Debug.Log($"Player:{player.name}, Territory count: {player.controlledTerritories.Count}");}   //debugging
     }
 
     void PlaceArmies()
     {
+        // This function is responsible for placing armies (counters) on territories owned by players.
+
+        // Iterates through each player in the player list.
         foreach (Player player in playerList)
         {
+            // Retrieves the player's color.
+            Color playerColor = player.playerColor;
+            
+            // Calculates a darker shade of the player's color for the counter.
+            Color counterColor = new Color(playerColor.r * 0.8f, playerColor.g * 0.8f, playerColor.b * 0.8f);
+
+            // Iterates through each territory controlled by the player.
             foreach (Territory territory in player.controlledTerritories)
             {
-                GameObject counter = Instantiate(counterPrefab,transform,true);
-                counter.name = "Counter: "+territory.name;
-                counter.transform.position = new Vector3(territory.transform.position.x,territory.transform.position.y,-2);
+                // Instantiates a counter prefab for the territory.
+                GameObject counter = Instantiate(counterPrefab, transform, true);
+                
+                // Sets the name of the counter.
+                counter.name = "Counter: " + territory.name;
+                
+                // Sets the color of the counter sprite.
+                counter.GetComponent<SpriteRenderer>().color = counterColor;
+                
+                // Sets the position of the counter above the territory.
+                counter.transform.position = new Vector3(territory.transform.position.x, territory.transform.position.y, -2);
+                
+                // Sets the parent of the counter as the territory to keep hierarchy.
                 counter.transform.parent = territory.transform;
+                
+                // Retrieves the Counter script component attached to the counter object.
                 Counter counterScript = counter.GetComponent<Counter>();
+                
+                // Sets the owner of the counter.
                 counterScript.ownedBy = player;
+                
+                // Adds the counter script to the list of counters.
                 counters.Add(counterScript);
             }
         }
