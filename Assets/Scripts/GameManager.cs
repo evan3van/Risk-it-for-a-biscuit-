@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private int totalTerritories = 47;
     public static int numOfPlayers = 3;
     public List<Player> playerList;
-    private TextMesh textMesh;
     public int turnNumber;
     public List<Continent> continents;
     public List<Territory> allTerritories;
@@ -24,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Color neutralColor;
     public List<Counter> counters;
     public GameObject counterPrefab;
+    public Turn turn;
     void Start()
     {
         // Iterates through each continent in the continents collection.
@@ -39,9 +39,6 @@ public class GameManager : MonoBehaviour
                 continent.territories.Add(territory.GetComponent<Territory>());
             }
         }
-
-        // Gets the TextMesh component attached to the current game object to edit UI text.
-        textMesh = GetComponent<TextMesh>();  
 
         // If there are more than 6 players, sets the number of players to 6.
         if(numOfPlayers > 6)
@@ -59,7 +56,13 @@ public class GameManager : MonoBehaviour
             Color.white
         };
 
+        GameObject turnObject = new("Turn");
+        turn = turnObject.AddComponent<Turn>();
+        turnNumber = 1;
+
         InstantiateWorld();
+
+        turn.myTurn = playerList[0];
     }
 
     private void InstantiateWorld()
@@ -106,6 +109,8 @@ public class GameManager : MonoBehaviour
                 
                 // Adds a reference to the territory to the territoryList which can be changed.
                 territoryList.Add(territory);
+
+
             }
         }
 
@@ -145,8 +150,12 @@ public class GameManager : MonoBehaviour
                 {
                     // Sets the colors for the territory to the player's color.
                     choice.GetComponent<SpriteRenderer>().color = player.playerColor;
-                    choice.GetComponent<OnHoverHighlight>().origionalColor = player.playerColor;
-                    
+
+                    OnHoverHighlight highlight = choice.GetComponent<OnHoverHighlight>();
+                    highlight.origionalColor = player.playerColor;
+                    highlight.player = player;
+                    highlight.currentTurn = turn;    //Not setting reference here correctly
+
                     // Adds the territory to the player's controlled territories.
                     player.controlledTerritories.Add(choice);
                     
@@ -166,7 +175,11 @@ public class GameManager : MonoBehaviour
 
             // Sets the colors for the territories to the first player's color.
             territory.GetComponent<SpriteRenderer>().color = playerList[0].playerColor;
-            territory.GetComponent<OnHoverHighlight>().origionalColor = playerList[0].playerColor;
+
+            OnHoverHighlight highlight = territory.GetComponent<OnHoverHighlight>();
+            highlight.origionalColor = playerList[0].playerColor;
+            highlight.player = playerList[0];
+            highlight.currentTurn = turn;
 
             // Removes the territory from the territory list.
             territoryList.Remove(territory);
