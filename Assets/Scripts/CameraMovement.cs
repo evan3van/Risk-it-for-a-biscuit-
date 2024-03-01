@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -13,8 +14,10 @@ public class CameraMovement : MonoBehaviour
     private Vector3 dragOrigin;
     private Vector3 origin;
 
-    private int maxDragDistanceY = 100;
-    private int maxDragDistanceX = 100;
+    private float maxDragDistanceX = 100f;
+    private float maxDragDistanceY = 100f;
+    public float movementZoomStepX = 50f;
+    public float movementZoomStepY = 30f;
 
     private void Start() 
     {
@@ -83,6 +86,28 @@ public class CameraMovement : MonoBehaviour
     {
         float newSize = cam.orthographicSize - zoomStep;
         cam.orthographicSize = Mathf.Clamp(newSize, minCamSize, maxCamSize);
+
+        maxDragDistanceX += movementZoomStepX;
+        maxDragDistanceY += movementZoomStepY;
+
+        if(maxDragDistanceX < 100)
+        {
+            maxDragDistanceX = 100;
+        }
+        else if(maxDragDistanceX > 550)
+        {
+            maxDragDistanceX = 550;
+        }
+
+        if(maxDragDistanceY < 100)
+        {
+            maxDragDistanceY = 100;
+        }
+        else if(maxDragDistanceY > 550)
+        {
+            maxDragDistanceY = 550;
+        }
+        Debug.Log(maxDragDistanceX);
     }
 
 
@@ -90,6 +115,28 @@ public class CameraMovement : MonoBehaviour
     {
         float newSize = cam.orthographicSize + zoomStep;
         cam.orthographicSize = Mathf.Clamp(newSize, minCamSize, maxCamSize);
+
+        maxDragDistanceX -= movementZoomStepX;
+        maxDragDistanceY -= movementZoomStepY;
+
+        if(maxDragDistanceX < 100)
+        {
+            maxDragDistanceX = 100;
+        }
+        else if(maxDragDistanceX > 550)
+        {
+            maxDragDistanceX = 550;
+        }
+
+        if(maxDragDistanceY < 100)
+        {
+            maxDragDistanceY = 100;
+        }
+        else if(maxDragDistanceY > 550)
+        {
+            maxDragDistanceY = 550;
+        }
+        Debug.Log(maxDragDistanceX);
     }
 
 }

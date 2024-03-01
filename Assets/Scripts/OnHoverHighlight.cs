@@ -5,8 +5,7 @@ using UnityEngine;
 public class OnHoverHighlight : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
-    public Color origionalColor;
-    public Color newColor;
+    public Color origionalColor,newColor;
     public Player player;
     public Turn currentTurn;
     void Start()
