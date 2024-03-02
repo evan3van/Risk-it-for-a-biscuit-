@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         InstantiateWorld();
 
-        turn.myTurn = playerList[0];
+        turn.players = playerList;
         turn.nextTurn(playerList[0]);
     }
 
