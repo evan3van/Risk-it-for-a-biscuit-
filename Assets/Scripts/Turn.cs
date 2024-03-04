@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Turn : MonoBehaviour
@@ -10,8 +11,9 @@ public class Turn : MonoBehaviour
     public Player nextPlayer;
     public List<Player> players;
     public Player myTurn;
-    string turnMode;
-    public void nextTurn(Player player)
+    public string turnMode;
+    public TextMesh playerUIName;
+    public void NextTurn(Player player)
     {
         turnNumber++;
         playerPointer++;
@@ -27,28 +29,12 @@ public class Turn : MonoBehaviour
         ReinforcementPhase(player);
     }
 
-    public void nextPhase(String previousPhase)
-    {
-        if(previousPhase == "Reinforcement")
-        {
-            turnMode = "Attack";
-        }
-        else if(previousPhase == "Attack")
-        {
-            turnMode = "Fortify";
-        }
-        else if(previousPhase == "Fortify")
-        {
-            turnMode = "Reinforcement";
-            nextTurn(nextPlayer);
-        }
-        else{Debug.Log("Error with phase selection");}
-    }
-
     public void ReinforcementPhase(Player player)
     {
         int reinforcementNum = player.controlledTerritories.Count / 3;
         player.GiveTroops(reinforcementNum);
+
+        turnMode = "Reinforcement";
 
     }
     
@@ -59,6 +45,6 @@ public class Turn : MonoBehaviour
 
     void FortifyPhase()
     {
-
+        NextTurn(nextPlayer);
     }
 }

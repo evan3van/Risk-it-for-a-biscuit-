@@ -1096,7 +1096,9 @@ MonoBehaviour:
   neutralColor: {r: 0.9843137, g: 0.84705883, b: 0.54509807, a: 1}
   counters: []
   counterPrefab: {fileID: 2321821966938838389, guid: 9771e4f30eaa245409ca0f5ce707ae33, type: 3}
+  arrowPrefab: {fileID: 5132405697674416637, guid: 1bf75ff910820c640bf613176c42f57e, type: 3}
   turn: {fileID: 0}
+  playerUIName: {fileID: 396721780}
 --- !u!1 &225195921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1329,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   troops: 0
   controlledBy: {fileID: 0}
+  turn: {fileID: 0}
+  neighbourTerritories: []
+  arrowPrefab: {fileID: 0}
+  isArrowsActive: 0
   territories: []
 --- !u!1 &261685785
 GameObject:
@@ -1750,6 +1756,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   troops: 0
   controlledBy: {fileID: 0}
+  turn: {fileID: 0}
+  neighbourTerritories: []
+  arrowPrefab: {fileID: 0}
+  isArrowsActive: 0
   territories: []
 --- !u!1 &308311266
 GameObject:
@@ -1804,6 +1814,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   troops: 0
   controlledBy: {fileID: 0}
+  turn: {fileID: 0}
+  neighbourTerritories: []
+  arrowPrefab: {fileID: 0}
+  isArrowsActive: 0
   territories: []
 --- !u!1 &325301899
 GameObject:
@@ -3464,6 +3478,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   troops: 0
   controlledBy: {fileID: 0}
+  turn: {fileID: 0}
+  neighbourTerritories: []
+  arrowPrefab: {fileID: 0}
+  isArrowsActive: 0
   territories: []
 --- !u!1 &715402123
 GameObject:
@@ -8586,6 +8604,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   troops: 0
   controlledBy: {fileID: 0}
+  turn: {fileID: 0}
+  neighbourTerritories: []
+  arrowPrefab: {fileID: 0}
+  isArrowsActive: 0
   territories: []
 --- !u!1 &1944826319
 GameObject:
@@ -9723,6 +9745,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   troops: 0
   controlledBy: {fileID: 0}
+  turn: {fileID: 0}
+  neighbourTerritories: []
+  arrowPrefab: {fileID: 0}
+  isArrowsActive: 0
   territories: []
 --- !u!1 &2120901605
 GameObject:

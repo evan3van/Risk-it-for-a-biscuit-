@@ -27,4 +27,9 @@ public class Player : MonoBehaviour
         unitCount -= number;
         //More code to make something visually happen here
     }
+
+    public void Reinforce(int numOfTroops,Territory territory)
+    {
+
+    }
 }

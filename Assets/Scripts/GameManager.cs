@@ -23,20 +23,23 @@ public class GameManager : MonoBehaviour
     public Color neutralColor;
     public List<Counter> counters;
     public GameObject counterPrefab;
+    public GameObject arrowPrefab;
     public Turn turn;
+    public GameObject playerUIName;
     void Start()
-    {
+    {   
+
         // Iterates through each continent in the continents collection.
         foreach (Continent continent in continents)
         {
             // Within each continent, it iterates through each territory in the continent.
-            foreach (Transform territory in continent.transform)
+            foreach (Transform territoryObject in continent.transform)
             {
                 // Adds a Territory component to each territory game object.
-                territory.AddComponent<Territory>();
+                Territory territory = territoryObject.AddComponent<Territory>();
                 
                 // Adds the territory to the list of territories in the continent.
-                continent.territories.Add(territory.GetComponent<Territory>());
+                continent.territories.Add(territory);
             }
         }
 
@@ -63,7 +66,15 @@ public class GameManager : MonoBehaviour
         InstantiateWorld();
 
         turn.players = playerList;
-        turn.nextTurn(playerList[0]);
+        turn.NextTurn(playerList[0]);
+        turn.playerUIName = playerUIName.GetComponent<TextMesh>();
+
+        foreach (Territory territory in allTerritories)
+        {
+            territory.turn = turn;
+            territory.arrowPrefab = arrowPrefab;
+        }
+
     }
 
     private void InstantiateWorld()
@@ -110,10 +121,9 @@ public class GameManager : MonoBehaviour
                 
                 // Adds a reference to the territory to the territoryList which can be changed.
                 territoryList.Add(territory);
-
-
             }
         }
+
 
         // Determines the number of players.
         int playerCount = playerList.Count;
