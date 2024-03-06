@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject arrowPrefab;
     public Turn turn;
     public GameObject playerUIName;
+    public Dictionary<Territory,List<Territory>> territoriesNeighbours;   //Central Africa:  South Africa, North Africa, etc   West Africa: ...
     void Start()
     {   
 
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
 
         // Calling the PlaceArmies method.
         PlaceArmies();
+
+        //displayAllTerritories();
     }
 
     void SetTerritories()
@@ -192,6 +195,8 @@ public class GameManager : MonoBehaviour
             highlight.player = playerList[0];
             highlight.currentTurn = turn;
 
+            territory.controlledBy = playerList[0];
+
             // Removes the territory from the territory list.
             territoryList.Remove(territory);
         }
@@ -277,5 +282,25 @@ public class GameManager : MonoBehaviour
                 tmp.text = counter.troopCount.ToString();
             }
         }
+    }
+
+    public void displayAllTerritories(){
+        string territories = "";
+        foreach (Territory territory in allTerritories)
+        {
+            territories = territories + ", "+ territory.name;
+
+        }
+        GameObject objecti = new();
+        objecti.name = territories;
+        Debug.Log(territories);
+        Debug.Log(allTerritories.Count);
+    }
+
+
+    public void SetNeighbours()
+    {
+        // Creates a dictionary that maps all the neighbours
+        territoriesNeighbours = new();
     }
 }
