@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject arrowPrefab;
     public Turn turn;
     public GameObject playerUIName;
-    public Dictionary<Territory,List<Territory>> territoriesNeighbours;   //Central Africa:  South Africa, North Africa, etc   West Africa: ...
+    public Dictionary<string,List<string>> territoriesNeighbours;   //Central Africa:  South Africa, North Africa, etc   West Africa: ...
     void Start()
     {   
 
@@ -291,8 +291,6 @@ public class GameManager : MonoBehaviour
             territories = territories + ", "+ territory.name;
 
         }
-        GameObject objecti = new();
-        objecti.name = territories;
         Debug.Log(territories);
         Debug.Log(allTerritories.Count);
     }
@@ -301,6 +299,54 @@ public class GameManager : MonoBehaviour
     public void SetNeighbours()
     {
         // Creates a dictionary that maps all the neighbours
-        territoriesNeighbours = new();
+        territoriesNeighbours = new Dictionary<string, List<string>>
+        {
+            {"North Africa", new List<string> {"Egypt", "Central Africa", "East Africa", "Western Europe", "Southern Europe"}},
+            {"Egypt", new List<string> {"North Africa", "East Africa", "Middle East", "Southern Europe"}},
+            {"Central Africa", new List<string> {"North Africa", "East Africa", "South Africa"}},
+            {"East Africa", new List<string> {"Egypt", "North Africa", "Central Africa", "South Africa", "Madagascar", "Middle East"}},
+            {"Madagascar", new List<string> {"East Africa", "South Africa"}},
+            {"South Africa", new List<string> {"Central Africa", "East Africa", "Madagascar"}},
+            {"Cuba", new List<string> {"Eastern United States", "Central America"}},
+            {"Greenland", new List<string> {"Quebec", "Ontario", "North West Territory", "Iceland"}},
+            {"Eastern United States", new List<string> {"Central America", "Western United States", "Ontario", "Quebec", "Cuba"}},
+            {"Central America", new List<string> {"Eastern United States", "Western United States", "Venezuela", "Cuba"}},
+            {"Quebec", new List<string> {"Eastern United States", "Ontario", "Greenland"}},
+            {"Western United States", new List<string> {"Eastern United States", "Central America", "Alberta", "Ontario"}},
+            {"Ontario", new List<string> {"Quebec", "Eastern United States", "Western United States", "Alberta", "North West Territory", "Greenland"}},
+            {"Alberta", new List<string> {"Western United States", "Ontario", "North West Territory", "Alaska"}},
+            {"North West Territory", new List<string> {"Alberta", "Ontario", "Greenland", "Alaska"}},
+            {"Alaska", new List<string> {"North West Territory", "Alberta", "Kamchatka"}},
+            {"New Zealand", new List<string> {"Eastern Australia"}},
+            {"Indonesia", new List<string> {"Siam", "New Guinea", "Western Australia"}},
+            {"New Guinea", new List<string> {"Indonesia", "Eastern Australia", "Western Australia"}},
+            {"Western Australia", new List<string> {"Indonesia", "Eastern Australia", "New Guinea"}},
+            {"Eastern Australia", new List<string> {"New Guinea", "Western Australia", "New Zealand"}},
+            {"Ukraine", new List<string> {"Ural", "Afghanistan", "Middle East", "Southern Europe", "Northern Europe", "Scandinavia"}},
+            {"Scandinavia", new List<string> {"Iceland", "Great Britain", "Northern Europe", "Ukraine"}},
+            {"Southern Europe", new List<string> {"North Africa", "Egypt", "Middle East", "Western Europe", "Northern Europe", "Ukraine"}},
+            {"Western Europe", new List<string> {"Great Britain", "Northern Europe", "Southern Europe", "North Africa"}},
+            {"Northern Europe", new List<string> {"Great Britain", "Scandinavia", "Ukraine", "Southern Europe", "Western Europe"}},
+            {"Great Britain", new List<string> {"Iceland", "Scandinavia", "Northern Europe", "Western Europe"}},
+            {"Iceland", new List<string> {"Greenland", "Scandinavia", "Great Britain"}},
+            {"Japan", new List<string> {"Kamchatka", "Mongolia"}},
+            {"Mongolia", new List<string> {"Japan", "China", "Siberia", "Irkutsk", "Kamchatka"}},
+            {"Irkutsk", new List<string> {"Siberia", "Yakutsk", "Kamchatka", "Mongolia"}},
+            {"Kamchatka", new List<string> {"Alaska", "Yakutsk", "Irkutsk", "Mongolia", "Japan"}},
+            {"Yakutsk", new List<string> {"Siberia", "Irkutsk", "Kamchatka"}},
+            {"Siberia", new List<string> {"Ural", "China", "Mongolia", "Irkutsk", "Yakutsk"}},
+            {"China", new List<string> {"Siam", "India", "Afghanistan", "Ural", "Siberia", "Mongolia"}},
+            {"Siam", new List<string> {"India", "China", "Indonesia"}},
+            {"India", new List<string> {"Middle East", "Afghanistan", "China", "Siam"}},
+            {"Afghanistan", new List<string> {"Ukraine", "Ural", "China", "India", "Middle East"}},
+            {"Ural", new List<string> {"Ukraine", "Siberia", "China", "Afghanistan"}},
+            {"Middle East", new List<string> {"Egypt", "East Africa", "Southern Europe", "Ukraine", "Afghanistan", "India"}},
+            {"Argentina", new List<string> {"Brazil", "Peru"}},
+            {"Brazil", new List<string> {"Venezuela", "Peru", "Argentina", "North Africa"}},
+            {"South America Island 2", new List<string> {"South America Island 1","South Africa"}},
+            {"South America Island 1", new List<string> {"Argentina","Brazil","South America Island 1"}},
+            {"Peru", new List<string> {"Venezuela", "Brazil", "Argentina"}},
+            {"Venezuela", new List<string> {"Central America", "Brazil", "Peru"}}
+        };
     }
 }
