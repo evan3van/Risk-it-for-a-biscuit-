@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
         InstantiateWorld();
 
         turn.players = playerList;
+        turn.playerUIName = playerUIName;
         turn.NextTurn(playerList[0]);
-        turn.playerUIName = playerUIName.GetComponent<TextMesh>();
 
         foreach (Territory territory in allTerritories)
         {
