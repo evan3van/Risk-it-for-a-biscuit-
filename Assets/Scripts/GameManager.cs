@@ -346,7 +346,8 @@ public class GameManager : MonoBehaviour
             {"South America Island 2", new List<string> {"South America Island 1","South Africa"}},
             {"South America Island 1", new List<string> {"Argentina","Brazil","South America Island 1"}},
             {"Peru", new List<string> {"Venezuela", "Brazil", "Argentina"}},
-            {"Venezuela", new List<string> {"Central America", "Brazil", "Peru"}}
+            {"Venezuela", new List<string> {"Central America", "Brazil", "Peru"}},
+            {"Philipines", new List<string> {}}
         };
     }
 }
