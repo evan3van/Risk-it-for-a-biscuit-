@@ -21,6 +21,8 @@ public class Turn : MonoBehaviour
 
         myTurn = player;
 
+        playerUIName.GetComponent<TextMeshProUGUI>().text = player.name;
+
         if(playerPointer>players.Count)
         {
             playerPointer = 0;

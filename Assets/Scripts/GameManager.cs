@@ -67,9 +67,8 @@ public class GameManager : MonoBehaviour
         InstantiateWorld();
 
         turn.players = playerList;
-        turn.NextTurn(playerList[0]);
         turn.playerUIName = playerUIName;
-        Debug.Log(turn.playerUIName);
+        turn.NextTurn(playerList[0]);
 
         foreach (Territory territory in allTerritories)
         {
