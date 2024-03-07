@@ -280,6 +280,8 @@ public class GameManager : MonoBehaviour
             {
                 TextMeshPro tmp = counter.transform.GetChild(0).gameObject.GetComponent<TextMeshPro>();
                 tmp.text = counter.troopCount.ToString();
+                tmp.overrideColorTags = true;
+                tmp.color = Color.black;
             }
         }
     }
