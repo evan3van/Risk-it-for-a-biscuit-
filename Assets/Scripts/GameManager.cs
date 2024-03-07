@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     int debugCounter = 0;
     private int maxArmySize = 40;
     private int totalTerritories = 47;
-    public static int numOfPlayers = 3;
+    public int numOfPlayers = 3;
     public List<Player> playerList;
     public int turnNumber;
     public List<Continent> continents;
