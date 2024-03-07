@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     int debugCounter = 0;
     private int maxArmySize = 40;
     private int totalTerritories = 47;
-    public static int numOfPlayers = 3;
+    public int numOfPlayers = 3;
     public List<Player> playerList;
     public int turnNumber;
     public List<Continent> continents;
@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
         InstantiateWorld();
 
         turn.players = playerList;
+        turn.playerUIName = playerUIName;
         turn.NextTurn(playerList[0]);
-        turn.playerUIName = playerUIName.GetComponent<TextMesh>();
 
         foreach (Territory territory in allTerritories)
         {
@@ -346,7 +346,8 @@ public class GameManager : MonoBehaviour
             {"South America Island 2", new List<string> {"South America Island 1","South Africa"}},
             {"South America Island 1", new List<string> {"Argentina","Brazil","South America Island 1"}},
             {"Peru", new List<string> {"Venezuela", "Brazil", "Argentina"}},
-            {"Venezuela", new List<string> {"Central America", "Brazil", "Peru"}}
+            {"Venezuela", new List<string> {"Central America", "Brazil", "Peru"}},
+            {"Philipines", new List<string> {}}
         };
     }
 }

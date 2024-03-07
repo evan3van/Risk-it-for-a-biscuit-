@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turn : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Turn : MonoBehaviour
     public List<Player> players;
     public Player myTurn;
     public string turnMode;
-    public TextMesh playerUIName;
+    public GameObject playerUIName;
     public void NextTurn(Player player)
     {
         turnNumber++;
@@ -20,13 +21,13 @@ public class Turn : MonoBehaviour
 
         myTurn = player;
 
+        playerUIName.GetComponent<TextMeshProUGUI>().text = player.name;
+
         if(playerPointer>players.Count)
         {
             playerPointer = 0;
         }
         nextPlayer = players[playerPointer];
-
-        ReinforcementPhase(player);
     }
 
     public void ReinforcementPhase(Player player)

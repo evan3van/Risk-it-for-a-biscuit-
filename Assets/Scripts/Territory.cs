@@ -19,7 +19,7 @@ public class Territory : MonoBehaviour
         {
             //Activate arrows
             Debug.Log(name);
-            if(turn.turnMode == "Reinforcement")
+            if(turn.turnMode == "Reinforce")
             {
                 if(!isArrowsActive)
                 {
@@ -28,6 +28,7 @@ public class Territory : MonoBehaviour
                 }
                 else if(isArrowsActive)
                 {
+                    HideArrows();
                     isArrowsActive = false;
                 }
             }
@@ -36,6 +37,7 @@ public class Territory : MonoBehaviour
 
     private void DrawArrows()
     {
+        
         int i = 1;
         foreach (Territory neighbour in neighbourTerritories)
         {
@@ -55,10 +57,8 @@ public class Territory : MonoBehaviour
     {
         foreach (Transform arrow in transform)
         {
+            arrow.gameObject.SetActive(false);
         }
     }
-
-    
-    
 }
  
