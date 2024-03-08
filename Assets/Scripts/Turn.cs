@@ -14,39 +14,46 @@ public class Turn : MonoBehaviour
     public Player myTurn;
     public string turnMode;
     public GameObject playerUIName;
-    public void NextTurn(Player player)
+    public void PlayPhase()
     {
+        Debug.Log("PlayPhase");
+        Debug.Log(players.Count);
+        turnMode = "Play";
         turnNumber++;
         playerPointer++;
 
-        myTurn = player;
+        myTurn = players[playerPointer-1];
 
-        playerUIName.GetComponent<TextMeshProUGUI>().text = player.name;
+        playerUIName.GetComponent<TextMeshProUGUI>().text = players[playerPointer-1].name;
 
-        if(playerPointer>players.Count)
+        if(playerPointer>=players.Count)
         {
             playerPointer = 0;
+            Debug.Log("Full round complete");
         }
         nextPlayer = players[playerPointer];
     }
 
-    public void ReinforcementPhase(Player player)
+    public void ReinforcementPhase()
     {
-        int reinforcementNum = player.controlledTerritories.Count / 3;
-        player.GiveTroops(reinforcementNum);
-
+        Debug.Log("ReinforcementPhase");
         turnMode = "Reinforcement";
+
+        int reinforcementNum = myTurn.controlledTerritories.Count / 3;
+        myTurn.GiveTroops(reinforcementNum);
 
     }
     
-    void AttackPhase()
+    public void AttackPhase()
     {
-
+        Debug.Log("AttackPhase");
+        turnMode = "Attack";
     }
 
-    void FortifyPhase()
+    public void FortifyPhase()
     {
-        NextTurn(nextPlayer);
+        Debug.Log("FortifyPhase");
+        turnMode = "Fortify";
     }
 
     

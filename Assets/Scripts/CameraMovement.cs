@@ -24,7 +24,6 @@ public class CameraMovement : MonoBehaviour
         origin = cam.transform.position;
     }
 
-    // Unity uses "Update" with an uppercase "U" for its built-in method.
     private void Update() 
     {
         PanCamera();
@@ -107,7 +106,7 @@ public class CameraMovement : MonoBehaviour
         {
             maxDragDistanceY = 550;
         }
-        Debug.Log(maxDragDistanceX);
+        //Debug.Log(maxDragDistanceX);
     }
 
 
@@ -136,7 +135,7 @@ public class CameraMovement : MonoBehaviour
         {
             maxDragDistanceY = 550;
         }
-        Debug.Log(maxDragDistanceX);
+        //Debug.Log(maxDragDistanceX);
     }
 
 }

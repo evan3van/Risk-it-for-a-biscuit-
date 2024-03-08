@@ -60,15 +60,14 @@ public class GameManager : MonoBehaviour
             Color.white
         };
 
-        GameObject turnObject = new("Turn");
-        turn = turnObject.AddComponent<Turn>();
+        turn = GameObject.Find("Turn").GetComponent<Turn>();
         turnNumber = 1;
 
         InstantiateWorld();
 
         turn.players = playerList;
         turn.playerUIName = playerUIName;
-        turn.NextTurn(playerList[0]);
+        turn.PlayPhase();
 
         foreach (Territory territory in allTerritories)
         {

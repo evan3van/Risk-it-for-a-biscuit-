@@ -19,7 +19,7 @@ public class Territory : MonoBehaviour
         {
             //Activate arrows
             Debug.Log(name);
-            if(turn.turnMode == "Reinforce")
+            if(turn.turnMode == "Attack")
             {
                 if(!isArrowsActive)
                 {

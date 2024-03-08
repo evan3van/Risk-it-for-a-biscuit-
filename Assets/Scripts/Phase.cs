@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Phase : MonoBehaviour
 {
-   public void GoToPlayPhase()
+    public void GoToPlayPhase()
     {
         SceneManager.LoadScene("PlayPhase");
     }
