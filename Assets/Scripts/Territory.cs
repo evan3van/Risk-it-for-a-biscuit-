@@ -3,23 +3,35 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
+using TMPro;
 
 public class Territory : MonoBehaviour
 {
-    public int troops = 0;
     public Player controlledBy = null;
     public Turn turn;
     public List<Territory> neighbourTerritories = new();   //Gonna need to set this
     public GameObject arrowPrefab;
     public bool isArrowsActive = false;
+    public Counter counter;
+    public GameObject upButton,downButton;
+    private void Start() 
+    {
+        counter = transform.GetChild(0).GetComponent<Counter>();
+        upButton = GameObject.Find("UpButton");
+        downButton = GameObject.Find("DownButton");
+    }
 
     private void OnMouseDown() 
     {
         if(turn.myTurn == controlledBy)
         {
-            //Activate arrows
             Debug.Log(name);
-            if(turn.turnMode == "Attack")
+            if(turn.turnMode == "Reinforcement")
+            {
+                downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
+                upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
+            }
+            else if(turn.turnMode == "Attack")
             {
                 if(!isArrowsActive)
                 {

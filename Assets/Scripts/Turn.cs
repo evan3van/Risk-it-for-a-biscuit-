@@ -14,6 +14,7 @@ public class Turn : MonoBehaviour
     public Player myTurn;
     public string turnMode;
     public GameObject playerUIName;
+    public int deployableTroops;
     public void PlayPhase()
     {
         Debug.Log("PlayPhase");
@@ -39,7 +40,11 @@ public class Turn : MonoBehaviour
         Debug.Log("ReinforcementPhase");
         turnMode = "Reinforcement";
 
+        TextMeshProUGUI reinforcementUINumber = GameObject.Find("ReinforceTroopNumber").GetComponent<TextMeshProUGUI>();
+
         int reinforcementNum = myTurn.controlledTerritories.Count / 3;
+        deployableTroops = reinforcementNum;
+        reinforcementUINumber.text = reinforcementNum.ToString();
         myTurn.GiveTroops(reinforcementNum);
 
     }
