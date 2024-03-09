@@ -13,12 +13,16 @@ public class Territory : MonoBehaviour
     public GameObject arrowPrefab;
     public bool isArrowsActive = false;
     public Counter counter;
-    public GameObject upButton,downButton;
+    public GameObject upButton,downButton,deployButton;
+    public ReinforcementScript arrowUp,arrowDown;
     private void Start() 
     {
         counter = transform.GetChild(0).GetComponent<Counter>();
         upButton = GameObject.Find("UpButton");
         downButton = GameObject.Find("DownButton");
+        deployButton = GameObject.Find("DeployButton");
+        arrowUp = upButton.GetComponent<ReinforcementScript>();
+        arrowDown = downButton.GetComponent<ReinforcementScript>();
     }
 
     private void OnMouseDown() 
@@ -30,6 +34,12 @@ public class Territory : MonoBehaviour
             {
                 downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
                 upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
+                deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
+                arrowUp.counter = counter;
+                arrowDown.counter = counter;
+                upButton.gameObject.SetActive(true);
+                downButton.gameObject.SetActive(true);
+                deployButton.gameObject.SetActive(true);
             }
             else if(turn.turnMode == "Attack")
             {
