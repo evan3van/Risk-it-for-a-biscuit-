@@ -102,7 +102,8 @@ public class GameManager : MonoBehaviour
         // Calling the PlaceArmies method.
         PlaceArmies();
 
-        //displayAllTerritories();
+        // Set the neighbouring territories for each territory.
+        SetNeighbours();
     }
 
     void SetTerritories()
@@ -348,7 +349,64 @@ public class GameManager : MonoBehaviour
             {"South America Island 1", new List<string> {"Argentina","Brazil","South America Island 1"}},
             {"Peru", new List<string> {"Venezuela", "Brazil", "Argentina"}},
             {"Venezuela", new List<string> {"Central America", "Brazil", "Peru"}},
-            {"Philipines", new List<string> {}}
+            {"Philipines", new List<string> {"Siam","Western Australia","Indonesia"}}
         };
+
+        Dictionary<Territory, List<Territory>> neighbours = new Dictionary<Territory, List<Territory>>();
+        // Iterate through the original dictionary and populate the new dictionary with Territory script references.
+        foreach (KeyValuePair<string, List<string>> entry in territoriesNeighbours)
+        {
+            // Find the GameObject with the same name as the territory string key.
+            GameObject territoryObject = GameObject.Find(entry.Key);
+    
+            // Ensure the GameObject exists.
+            if (territoryObject != null)
+            {
+                // Get the Territory script attached to the GameObject.
+                Territory territoryScript = territoryObject.GetComponent<Territory>();
+        
+                // Check if the Territory script is found.
+                if (territoryScript != null)
+                {
+                    // Create a list to hold references to neighboring territories.
+                    List<Territory> neighbors = new List<Territory>();
+            
+                    // Iterate through the list of neighboring territory strings.
+                    foreach (string neighborName in entry.Value)
+                    {
+                        // Find the GameObject with the name of the neighboring territory.
+                        GameObject neighborObject = GameObject.Find(neighborName);
+                
+                        // Ensure the neighboring GameObject exists.
+                        if (neighborObject != null)
+                        {   
+                            // Get the Territory script attached to the neighboring GameObject.
+                            Territory neighborScript = neighborObject.GetComponent<Territory>();
+                    
+                            // Check if the neighboring Territory script is found.
+                            if (neighborScript != null)
+                            {
+                                // Add the neighboring Territory script to the list of neighbors.
+                                neighbors.Add(neighborScript);
+                            }
+                            else{Debug.Log($"Found neighbour {neighborName}, but not script for {neighborName}");}
+                        }
+                        else{Debug.Log($"Neighbour {neighborName} not found");}
+                    }
+            
+                    // Add the territory and its list of neighbors to the new dictionary.
+                    neighbours.Add(territoryScript, neighbors);
+                }
+                else{Debug.Log($"Found {entry.Key}, but not script for {entry.Key}");}
+            }
+            else{Debug.Log($"Territory: {entry.Key}, not found");}
+        }
+
+        
+        foreach (KeyValuePair<Territory,List<Territory>> keyValuePair in neighbours)
+        {  
+            keyValuePair.Key.neighbourTerritories = keyValuePair.Value;
+        }
+        
     }
 }

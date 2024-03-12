@@ -15,6 +15,7 @@ public class Turn : MonoBehaviour
     public string turnMode;
     public GameObject playerUIName;
     public int deployableTroops;
+    public GameObject arrowUp,arrowDown,deployButton,errorText;
     public void PlayPhase()
     {
         Debug.Log("PlayPhase");
@@ -53,6 +54,13 @@ public class Turn : MonoBehaviour
     {
         Debug.Log("AttackPhase");
         turnMode = "Attack";
+
+        arrowUp.GetComponent<SpriteRenderer>().enabled = false;
+        arrowDown.GetComponent<SpriteRenderer>().enabled = false;
+        deployButton.GetComponent<SpriteRenderer>().enabled = false;
+        errorText.GetComponent<MeshRenderer>().enabled = false;
+
+        
     }
 
     public void FortifyPhase()

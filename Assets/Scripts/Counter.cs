@@ -12,7 +12,7 @@ public class Counter : MonoBehaviour
     private void Start() 
     {
         textMesh = transform.GetChild(0).GetComponent<TextMeshPro>();
-        Debug.Log(transform.GetChild(0).name);
+        //Debug.Log(transform.GetChild(0).name);
     }
     public void UpdateCount(int num)
     {

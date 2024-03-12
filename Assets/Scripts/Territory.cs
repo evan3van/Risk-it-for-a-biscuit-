@@ -4,6 +4,7 @@ using Unity.Mathematics;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Territory : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class Territory : MonoBehaviour
     public bool isArrowsActive = false;
     public Counter counter;
     public GameObject upButton,downButton,deployButton;
-    public ReinforcementScript arrowUp,arrowDown;
+    public ReinforcementScript arrowUp,arrowDown,deployButtonScript;
+    public TextMeshPro errorText;
     private void Start() 
     {
         counter = transform.GetChild(0).GetComponent<Counter>();
@@ -23,6 +25,8 @@ public class Territory : MonoBehaviour
         deployButton = GameObject.Find("DeployButton");
         arrowUp = upButton.GetComponent<ReinforcementScript>();
         arrowDown = downButton.GetComponent<ReinforcementScript>();
+        deployButtonScript = deployButton.GetComponent<ReinforcementScript>();
+        errorText = GameObject.Find("ErrorText").GetComponent<TextMeshPro>();
     }
 
     private void OnMouseDown() 
@@ -37,9 +41,21 @@ public class Territory : MonoBehaviour
                 deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
                 arrowUp.counter = counter;
                 arrowDown.counter = counter;
-                upButton.gameObject.SetActive(true);
-                downButton.gameObject.SetActive(true);
-                deployButton.gameObject.SetActive(true);
+                deployButtonScript.counter = counter;
+                arrowUp.availableReinforcements = turn.deployableTroops;
+                arrowDown.availableReinforcements = turn.deployableTroops;
+                deployButtonScript.availableReinforcements = turn.deployableTroops;
+                arrowUp.initialCounterNum = counter.troopCount;
+                arrowDown.initialCounterNum = counter.troopCount;
+                deployButtonScript.initialCounterNum = counter.troopCount;
+                upButton.GetComponent<SpriteRenderer>().enabled = true;
+                downButton.GetComponent<SpriteRenderer>().enabled = true;
+                deployButton.GetComponent<SpriteRenderer>().enabled = true;
+                if(turn.deployableTroops == 0){
+                    errorText.gameObject.transform.position = new Vector3(transform.position.x,transform.position.y-50,-6);
+                    errorText.text = "No more troops left!";
+                    errorText.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                }
             }
             else if(turn.turnMode == "Attack")
             {
@@ -77,10 +93,7 @@ public class Territory : MonoBehaviour
 
     private void HideArrows()
     {
-        foreach (Transform arrow in transform)
-        {
-            arrow.gameObject.SetActive(false);
-        }
+        
     }
 }
  
