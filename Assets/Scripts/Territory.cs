@@ -10,13 +10,14 @@ public class Territory : MonoBehaviour
 {
     public Player controlledBy = null;
     public Turn turn;
-    public List<Territory> neighbourTerritories = new();   //Gonna need to set this
+    public List<Territory> neighbourTerritories = new();
     public GameObject arrowPrefab;
     public bool isArrowsActive = false;
     public Counter counter;
     public GameObject upButton,downButton,deployButton;
     public ReinforcementScript arrowUp,arrowDown,deployButtonScript;
     public TextMeshPro errorText;
+    public List<GameObject> arrows;
     private void Start() 
     {
         counter = transform.GetChild(0).GetComponent<Counter>();
@@ -27,6 +28,9 @@ public class Territory : MonoBehaviour
         arrowDown = downButton.GetComponent<ReinforcementScript>();
         deployButtonScript = deployButton.GetComponent<ReinforcementScript>();
         errorText = GameObject.Find("ErrorText").GetComponent<TextMeshPro>();
+
+        arrows = new List<GameObject>();
+        DrawArrows();
     }
 
     private void OnMouseDown() 
@@ -51,7 +55,9 @@ public class Territory : MonoBehaviour
                 upButton.GetComponent<SpriteRenderer>().enabled = true;
                 downButton.GetComponent<SpriteRenderer>().enabled = true;
                 deployButton.GetComponent<SpriteRenderer>().enabled = true;
-                if(turn.deployableTroops == 0){
+
+                if(turn.deployableTroops == 0)
+                {
                     errorText.gameObject.transform.position = new Vector3(transform.position.x,transform.position.y-50,-6);
                     errorText.text = "No more troops left!";
                     errorText.gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -61,13 +67,18 @@ public class Territory : MonoBehaviour
             {
                 if(!isArrowsActive)
                 {
-                    DrawArrows();
-                    isArrowsActive = true;
+                    ShowArrows();
+                    turn.previousSelected = turn.selected;
+                    if(turn.previousSelected != null)
+                    {
+                        turn.previousSelected.HideArrows();
+                    }
+                    turn.selected = this;
                 }
                 else if(isArrowsActive)
                 {
                     HideArrows();
-                    isArrowsActive = false;
+                    turn.selected = null;
                 }
             }
         }
@@ -80,20 +91,44 @@ public class Territory : MonoBehaviour
         foreach (Territory neighbour in neighbourTerritories)
         {
             GameObject arrow = Instantiate(arrowPrefab,transform.position,quaternion.identity,transform);
-            Vector3 difference = neighbour.transform.position - transform.position;
+            Vector3 direction = neighbour.transform.position - transform.position;
 
-            Vector3 arrowPosition = new Vector3(transform.position.x+(difference.x/2),transform.position.y+(difference.y/2),-3f);
+            float angleRadians = Mathf.Atan2(direction.y, direction.x);
+            float angleDegrees = angleRadians * Mathf.Rad2Deg;
+            arrow.transform.rotation = Quaternion.Euler(0f, 0f, angleDegrees-45);
+
+            Vector3 arrowPosition = new Vector3(transform.position.x+(direction.x/2),transform.position.y+(direction.y/2),-3f);
+
             arrow.transform.localScale = new Vector3(0.1f,0.1f,0);
+
             arrow.transform.position = arrowPosition;
+
             arrow.name = "Arrow from: "+name+" to: "+neighbour.name;
+
+            arrow.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0.9f);
+
+            arrow.gameObject.SetActive(false);
+
+            arrows.Add(arrow);
             i++;
         }
         
     }
 
-    private void HideArrows()
+    public void HideArrows()
     {
-        
+        foreach (GameObject arrow in arrows)
+        {
+            arrow.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowArrows()
+    {
+        foreach (GameObject arrow in arrows)
+        {
+            arrow.gameObject.SetActive(true);
+        }
     }
 }
  

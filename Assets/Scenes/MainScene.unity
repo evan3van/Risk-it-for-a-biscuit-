@@ -1341,6 +1341,7 @@ MonoBehaviour:
   arrowDown: {fileID: 0}
   deployButtonScript: {fileID: 0}
   errorText: {fileID: 0}
+  arrows: []
   territories: []
 --- !u!1 &261685785
 GameObject:
@@ -1775,6 +1776,7 @@ MonoBehaviour:
   arrowDown: {fileID: 0}
   deployButtonScript: {fileID: 0}
   errorText: {fileID: 0}
+  arrows: []
   territories: []
 --- !u!1 &308311266
 GameObject:
@@ -1840,6 +1842,7 @@ MonoBehaviour:
   arrowDown: {fileID: 0}
   deployButtonScript: {fileID: 0}
   errorText: {fileID: 0}
+  arrows: []
   territories: []
 --- !u!1 &325301899
 GameObject:
@@ -3158,7 +3161,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3304,7 +3307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fortify!
+  m_text: Fortify Phase
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -3420,6 +3423,8 @@ MonoBehaviour:
   arrowDown: {fileID: 1771220181}
   deployButton: {fileID: 1992861743}
   errorText: {fileID: 2112620218}
+  previousSelected: {fileID: 0}
+  selected: {fileID: 0}
 --- !u!4 &586586673
 Transform:
   m_ObjectHideFlags: 0
@@ -3855,6 +3860,7 @@ MonoBehaviour:
   arrowDown: {fileID: 0}
   deployButtonScript: {fileID: 0}
   errorText: {fileID: 0}
+  arrows: []
   territories: []
 --- !u!1 &662830589
 GameObject:
@@ -4665,7 +4671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack!
+  m_text: Attack Phase
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -5643,7 +5649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 231.20692, y: -171.7}
+  m_AnchoredPosition: {x: 231.20692, y: -144}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &935098103
@@ -7234,7 +7240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 408.65033, y: -223.8}
+  m_AnchoredPosition: {x: 408.65033, y: -197}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1302233305
@@ -8626,7 +8632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1655392519
 Transform:
   m_ObjectHideFlags: 0
@@ -9462,7 +9468,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1800, y: 180}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -9725,7 +9731,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -10063,6 +10069,7 @@ MonoBehaviour:
   arrowDown: {fileID: 0}
   deployButtonScript: {fileID: 0}
   errorText: {fileID: 0}
+  arrows: []
   territories: []
 --- !u!1 &1944826319
 GameObject:
@@ -11311,7 +11318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2048369584
 Transform:
   m_ObjectHideFlags: 0
@@ -11376,7 +11383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 239.00374, y: -163.3}
+  m_AnchoredPosition: {x: 239.00374, y: -139}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2058613027
@@ -11564,6 +11571,7 @@ MonoBehaviour:
   arrowDown: {fileID: 0}
   deployButtonScript: {fileID: 0}
   errorText: {fileID: 0}
+  arrows: []
   territories: []
 --- !u!1 &2101629352
 GameObject:
@@ -11601,7 +11609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 231.20692, y: -169.4}
+  m_AnchoredPosition: {x: 231.20692, y: -142}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2101629354

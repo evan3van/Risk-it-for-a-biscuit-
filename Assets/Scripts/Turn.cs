@@ -16,6 +16,7 @@ public class Turn : MonoBehaviour
     public GameObject playerUIName;
     public int deployableTroops;
     public GameObject arrowUp,arrowDown,deployButton,errorText;
+    public Territory previousSelected,selected = null;
     public void PlayPhase()
     {
         Debug.Log("PlayPhase");
