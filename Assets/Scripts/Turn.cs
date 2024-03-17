@@ -68,6 +68,13 @@ public class Turn : MonoBehaviour
     {
         Debug.Log("FortifyPhase");
         turnMode = "Fortify";
+
+        if(selected != null)
+        {
+            selected.HideArrows();
+        }
+        selected = null;
+        previousSelected = null;
     }
 
     

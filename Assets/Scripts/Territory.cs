@@ -65,20 +65,29 @@ public class Territory : MonoBehaviour
             }
             else if(turn.turnMode == "Attack")
             {
-                if(!isArrowsActive)
+                turn.previousSelected = turn.selected;
+                turn.selected = this;
+
+                if(turn.previousSelected != this & turn.selected == this & isArrowsActive == false)
                 {
                     ShowArrows();
-                    turn.previousSelected = turn.selected;
-                    if(turn.previousSelected != null)
-                    {
-                        turn.previousSelected.HideArrows();
-                    }
-                    turn.selected = this;
                 }
-                else if(isArrowsActive)
+                else if(turn.previousSelected != this & turn.selected == this & isArrowsActive == true)
                 {
                     HideArrows();
-                    turn.selected = null;
+                }
+                else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == false)
+                {
+                    ShowArrows();
+                }
+                else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == true)
+                {
+                    HideArrows();
+                }
+
+                if(turn.previousSelected != this & turn.previousSelected != null)
+                {
+                    turn.previousSelected.HideArrows();
                 }
             }
         }
@@ -117,18 +126,22 @@ public class Territory : MonoBehaviour
 
     public void HideArrows()
     {
+        Debug.Log("Inactive");
         foreach (GameObject arrow in arrows)
         {
             arrow.gameObject.SetActive(false);
         }
+        isArrowsActive = false;
     }
 
     public void ShowArrows()
     {
+        Debug.Log("Active");
         foreach (GameObject arrow in arrows)
         {
             arrow.gameObject.SetActive(true);
         }
+        isArrowsActive = true;
     }
 }
  
