@@ -71,18 +71,22 @@ public class Territory : MonoBehaviour
                 if(turn.previousSelected != this & turn.selected == this & isArrowsActive == false)
                 {
                     ShowArrows();
+                    ToggleAttackView();
                 }
                 else if(turn.previousSelected != this & turn.selected == this & isArrowsActive == true)
                 {
                     HideArrows();
+                    ToggleAttackView();
                 }
                 else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == false)
                 {
                     ShowArrows();
+                    ToggleAttackView();
                 }
                 else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == true)
                 {
                     HideArrows();
+                    ToggleAttackView();
                 }
 
                 if(turn.previousSelected != this & turn.previousSelected != null)
@@ -142,6 +146,40 @@ public class Territory : MonoBehaviour
             arrow.gameObject.SetActive(true);
         }
         isArrowsActive = true;
+    }
+
+    public void ToggleAttackView()
+    {
+        if(isArrowsActive)
+        {
+            foreach (Territory neighbour in neighbourTerritories)
+            {
+                if(neighbour.controlledBy != turn.myTurn)
+                {
+                    neighbour.EnableAttack();
+                }
+            }
+        }
+        else if(!isArrowsActive)
+        {
+            foreach (Territory neighbour in neighbourTerritories)
+            {
+                if(neighbour.controlledBy != turn.myTurn)
+                {
+                    neighbour.DisableAttack();
+                }
+            }
+        }
+    }
+
+    public void EnableAttack()
+    {
+
+    }
+
+    public void DisableAttack()
+    {
+
     }
 }
  
