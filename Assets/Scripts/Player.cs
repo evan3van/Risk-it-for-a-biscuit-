@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Color playerColor;
     public bool isMyTurn = false;
     public List<Counter> counters = new();
+    public Sprite sprite;
     public void GiveCard(Card card)
     {
         //Some code to give the player a card

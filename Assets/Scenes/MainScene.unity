@@ -226,6 +226,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &15051569
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &63847502
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -580,6 +582,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &142252687
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -778,6 +781,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &153541340
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -946,6 +950,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &160008439
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1203,6 +1208,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &225195925
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1446,6 +1452,7 @@ MonoBehaviour:
   newColor: {r: 0.11039776, g: 0.109803915, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &261685789
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1631,6 +1638,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &279725475
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1947,6 +1955,7 @@ MonoBehaviour:
   newColor: {r: 0.012985495, g: 0.9622642, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &325301903
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2146,6 +2155,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &379895924
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2489,6 +2499,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &400540889
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2653,6 +2664,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &505829016
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2854,6 +2866,7 @@ MonoBehaviour:
   newColor: {r: 0.012985495, g: 0.9622642, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &521270684
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3016,6 +3029,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &526921496
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3543,6 +3557,7 @@ MonoBehaviour:
   newColor: {r: 0.11039776, g: 0.109803915, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &610445666
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3717,6 +3732,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &637075020
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4010,6 +4026,7 @@ MonoBehaviour:
   newColor: {r: 0.11039776, g: 0.109803915, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &715402127
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4179,6 +4196,7 @@ MonoBehaviour:
   newColor: {r: 0.012985495, g: 0.9622642, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &724811549
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4347,6 +4365,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.017825976, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &785455637
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4528,6 +4547,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.017825976, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &795710456
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4962,6 +4982,7 @@ MonoBehaviour:
   newColor: {r: 0.012985495, g: 0.9622642, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &896666062
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5160,6 +5181,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &900956257
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5340,6 +5362,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &907643691
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5522,6 +5545,7 @@ MonoBehaviour:
   newColor: {r: 0.012985495, g: 0.9622642, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &922404299
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5873,6 +5897,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.017825976, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &984333773
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6034,6 +6059,7 @@ MonoBehaviour:
   newColor: {r: 0.11039776, g: 0.109803915, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1139466535
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6211,6 +6237,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1143865774
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6671,6 +6698,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1252698123
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6970,6 +6998,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1260206523
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7145,6 +7174,7 @@ MonoBehaviour:
   newColor: {r: 0.11039776, g: 0.109803915, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1279730926
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7464,6 +7494,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1326760026
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7643,6 +7674,7 @@ MonoBehaviour:
   newColor: {r: 0.11039776, g: 0.109803915, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1375188994
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7862,6 +7894,7 @@ MonoBehaviour:
   newColor: {r: 0.012985495, g: 0.9622642, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1489548183
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8038,6 +8071,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1512491707
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8235,6 +8269,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1573714769
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8559,6 +8594,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1627827433
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8632,7 +8668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1655392519
 Transform:
   m_ObjectHideFlags: 0
@@ -8764,6 +8800,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1663296644
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9000,6 +9037,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.017825976, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1727890266
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9172,6 +9210,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1750111122
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9602,6 +9641,7 @@ MonoBehaviour:
   newColor: {r: 0.11039776, g: 0.109803915, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1852908486
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9938,6 +9978,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1907805969
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10174,6 +10215,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1944826323
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10352,6 +10394,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.56078434, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1967064888
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10555,6 +10598,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.017825976, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1985758807
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10731,6 +10775,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.99510133, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &1991270669
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11064,6 +11109,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0, b: 1, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &2036217150
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11235,6 +11281,7 @@ MonoBehaviour:
   newColor: {r: 1, g: 0.017825976, b: 0, a: 1}
   player: {fileID: 0}
   currentTurn: {fileID: 0}
+  mode: Default
 --- !u!60 &2040158996
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11318,7 +11365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2048369584
 Transform:
   m_ObjectHideFlags: 0

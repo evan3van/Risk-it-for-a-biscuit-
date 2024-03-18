@@ -11,6 +11,7 @@ public class DiceRoller : MonoBehaviour
         for (int i = 0; i < numberOfDice; i++)
         {
             total += rand.Next(1, 7);
+            Debug.Log($"Random int: {total}");
         }
         return total;
     }

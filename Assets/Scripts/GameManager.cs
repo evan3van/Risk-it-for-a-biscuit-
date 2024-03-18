@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public GameObject arrowPrefab;
     public Turn turn;
     public GameObject playerUIName;
-    public Dictionary<string,List<string>> territoriesNeighbours;   //Central Africa:  South Africa, North Africa, etc   West Africa: ...
+    public Dictionary<string,List<string>> territoriesNeighbours;
+    public List<Sprite> playerSprites;
     void Start()
     {   
 
@@ -346,7 +347,7 @@ public class GameManager : MonoBehaviour
             {"Argentina", new List<string> {"Brazil", "Peru"}},
             {"Brazil", new List<string> {"Venezuela", "Peru", "Argentina", "North Africa"}},
             {"South America Island 2", new List<string> {"South America Island 1","South Africa"}},
-            {"South America Island 1", new List<string> {"Argentina","Brazil","South America Island 1"}},
+            {"South America Island 1", new List<string> {"Argentina","Brazil","South America Island 2"}},
             {"Peru", new List<string> {"Venezuela", "Brazil", "Argentina"}},
             {"Venezuela", new List<string> {"Central America", "Brazil", "Peru"}},
             {"Philipines", new List<string> {"Siam","Western Australia","Indonesia"}}

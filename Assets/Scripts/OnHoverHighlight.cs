@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class OnHoverHighlight : MonoBehaviour
     public Color origionalColor,newColor;
     public Player player;
     public Turn currentTurn;
+    public string mode = "Default";
     void Start()
     {
         newColor = Color.red;
@@ -16,7 +18,11 @@ public class OnHoverHighlight : MonoBehaviour
 
     private void OnMouseEnter() 
     {
-        if(player == currentTurn.myTurn)
+        if(player == currentTurn.myTurn & mode == "Default")
+        {
+            spriteRenderer.color = newColor;
+        }
+        else if(player != currentTurn.myTurn & mode == "Attack")
         {
             spriteRenderer.color = newColor;
         }

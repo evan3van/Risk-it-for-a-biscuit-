@@ -5,6 +5,7 @@ using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Territory : MonoBehaviour
 {
@@ -71,27 +72,28 @@ public class Territory : MonoBehaviour
                 if(turn.previousSelected != this & turn.selected == this & isArrowsActive == false)
                 {
                     ShowArrows();
-                    ToggleAttackView();
+                    EnableAttackHighlight();
                 }
                 else if(turn.previousSelected != this & turn.selected == this & isArrowsActive == true)
                 {
                     HideArrows();
-                    ToggleAttackView();
+                    DisableAttackHighlight();
                 }
                 else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == false)
                 {
                     ShowArrows();
-                    ToggleAttackView();
+                    EnableAttackHighlight();
                 }
                 else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == true)
                 {
                     HideArrows();
-                    ToggleAttackView();
+                    DisableAttackHighlight();
                 }
 
                 if(turn.previousSelected != this & turn.previousSelected != null)
                 {
                     turn.previousSelected.HideArrows();
+                    turn.previousSelected.DisableAttackHighlight();
                 }
             }
         }
@@ -148,38 +150,20 @@ public class Territory : MonoBehaviour
         isArrowsActive = true;
     }
 
-    public void ToggleAttackView()
+    public void EnableAttackHighlight()
     {
-        if(isArrowsActive)
+        foreach (Territory neighbour in neighbourTerritories)
         {
-            foreach (Territory neighbour in neighbourTerritories)
-            {
-                if(neighbour.controlledBy != turn.myTurn)
-                {
-                    neighbour.EnableAttack();
-                }
-            }
-        }
-        else if(!isArrowsActive)
-        {
-            foreach (Territory neighbour in neighbourTerritories)
-            {
-                if(neighbour.controlledBy != turn.myTurn)
-                {
-                    neighbour.DisableAttack();
-                }
-            }
+            neighbour.gameObject.GetComponent<OnHoverHighlight>().mode = "Attack";
         }
     }
 
-    public void EnableAttack()
+    public void DisableAttackHighlight()
     {
-
-    }
-
-    public void DisableAttack()
-    {
-
+        foreach (Territory neighbour in neighbourTerritories)
+        {
+            neighbour.gameObject.GetComponent<OnHoverHighlight>().mode = "Default";
+        }
     }
 }
  
