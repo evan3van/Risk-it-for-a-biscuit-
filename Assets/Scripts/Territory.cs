@@ -6,19 +6,21 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using System.IO;
 
 public class Territory : MonoBehaviour
 {
     public Player controlledBy = null;
     public Turn turn;
     public List<Territory> neighbourTerritories = new();
-    public GameObject arrowPrefab;
+    public GameObject arrowPrefab,attackUI;
     public bool isArrowsActive = false;
     public Counter counter;
     public GameObject upButton,downButton,deployButton;
     public ReinforcementScript arrowUp,arrowDown,deployButtonScript;
     public TextMeshPro errorText;
     public List<GameObject> arrows;
+    public int attackTroops;
     private void Start() 
     {
         counter = transform.GetChild(0).GetComponent<Counter>();
@@ -29,11 +31,11 @@ public class Territory : MonoBehaviour
         arrowDown = downButton.GetComponent<ReinforcementScript>();
         deployButtonScript = deployButton.GetComponent<ReinforcementScript>();
         errorText = GameObject.Find("ErrorText").GetComponent<TextMeshPro>();
+        attackUI = turn.attackUI;
 
         arrows = new List<GameObject>();
         DrawArrows();
     }
-
     private void OnMouseDown() 
     {
         if(turn.myTurn == controlledBy)
@@ -78,6 +80,7 @@ public class Territory : MonoBehaviour
                 {
                     HideArrows();
                     DisableAttackHighlight();
+                    turn.selected = null;
                 }
                 else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == false)
                 {
@@ -88,12 +91,27 @@ public class Territory : MonoBehaviour
                 {
                     HideArrows();
                     DisableAttackHighlight();
+                    turn.selected = null;
                 }
 
                 if(turn.previousSelected != this & turn.previousSelected != null)
                 {
                     turn.previousSelected.HideArrows();
                     turn.previousSelected.DisableAttackHighlight();
+                }
+            }
+        }
+        
+        if (turn.selected != null & turn.turnMode == "Attack")
+        {
+            foreach (Territory neighbour in turn.selected.neighbourTerritories)
+            {
+                if (neighbour == this)
+                {
+                    Debug.Log($"Attack: {this}");
+                    ToggleAttackUI();
+                    turn.attackTarget = neighbour;
+                    turn.attacker = turn.selected;
                 }
             }
         }
@@ -132,7 +150,7 @@ public class Territory : MonoBehaviour
 
     public void HideArrows()
     {
-        Debug.Log("Inactive");
+        //Debug.Log("Inactive");
         foreach (GameObject arrow in arrows)
         {
             arrow.gameObject.SetActive(false);
@@ -142,7 +160,7 @@ public class Territory : MonoBehaviour
 
     public void ShowArrows()
     {
-        Debug.Log("Active");
+        //Debug.Log("Active");
         foreach (GameObject arrow in arrows)
         {
             arrow.gameObject.SetActive(true);
@@ -163,6 +181,18 @@ public class Territory : MonoBehaviour
         foreach (Territory neighbour in neighbourTerritories)
         {
             neighbour.gameObject.GetComponent<OnHoverHighlight>().mode = "Default";
+        }
+    }
+
+    public void ToggleAttackUI()
+    {
+        if (attackUI.activeSelf == true)
+        {
+            attackUI.SetActive(false);
+        }
+        else
+        {
+            attackUI.SetActive(true);
         }
     }
 }

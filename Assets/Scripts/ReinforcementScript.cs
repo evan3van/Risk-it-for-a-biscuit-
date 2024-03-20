@@ -18,43 +18,46 @@ public class ReinforcementScript : MonoBehaviour
 
     private void OnMouseDown() 
     {
-        if(name == "UpButton")
+        if (turn.turnMode == "Reinforcement")
         {
-            if(availableReinforcements > 0){
-                counter.troopCount++;
-                counter.textMesh.text = counter.troopCount.ToString();
-                availableReinforcements--;
-                downButton.GetComponent<ReinforcementScript>().availableReinforcements --;
-                deployButton.GetComponent<ReinforcementScript>().availableReinforcements --;
+            if(name == "UpButton")
+            {
+                if(availableReinforcements > 0){
+                    counter.troopCount++;
+                    counter.textMesh.text = counter.troopCount.ToString();
+                    availableReinforcements--;
+                    downButton.GetComponent<ReinforcementScript>().availableReinforcements --;
+                    deployButton.GetComponent<ReinforcementScript>().availableReinforcements --;
 
-                deployedTroops++;
-                downButton.GetComponent<ReinforcementScript>().deployedTroops++;
-                deployButton.GetComponent<ReinforcementScript>().deployedTroops++;
+                    deployedTroops++;
+                    downButton.GetComponent<ReinforcementScript>().deployedTroops++;
+                    deployButton.GetComponent<ReinforcementScript>().deployedTroops++;
+                }
             }
-        }
-        else if(name == "DownButton")
-        {
-            if(counter.troopCount > initialCounterNum){
-                counter.troopCount--;
-                counter.textMesh.text = counter.troopCount.ToString();
-                availableReinforcements++;
-                upButton.GetComponent<ReinforcementScript>().availableReinforcements ++;
-                deployButton.GetComponent<ReinforcementScript>().availableReinforcements ++;
+            else if(name == "DownButton")
+            {
+                if(counter.troopCount > initialCounterNum){
+                    counter.troopCount--;
+                    counter.textMesh.text = counter.troopCount.ToString();
+                    availableReinforcements++;
+                    upButton.GetComponent<ReinforcementScript>().availableReinforcements ++;
+                    deployButton.GetComponent<ReinforcementScript>().availableReinforcements ++;
 
-                deployedTroops--;
-                upButton.GetComponent<ReinforcementScript>().deployedTroops--;
-                deployButton.GetComponent<ReinforcementScript>().deployedTroops--;
+                    deployedTroops--;
+                    upButton.GetComponent<ReinforcementScript>().deployedTroops--;
+                    deployButton.GetComponent<ReinforcementScript>().deployedTroops--;
+                }
             }
+            else if(name == "DeployButton")
+            {
+                upButton.GetComponent<SpriteRenderer>().enabled = false;
+                downButton.GetComponent<SpriteRenderer>().enabled = false;
+                deployButton.GetComponent<SpriteRenderer>().enabled = false;
+                
+                turn.deployableTroops -= deployedTroops;
+                deployedTroops = 0;
+            }
+            else{Debug.Log("Button not found");}
         }
-        else if(name == "DeployButton")
-        {
-            upButton.GetComponent<SpriteRenderer>().enabled = false;
-            downButton.GetComponent<SpriteRenderer>().enabled = false;
-            deployButton.GetComponent<SpriteRenderer>().enabled = false;
-            
-            turn.deployableTroops -= deployedTroops;
-            deployedTroops = 0;
-        }
-        else{Debug.Log("Button not found");}
     }
 }

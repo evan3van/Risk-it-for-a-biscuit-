@@ -13,14 +13,17 @@ public class Turn : MonoBehaviour
     public List<Player> players;
     public Player myTurn;
     public string turnMode;
-    public GameObject playerUIName;
+    public GameObject playerUIName,attackUI;
     public int deployableTroops;
+    public int attackTroops = 1;
     public GameObject arrowUp,arrowDown,deployButton,errorText;
     public Territory previousSelected,selected = null;
+    public Territory attacker,attackTarget;
+
     public void PlayPhase()
     {
         Debug.Log("PlayPhase");
-        Debug.Log(players.Count);
+        //Debug.Log(players.Count);
         turnMode = "Play";
         turnNumber++;
         playerPointer++;
@@ -63,7 +66,6 @@ public class Turn : MonoBehaviour
 
         
     }
-
     public void FortifyPhase()
     {
         Debug.Log("FortifyPhase");
@@ -72,10 +74,35 @@ public class Turn : MonoBehaviour
         if(selected != null)
         {
             selected.HideArrows();
+            selected.DisableAttackHighlight();
+        }
+        if (previousSelected != null)
+        {
+            previousSelected.DisableAttackHighlight();
+            previousSelected.HideArrows();
         }
         selected = null;
         previousSelected = null;
     }
 
-    
+    public void IncrementAttackTroops()
+    {
+        attacker.attackTroops++;
+        Debug.Log(attacker.counter.troopCount);
+        if (attacker.attackTroops >= attacker.counter.troopCount-1)
+        {
+            attacker.attackTroops = attacker.counter.troopCount-1;
+        }
+        attackUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = attacker.attackTroops.ToString();
+    }
+
+    public void DecrementAttackTroops()
+    {
+        attacker.attackTroops--;
+        if (attacker.attackTroops <= 1)
+        {
+            attacker.attackTroops = 1;
+        }
+        attackUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = attacker.attackTroops.ToString();
+    }
 }

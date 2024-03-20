@@ -306,7 +306,7 @@ public class GameManager : MonoBehaviour
         {
             {"North Africa", new List<string> {"Egypt", "Central Africa", "East Africa", "Western Europe", "Southern Europe"}},
             {"Egypt", new List<string> {"North Africa", "East Africa", "Middle East", "Southern Europe"}},
-            {"Central Africa", new List<string> {"North Africa", "East Africa", "South Africa"}},
+            {"Central Africa", new List<string> {"North Africa", "East Africa", "South Africa","Egypt"}},
             {"East Africa", new List<string> {"Egypt", "North Africa", "Central Africa", "South Africa", "Madagascar", "Middle East"}},
             {"Madagascar", new List<string> {"East Africa", "South Africa"}},
             {"South Africa", new List<string> {"Central Africa", "East Africa", "Madagascar"}},

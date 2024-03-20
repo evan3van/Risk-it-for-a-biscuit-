@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -10,10 +11,11 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField]
     private float zoomStep, minCamSize, maxCamSize;
+    public bool canMove = true;
 
     private Vector3 dragOrigin;
     private Vector3 origin;
-
+    public bool dragActive = true;
     private float maxDragDistanceX = 100f;
     private float maxDragDistanceY = 100f;
     public float movementZoomStepX = 50f;
@@ -26,7 +28,10 @@ public class CameraMovement : MonoBehaviour
 
     private void Update() 
     {
-        PanCamera();
+        if(canMove)
+        {
+            PanCamera();
+        }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
         {
