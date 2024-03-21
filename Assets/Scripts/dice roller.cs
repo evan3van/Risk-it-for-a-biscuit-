@@ -1,19 +1,38 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class DiceRoller : MonoBehaviour
 {
-    public int RollDice(int numberOfDice)
+    public List<Sprite> diceSprites;
+    public GameObject dice;
+    public Turn turn;
+    public Player attacker,defender;
+    public bool isRolled = false;
+    private void Start() 
     {
-        System.Random rand = new System.Random();
-        int total = 0;
-        for (int i = 0; i < numberOfDice; i++)
+        turn = GameObject.Find("Turn").GetComponent<Turn>();
+    }
+    public void RollDice(int numberOfDice)
+    {
+        if(!isRolled)
         {
-            total += rand.Next(1, 7);
-            Debug.Log($"Random int: {total}");
+            System.Random rand = new System.Random();
+            int total = 0;
+            for (int i = 0; i < numberOfDice; i++)
+            {
+                int value = rand.Next(1, 7);
+                total += value;
+                SetDiceSprite(value);
+                Debug.Log($"Random int: {total}");
+            }
         }
-        return total;
     }
 
     public void ResolveAttack(int attackerDice, int defenderDice)
@@ -23,12 +42,12 @@ public class DiceRoller : MonoBehaviour
         
         for (int i = 0; i < attackerDice; i++)
         {
-            attackerRolls[i] = RollDice(1);
+            //attackerRolls[i] = RollDice(1);
         }
         
         for (int i = 0; i < defenderDice; i++)
         {
-            defenderRolls[i] = RollDice(1);
+            //defenderRolls[i] = RollDice(1);
         }
         
         Array.Sort(attackerRolls);
@@ -54,6 +73,15 @@ public class DiceRoller : MonoBehaviour
         }
         
         Debug.Log($"Attacker losses: {attackerLosses} | Defender losses: {defenderLosses}");
+    }
+
+    public void SetDiceSprite(int rollValue)
+    {
+        if(!isRolled)
+        {
+            dice.GetComponent<Image>().sprite = diceSprites[rollValue-1];
+            isRolled = true;
+        }
     }
 }
 

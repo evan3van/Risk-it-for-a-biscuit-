@@ -26,6 +26,10 @@ public class OnHoverHighlight : MonoBehaviour
         {
             spriteRenderer.color = newColor;
         }
+        else if(mode == "Dice")
+        {
+            spriteRenderer.color = newColor;
+        }
     }
     private void OnMouseExit() 
     {

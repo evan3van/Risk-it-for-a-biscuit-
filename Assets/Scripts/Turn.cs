@@ -19,6 +19,7 @@ public class Turn : MonoBehaviour
     public GameObject arrowUp,arrowDown,deployButton,errorText;
     public Territory previousSelected,selected = null;
     public Territory attacker,attackTarget;
+    public bool attackUIActive;
 
     public void PlayPhase()
     {
@@ -92,6 +93,10 @@ public class Turn : MonoBehaviour
         if (attacker.attackTroops >= attacker.counter.troopCount-1)
         {
             attacker.attackTroops = attacker.counter.troopCount-1;
+            if(attacker.attackTroops <= 0)
+            {
+                attacker.attackTroops = 1;
+            }
         }
         attackUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = attacker.attackTroops.ToString();
     }

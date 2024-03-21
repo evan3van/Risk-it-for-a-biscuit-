@@ -14,7 +14,7 @@ public class Territory : MonoBehaviour
     public Turn turn;
     public List<Territory> neighbourTerritories = new();
     public GameObject arrowPrefab,attackUI;
-    public bool isArrowsActive = false;
+    public bool isArrowsActive,attackUIIsActive = false;
     public Counter counter;
     public GameObject upButton,downButton,deployButton;
     public ReinforcementScript arrowUp,arrowDown,deployButtonScript;
@@ -24,9 +24,9 @@ public class Territory : MonoBehaviour
     private void Start() 
     {
         counter = transform.GetChild(0).GetComponent<Counter>();
-        upButton = GameObject.Find("UpButton");
-        downButton = GameObject.Find("DownButton");
-        deployButton = GameObject.Find("DeployButton");
+        upButton = turn.arrowUp;
+        downButton = turn.arrowDown;
+        deployButton = turn.deployButton;
         arrowUp = upButton.GetComponent<ReinforcementScript>();
         arrowDown = downButton.GetComponent<ReinforcementScript>();
         deployButtonScript = deployButton.GetComponent<ReinforcementScript>();
@@ -68,6 +68,7 @@ public class Territory : MonoBehaviour
             }
             else if(turn.turnMode == "Attack")
             {
+
                 turn.previousSelected = turn.selected;
                 turn.selected = this;
 
@@ -81,6 +82,11 @@ public class Territory : MonoBehaviour
                     HideArrows();
                     DisableAttackHighlight();
                     turn.selected = null;
+                    if(turn.attackUIActive)
+                    {
+                        ToggleAttackUI();
+                        turn.attackUIActive = false;
+                    }
                 }
                 else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == false)
                 {
@@ -92,6 +98,11 @@ public class Territory : MonoBehaviour
                     HideArrows();
                     DisableAttackHighlight();
                     turn.selected = null;
+                    if(turn.attackUIActive)
+                    {
+                        ToggleAttackUI();
+                        turn.attackUIActive = false;
+                    }
                 }
 
                 if(turn.previousSelected != this & turn.previousSelected != null)
@@ -189,10 +200,13 @@ public class Territory : MonoBehaviour
         if (attackUI.activeSelf == true)
         {
             attackUI.SetActive(false);
+            turn.attackUIActive = false;
+            
         }
         else
         {
             attackUI.SetActive(true);
+            turn.attackUIActive = true;
         }
     }
 }

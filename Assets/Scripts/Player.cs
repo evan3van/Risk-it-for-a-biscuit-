@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int playerNumber;
     public int unitCount;
     public List<Card> cards;
     public List<Territory> controlledTerritories = new List<Territory>();
