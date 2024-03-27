@@ -19,7 +19,8 @@ public class Turn : MonoBehaviour
     public GameObject arrowUp,arrowDown,deployButton,errorText;
     public Territory previousSelected,selected = null;
     public Territory attacker,attackTarget;
-    public bool attackUIActive;
+    public bool attackUIActive,isAttackHighlighted = false;
+    public TextMeshProUGUI attackTargetText;
 
     public void PlayPhase()
     {
@@ -84,6 +85,12 @@ public class Turn : MonoBehaviour
         }
         selected = null;
         previousSelected = null;
+
+        if(attackUIActive == true)
+        {
+            attackUIActive = false;
+            attackUI.SetActive(false);
+        }
     }
 
     public void IncrementAttackTroops()

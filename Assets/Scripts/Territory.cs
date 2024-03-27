@@ -21,6 +21,9 @@ public class Territory : MonoBehaviour
     public TextMeshPro errorText;
     public List<GameObject> arrows;
     public int attackTroops;
+    public Territory attackTarget;
+    private TextMeshProUGUI attackTargetText;
+    public Color oldColor;
     private void Start() 
     {
         counter = transform.GetChild(0).GetComponent<Counter>();
@@ -31,7 +34,9 @@ public class Territory : MonoBehaviour
         arrowDown = downButton.GetComponent<ReinforcementScript>();
         deployButtonScript = deployButton.GetComponent<ReinforcementScript>();
         errorText = GameObject.Find("ErrorText").GetComponent<TextMeshPro>();
+        oldColor = GetComponent<OnHoverHighlight>().origionalColor;
         attackUI = turn.attackUI;
+
 
         arrows = new List<GameObject>();
         DrawArrows();
@@ -71,6 +76,7 @@ public class Territory : MonoBehaviour
 
                 turn.previousSelected = turn.selected;
                 turn.selected = this;
+                attackTarget = turn.attackTarget;
 
                 if(turn.previousSelected != this & turn.selected == this & isArrowsActive == false)
                 {
@@ -120,9 +126,26 @@ public class Territory : MonoBehaviour
                 if (neighbour == this)
                 {
                     Debug.Log($"Attack: {this}");
-                    ToggleAttackUI();
                     turn.attackTarget = neighbour;
+                    if(turn.isAttackHighlighted == false)
+                    {
+                        gameObject.GetComponent<OnHoverHighlight>().origionalColor = Color.red;
+                        turn.isAttackHighlighted = true;
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<OnHoverHighlight>().origionalColor = oldColor;
+                        turn.isAttackHighlighted = false;
+                    }
+                    attackTarget = turn.attackTarget;
+                    string attackTargetName = attackTarget.name;
+                    attackTargetText = turn.attackTargetText;
+                    if(attackUIIsActive == false)
+                    {
+                        ToggleAttackUI();
+                    }
                     turn.attacker = turn.selected;
+                    attackTargetText.text = "Target = "+attackTargetName;
                 }
             }
         }
@@ -201,7 +224,6 @@ public class Territory : MonoBehaviour
         {
             attackUI.SetActive(false);
             turn.attackUIActive = false;
-            
         }
         else
         {
