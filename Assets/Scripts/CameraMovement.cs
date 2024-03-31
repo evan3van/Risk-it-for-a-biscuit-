@@ -4,10 +4,13 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// </summary>
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
-    private Camera cam; // Make sure this is assigned in the Unity Inspector
+    private Camera cam;
 
     [SerializeField]
     private float zoomStep, minCamSize, maxCamSize;
@@ -21,11 +24,18 @@ public class CameraMovement : MonoBehaviour
     public float movementZoomStepX = 50f;
     public float movementZoomStepY = 30f;
 
+    /// <summary>
+    /// On initialisation of the script, the origin is set as the camera's current position.
+    /// </summary>
     private void Start() 
     {
         origin = cam.transform.position;
     }
 
+    /// <summary>
+    /// Checks for player inputs once per frame, to allow zoom/pan functionality and checks if the camera 
+    /// is out of the set boundary, if so, it resets it to within the boundary.
+    /// </summary>
     private void Update() 
     {
         if(canMove)
@@ -33,17 +43,14 @@ public class CameraMovement : MonoBehaviour
             PanCamera();
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f )
         {
             ZoomIn();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) // backwards
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f )
         {
             ZoomOut();
         }
-
-
-        //Work on this for max drag positions
         if(cam.transform.position.y > (origin.y+maxDragDistanceY))
         {
             cam.transform.position = new Vector3(cam.transform.position.x,origin.y + maxDragDistanceY,cam.transform.position.z);
@@ -63,29 +70,32 @@ public class CameraMovement : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Checks for if the player has the left mouse button pressed and if so, calculates the
+    /// distance the player has dragged the camera, and moves the camera in that direction.
+    /// </summary>
     private void PanCamera()
     {
-        // Use "Input" with an uppercase "I", "GetMouseButtonDown" with proper casing
         if (Input.GetMouseButtonDown(0))
         {
-            // "cam.ScreenToWorldPoint" with proper casing and method name
             dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
-            // Correct to only consider the X and Y, setting Z to a fixed value might be needed depending on your camera setup
             dragOrigin.z = cam.transform.position.z;
         }
 
         if (Input.GetMouseButton(0))
         {
             Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
-            difference.z = 0; // Assuming you only want to pan in the X and Y directions
-
-            //Debug.Log("origin" + dragOrigin + " newPosition" + cam.ScreenToWorldPoint(Input.mousePosition) + " = difference" + difference);
-
+            difference.z = 0;
             cam.transform.position += difference;
         }
     }
 
-    
+    /// <summary>
+    /// Causes the size of the camera to decrease based on the set <strong>zoomStep</strong> field in the inspector up to a minimum
+    /// camera size <strong>minCamSize</strong>.
+    /// Also increments the drag distance based on the set <strong>movementZoomStep</strong> fields for x and y in the inspector up to a maximum
+    /// drag distance.
+    /// </summary>
     public void ZoomIn() 
     {
         float newSize = cam.orthographicSize - zoomStep;
@@ -114,7 +124,12 @@ public class CameraMovement : MonoBehaviour
         //Debug.Log(maxDragDistanceX);
     }
 
-
+    /// <summary>
+    /// Causes the size of the camera to decrease based on the set <strong>zoomStep</strong> field in the inspector up to a maximum
+    /// camera size <strong>maxCamSize</strong>.
+    /// Also decrements the drag distance based on the set <strong>movementZoomStep</strong> fields for x and y in the inspector up to a maximum
+    /// drag distance.
+    /// </summary>
     public void ZoomOut() 
     {
         float newSize = cam.orthographicSize + zoomStep;
