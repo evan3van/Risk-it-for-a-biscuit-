@@ -16,11 +16,11 @@ public class Turn : MonoBehaviour
     public GameObject playerUIName,attackUI;
     public int deployableTroops;
     public int attackTroops = 1;
-    public GameObject arrowUp,arrowDown,deployButton,errorText;
+    public GameObject arrowUp,arrowDown,deployButton,errorText,dice;
     public Territory previousSelected,selected = null;
     public Territory attacker,attackTarget;
     public bool attackUIActive,isAttackHighlighted = false;
-    public TextMeshProUGUI attackTargetText;
+    public TextMeshProUGUI attackTargetText,attackButtonText;
 
     public void PlayPhase()
     {
@@ -64,14 +64,17 @@ public class Turn : MonoBehaviour
         arrowUp.GetComponent<SpriteRenderer>().enabled = false;
         arrowDown.GetComponent<SpriteRenderer>().enabled = false;
         deployButton.GetComponent<SpriteRenderer>().enabled = false;
-        errorText.GetComponent<MeshRenderer>().enabled = false;
+        errorText.GetComponent<TextMeshProUGUI>().enabled = true;
 
         
     }
     public void FortifyPhase()
     {
+        
         Debug.Log("FortifyPhase");
         turnMode = "Fortify";
+
+        errorText.GetComponent<TextMeshProUGUI>().enabled = true;
 
         if(selected != null)
         {
@@ -116,5 +119,21 @@ public class Turn : MonoBehaviour
             attacker.attackTroops = 1;
         }
         attackUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = attacker.attackTroops.ToString();
+    }
+
+    public void TriggerAttack()
+    {
+        if (attackTarget==null)
+        {
+            errorText.GetComponent<TextMeshProUGUI>().text = "No target!";
+            return;
+        }
+        else if (selected==null)
+        {
+            errorText.GetComponent<TextMeshProUGUI>().text = "No territory selected!";
+            return;
+        }
+        
+        dice.SetActive(true);
     }
 }

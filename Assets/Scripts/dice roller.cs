@@ -15,64 +15,83 @@ public class DiceRoller : MonoBehaviour
     public Turn turn;
     public Player attacker,defender;
     public bool isRolled = false;
+    public int attackerDiceNum = 1,defenderDiceNum = 1;
     private void Start() 
     {
         turn = GameObject.Find("Turn").GetComponent<Turn>();
     }
-    public void RollDice(int numberOfDice)
+    public int RollDice(int numberOfDice)
+    {
+        int total = 0;
+        System.Random rand = new System.Random();
+
+        for (int i = 0; i < numberOfDice; i++)
+        {
+            int value = rand.Next(1, 7);
+            total += value;
+            if(!isRolled)
+            {
+                SetDiceSprite(value);
+            }
+            
+        }
+        return total;
+    }
+
+    public void ResolveAttack()
     {
         if(!isRolled)
         {
-            System.Random rand = new System.Random();
-            int total = 0;
-            for (int i = 0; i < numberOfDice; i++)
+            int[] attackerRolls = new int[attackerDiceNum];
+            int[] defenderRolls = new int[defenderDiceNum];
+            
+            for (int i = 0; i < attackerDiceNum; i++)
             {
-                int value = rand.Next(1, 7);
-                total += value;
-                SetDiceSprite(value);
-                Debug.Log($"Random int: {total}");
+                attackerRolls[i] = RollDice(1);
             }
-        }
-    }
-
-    public void ResolveAttack(int attackerDice, int defenderDice)
-    {
-        int[] attackerRolls = new int[attackerDice];
-        int[] defenderRolls = new int[defenderDice];
-        
-        for (int i = 0; i < attackerDice; i++)
-        {
-            //attackerRolls[i] = RollDice(1);
-        }
-        
-        for (int i = 0; i < defenderDice; i++)
-        {
-            //defenderRolls[i] = RollDice(1);
-        }
-        
-        Array.Sort(attackerRolls);
-        Array.Sort(defenderRolls);
-        Array.Reverse(attackerRolls);
-        Array.Reverse(defenderRolls);
-        
-        int comparisonCount = Math.Min(attackerDice, defenderDice);
-        
-        int attackerLosses = 0;
-        int defenderLosses = 0;
-        
-        for (int i = 0; i < comparisonCount; i++)
-        {
-            if (attackerRolls[i] > defenderRolls[i])
+            
+            for (int i = 0; i < defenderDiceNum; i++)
             {
-                defenderLosses++;
+                defenderRolls[i] = RollDice(1);
+            }
+            
+            Array.Sort(attackerRolls);
+            Array.Sort(defenderRolls);
+            Array.Reverse(attackerRolls);
+            Array.Reverse(defenderRolls);
+            
+            int comparisonCount = Math.Min(attackerDiceNum, defenderDiceNum);
+            
+            int attackerLosses = 0;
+            int defenderLosses = 0;
+            
+            for (int i = 0; i < comparisonCount; i++)
+            {
+                if (attackerRolls[i] > defenderRolls[i])
+                {
+                    defenderLosses++;
+                }
+                else
+                {
+                    attackerLosses++;
+                }
+            }
+
+            int result1 = attackerRolls[0];
+            int result2 = defenderRolls[0];
+            
+            Debug.Log($"Attacker: {result1} , Defender: {result2}");
+            Debug.Log($"Attacker losses: {attackerLosses} | Defender losses: {defenderLosses}");
+
+            if(defenderLosses > attackerLosses)
+            {
+                //Defender loses
             }
             else
             {
-                attackerLosses++;
+                //Attacker loses
             }
         }
-        
-        Debug.Log($"Attacker losses: {attackerLosses} | Defender losses: {defenderLosses}");
     }
 
     public void SetDiceSprite(int rollValue)

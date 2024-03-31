@@ -22,7 +22,7 @@ public class Territory : MonoBehaviour
     public List<GameObject> arrows;
     public int attackTroops;
     public Territory attackTarget;
-    private TextMeshProUGUI attackTargetText;
+    private TextMeshProUGUI attackTargetText,attackButtonText;
     public Color oldColor;
     private void Start() 
     {
@@ -36,6 +36,7 @@ public class Territory : MonoBehaviour
         errorText = GameObject.Find("ErrorText").GetComponent<TextMeshPro>();
         oldColor = GetComponent<OnHoverHighlight>().origionalColor;
         attackUI = turn.attackUI;
+        attackButtonText = turn.attackButtonText;
 
 
         arrows = new List<GameObject>();
@@ -126,6 +127,7 @@ public class Territory : MonoBehaviour
                 if (neighbour == this)
                 {
                     Debug.Log($"Attack: {this}");
+                    //attackButtonText.text = $"Attack: {this}";
                     turn.attackTarget = neighbour;
                     if(turn.isAttackHighlighted == false)
                     {
@@ -222,6 +224,7 @@ public class Territory : MonoBehaviour
     {
         if (attackUI.activeSelf == true)
         {
+            turn.dice.SetActive(false);
             attackUI.SetActive(false);
             turn.attackUIActive = false;
         }
