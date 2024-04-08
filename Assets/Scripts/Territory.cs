@@ -8,21 +8,72 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using System.IO;
 
+/// <summary>
+/// Represents a territory in the game, managing its state, interactions, and UI elements related to attack and reinforcement phases.
+/// </summary>
 public class Territory : MonoBehaviour
 {
+    /// <summary>
+    /// The player that currently controls this territory.
+    /// </summary>
     public Player controlledBy = null;
+
+    /// <summary>
+    /// Reference to the current turn manager.
+    /// </summary>
     public Turn turn;
+
+    /// <summary>
+    /// List of neighboring territories to this one, enabling attack and reinforcement strategies.
+    /// </summary>
     public List<Territory> neighbourTerritories = new();
+
+    /// <summary>
+    /// Prefab for the arrow indicator used during the attack phase to show possible attack directions.
+    /// UI element for managing attack actions.
+    /// </summary>
     public GameObject arrowPrefab,attackUI;
+
+    /// <summary>
+    /// Indicates if arrow indicators for attacking are currently active.
+    /// </summary>
     public bool isArrowsActive,attackUIIsActive = false;
+
+    /// <summary>
+    /// The counter associated with this territory, representing the number of troops or units.
+    /// </summary>
     public Counter counter;
+    // UI elements for reinforcement actions
     public GameObject upButton,downButton,deployButton;
+    // Scripts attached to the UI elements for easier access
     public ReinforcementScript arrowUp,arrowDown,deployButtonScript;
+
+    /// <summary>
+    /// Text displayed for errors, such as when no more troops can be deployed.
+    /// </summary>
     public TextMeshPro errorText;
+
+    /// <summary>
+    /// Collection of arrows instantiated to indicate possible attack directions.
+    /// </summary>
     public List<GameObject> arrows;
+
+    /// <summary>
+    /// Number of troops allocated for an attack from this territory.
+    /// </summary>
     public int attackTroops;
+
+    /// <summary>
+    /// The target territory for an attack.
+    /// </summary>
     public Territory attackTarget;
+
+    // Text elements in the UI for displaying attack targets and instructions
     private TextMeshProUGUI attackTargetText,attackButtonText;
+
+    /// <summary>
+    /// The original color of the territory before any highlight changes.
+    /// </summary>
     public Color oldColor;
     private void Start() 
     {
@@ -153,6 +204,9 @@ public class Territory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Draws arrow indicators between this territory and its neighbors.
+    /// </summary>
     private void DrawArrows()
     {
         
@@ -184,6 +238,9 @@ public class Territory : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Hides the arrow indicators.
+    /// </summary>
     public void HideArrows()
     {
         //Debug.Log("Inactive");
@@ -194,6 +251,9 @@ public class Territory : MonoBehaviour
         isArrowsActive = false;
     }
 
+    /// <summary>
+    /// Shows the arrow indicators.
+    /// </summary>
     public void ShowArrows()
     {
         //Debug.Log("Active");
@@ -204,6 +264,9 @@ public class Territory : MonoBehaviour
         isArrowsActive = true;
     }
 
+    /// <summary>
+    /// Enables attack highlighting mode for neighboring territories.
+    /// </summary>
     public void EnableAttackHighlight()
     {
         foreach (Territory neighbour in neighbourTerritories)
@@ -212,6 +275,9 @@ public class Territory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disables attack highlighting mode, returning to default state.
+    /// </summary>
     public void DisableAttackHighlight()
     {
         foreach (Territory neighbour in neighbourTerritories)
@@ -220,6 +286,9 @@ public class Territory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggles the visibility of the attack UI.
+    /// </summary>
     public void ToggleAttackUI()
     {
         if (attackUI.activeSelf == true)

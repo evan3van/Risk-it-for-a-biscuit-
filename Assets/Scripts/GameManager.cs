@@ -9,24 +9,84 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages game states, player turns, and global game settings.
+/// It initializes the game world, including territories, continents, and players, and manages the turn-based logic.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     int debugCounter = 0;
     private int maxArmySize = 40;
     private int totalTerritories = 47;
+
+    /// <summary>
+    /// Number of players participating in the game.
+    /// </summary>
     public int numOfPlayers = 3;
+
+    /// <summary>
+    /// List of all player objects participating in the game.
+    /// </summary>
     public List<Player> playerList;
+
+    /// <summary>
+    /// Current turn number in the game.
+    /// </summary>
     public int turnNumber;
+
+    /// <summary>
+    /// List of all continents in the game.
+    /// </summary>
     public List<Continent> continents;
+
+    /// <summary>
+    /// List of all territories in the game.
+    /// </summary>
     public List<Territory> allTerritories;
+
+    /// <summary>
+    /// List of colors assigned to players.
+    /// </summary>
     public List<Color> playerColors;
+
+    /// <summary>
+    /// Color assigned to neutral territories or units.
+    /// </summary>
     public Color neutralColor;
+
+    /// <summary>
+    /// List of counter objects used to represent armies on the map.
+    /// </summary>
     public List<Counter> counters;
+
+    /// <summary>
+    /// Prefab used to instantiate new counter objects.
+    /// </summary>
     public GameObject counterPrefab;
+
+    /// <summary>
+    /// Prefab used to instantiate arrow objects.
+    /// </summary>
     public GameObject arrowPrefab;
+
+    /// <summary>
+    /// Reference to the current turn manager.
+    /// </summary>
     public Turn turn;
+
+    /// <summary>
+    /// GameObject representing the player UI name display.
+    /// </summary>
     public GameObject playerUIName;
+
+    /// <summary>
+    /// Dictionary mapping territory names to their neighbouring territories' names.
+    /// </summary>
     public Dictionary<string,List<string>> territoriesNeighbours;
+
+    /// <summary>
+    /// List of sprites representing players.
+    /// </summary>
     public List<Sprite> playerSprites;
     void Start()
     {   
@@ -77,7 +137,10 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+     
+    /// <summary>
+    /// Prepares the game world, setting up players, territories, and initial army placement.
+    /// </summary> 
     private void InstantiateWorld()
     {
         // Method for setting up the world initially.
@@ -107,6 +170,9 @@ public class GameManager : MonoBehaviour
         SetNeighbours();
     }
 
+    /// <summary>
+    /// Assigns territories to players, distributing them evenly and setting initial control.
+    /// </summary>
     void SetTerritories()
     {
         // This function sets up territories for players to control.
@@ -206,6 +272,9 @@ public class GameManager : MonoBehaviour
         // foreach (Player player in playerList){Debug.Log($"Player:{player.name}, Territory count: {player.controlledTerritories.Count}");}   //debugging
     }
 
+    /// <summary>
+    /// Places initial armies on territories controlled by players.
+    /// </summary>
     void PlaceArmies()
     {
         // This function is responsible for placing armies (counters) on territories owned by players.
@@ -287,6 +356,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Displays a list of all territories in the game for debugging purposes.
+    /// </summary>
     public void displayAllTerritories(){
         string territories = "";
         foreach (Territory territory in allTerritories)
@@ -298,7 +370,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(allTerritories.Count);
     }
 
-
+    /// <summary>
+    /// Sets up neighboring relationships between territories, enabling gameplay mechanics like attacks.
+    /// </summary>
     public void SetNeighbours()
     {
         // Creates a dictionary that maps all the neighbours

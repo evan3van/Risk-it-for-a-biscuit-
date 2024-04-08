@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Controls the camera movement including panning and zooming within specified boundaries.
 /// </summary>
 public class CameraMovement : MonoBehaviour
 {
@@ -14,14 +14,33 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField]
     private float zoomStep, minCamSize, maxCamSize;
+
+    /// <summary>
+    /// Determines if the camera can move.
+    /// </summary>
     public bool canMove = true;
 
     private Vector3 dragOrigin;
     private Vector3 origin;
+
+    /// <summary>
+    /// Indicates if dragging is currently active.
+    /// </summary>
+    
     public bool dragActive = true;
     private float maxDragDistanceX = 100f;
     private float maxDragDistanceY = 100f;
+
+    /// <summary>
+    /// Adjusts the drag distance based on zoom level for the X axis.
+    /// </summary>
+    
     public float movementZoomStepX = 50f;
+
+    /// <summary>
+    /// Adjusts the drag distance based on zoom level for the Y axis.
+    /// </summary>
+    
     public float movementZoomStepY = 30f;
 
     /// <summary>
