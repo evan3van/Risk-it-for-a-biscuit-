@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public int numOfPlayers = 3;
 
+    public int numOfAIPlayers;
+
     /// <summary>
     /// List of all player objects participating in the game.
     /// </summary>
@@ -154,7 +156,13 @@ public class GameManager : MonoBehaviour
             GameObject playerObject = new GameObject("Player "+(i+1));
             Player player = playerObject.AddComponent<Player>();
             player.playerColor = playerColors[i];
-            playerList.Add(player);
+             //
+             if (i >= numOfPlayers - numOfAIPlayers) // 
+             {
+                 player.IsAI = true;
+                 playerObject.AddComponent<AIBehavior>(); // 
+             }
+             playerList.Add(player);
         }
 
         // Calculating the max army size starting at 40 and reducing by 5 for each player.

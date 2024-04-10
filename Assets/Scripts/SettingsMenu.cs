@@ -13,6 +13,8 @@ public class SettingsMenu : MonoBehaviour
     /// </summary>
     public AudioMixer audioMixer;
 
+    public GameManager gameManager;
+
     /// <summary>
     /// Sets the game's volume to a specified level.
     /// </summary>
@@ -21,5 +23,21 @@ public class SettingsMenu : MonoBehaviour
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("Volume", volume);
+    }
+
+    
+ public void SetNumOfAIPlayers(int aiPlayers)
+    {
+        gameManager.numOfAIPlayers = aiPlayers; // Access the numOfAIPlayers variable from the GameManager instance
+        // Add option to pick how many!
+    }
+
+    private void Start()
+    {
+        // If you don't have a reference to the GameManager, you can find it in the scene
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
     }
 }

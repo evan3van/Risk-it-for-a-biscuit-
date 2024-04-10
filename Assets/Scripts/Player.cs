@@ -70,4 +70,6 @@ public class Player : MonoBehaviour
         unitCount -= number;
         //More code to make something visually happen here
     }
+
+    public bool IsAI = false;
 }

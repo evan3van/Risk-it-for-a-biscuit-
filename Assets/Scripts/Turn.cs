@@ -84,6 +84,16 @@ public class Turn : MonoBehaviour
     /// </summary>
     public TextMeshProUGUI attackTargetText,attackButtonText;
 
+    public void EndTurn()
+{
+     // Example implementation to transition to the next player's turn
+        playerPointer = (playerPointer + 1) % players.Count; // Cycle through the players list
+        myTurn = players[playerPointer];
+        // Reset or update necessary states for the new turn
+        turnMode = "Reinforcement"; // For example, starting a new turn with Reinforcement phase
+        // Additional logic to update UI or game state as needed
+}
+
     /// <summary>
     /// Transitions the game to the Play phase.
     /// </summary>
