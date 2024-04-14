@@ -97,7 +97,7 @@ public class Territory : MonoBehaviour
     {
         if(turn.myTurn == controlledBy)
         {
-            Debug.Log(name);
+            //Debug.Log(name);
             if(turn.turnMode == "Reinforcement")
             {
                 downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
@@ -177,8 +177,9 @@ public class Territory : MonoBehaviour
             {
                 if (neighbour == this)
                 {
-                    Debug.Log($"Attack: {this}");
-                    //attackButtonText.text = $"Attack: {this}";
+                    //Debug.Log($"Attack: {this}");
+                    attackButtonText.text = $"Attack: {this.gameObject.name}";
+                    attackButtonText.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     turn.attackTarget = neighbour;
                     if(turn.isAttackHighlighted == false)
                     {
@@ -199,6 +200,26 @@ public class Territory : MonoBehaviour
                     }
                     turn.attacker = turn.selected;
                     attackTargetText.text = "Target = "+attackTargetName;
+
+                    if(counter.troopCount == 2){
+                        turn.SetNumberOfAttackDice(1);
+                    }else if(counter.troopCount == 3){
+                        turn.SetNumberOfAttackDice(2);
+                    }else if(counter.troopCount > 3){
+                        turn.SetNumberOfAttackDice(3);
+                    }else{
+                        Debug.Log("Too few troops to attack with");
+                        attackUIIsActive = false;
+                        ToggleAttackUI();
+                    }
+
+                    if(neighbour!=null){
+                        if(neighbour.counter.troopCount <= 2){
+                            turn.SetNumberOfDefenseDice(1);
+                        }else if(neighbour.counter.troopCount > 2){
+                            turn.SetNumberOfDefenseDice(2);
+                        }else{Debug.Log("Should not be here");}
+                    }
                 }
             }
         }

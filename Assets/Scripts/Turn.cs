@@ -62,7 +62,7 @@ public class Turn : MonoBehaviour
     // References to UI elements related to reinforcements and attacks
     public GameObject arrowUp,arrowDown,deployButton,errorText,diceSelection;
 
-    public List<GameObject> attackerDice,defenderDice;
+    public List<GameObject> attackerDice,defenderDice,attackerDiceChoice,defenderDiceChoice;
 
     /// <summary>
     /// The previously selected territory.
@@ -237,6 +237,14 @@ public class Turn : MonoBehaviour
         attackUI.SetActive(false);
         attackUIActive = false;
         diceSelection.SetActive(true);
+        for (int i = 0; i < numberOfAttackDice; i++)
+        {
+            attackerDiceChoice[i].SetActive(true);
+        }
+        for (int i = 0; i < numberOfDefenseDice; i++)
+        {
+            defenderDiceChoice[i].SetActive(true);
+        }
     }
 
     public void SetNumberOfAttackDice(int number){
