@@ -51,6 +51,8 @@ public class Turn : MonoBehaviour
     /// The number of troops available for deployment during the reinforcement phase.
     /// </summary>
     public int deployableTroops;
+    
+    public int numberOfAttackDice=1,numberOfDefenseDice=1;
 
     /// <summary>
     /// The number of troops assigned for an attack during the attack phase.
@@ -58,7 +60,9 @@ public class Turn : MonoBehaviour
     public int attackTroops = 1;
 
     // References to UI elements related to reinforcements and attacks
-    public GameObject arrowUp,arrowDown,deployButton,errorText,dice;
+    public GameObject arrowUp,arrowDown,deployButton,errorText,diceSelection;
+
+    public List<GameObject> attackerDice,defenderDice;
 
     /// <summary>
     /// The previously selected territory.
@@ -159,6 +163,9 @@ public class Turn : MonoBehaviour
         Debug.Log("FortifyPhase");
         turnMode = "Fortify";
 
+        attackerDice[0].GetComponent<DiceRoller>().isRolled = false;
+        attackerDice[1].GetComponent<DiceRoller>().isRolled = false;
+        attackerDice[2].GetComponent<DiceRoller>().isRolled = false;
         errorText.GetComponent<TextMeshProUGUI>().enabled = true;
 
         if(selected != null)
@@ -227,7 +234,15 @@ public class Turn : MonoBehaviour
             errorText.GetComponent<TextMeshProUGUI>().text = "No territory selected!";
             return;
         }
-        
-        dice.SetActive(true);
+        attackUI.SetActive(false);
+        attackUIActive = false;
+        diceSelection.SetActive(true);
+    }
+
+    public void SetNumberOfAttackDice(int number){
+        numberOfAttackDice = number;
+    }
+    public void SetNumberOfDefenseDice(int number){
+        numberOfDefenseDice = number;
     }
 }

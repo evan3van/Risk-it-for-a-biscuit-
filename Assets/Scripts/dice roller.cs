@@ -19,9 +19,9 @@ public class DiceRoller : MonoBehaviour
     public List<Sprite> diceSprites;
     
     /// <summary>
-    /// The GameObject that visually represents the dice.
+    /// The GameObjects that visually represent the dice.
     /// </summary>
-    public GameObject dice;
+    public GameObject attackerdice,defenderdice;
 
     /// <summary>
     /// Reference to the current turn manager.
@@ -66,12 +66,7 @@ public class DiceRoller : MonoBehaviour
         for (int i = 0; i < numberOfDice; i++)
         {
             int value = rand.Next(1, 7);
-            total += value;
-            if(!isRolled)
-            {
-                SetDiceSprite(value);
-            }
-            
+            total += value;  
         }
         return total;
     }
@@ -96,6 +91,7 @@ public class DiceRoller : MonoBehaviour
             {
                 defenderRolls[i] = RollDice(1);
             }
+            SetDiceSprites(attackerRolls[0],defenderRolls[0]);
             
             Array.Sort(attackerRolls);
             Array.Sort(defenderRolls);
@@ -141,11 +137,12 @@ public class DiceRoller : MonoBehaviour
     /// </summary>
     /// <param name="rollValue">The value rolled, used to select the corresponding dice sprite.</param>
 
-    public void SetDiceSprite(int rollValue)
+    public void SetDiceSprites(int defenderRollValue, int attackerRollValue)
     {
         if(!isRolled)
         {
-            dice.GetComponent<Image>().sprite = diceSprites[rollValue-1];
+            attackerdice.GetComponent<Image>().sprite = diceSprites[attackerRollValue-1];
+            defenderdice.GetComponent<Image>().sprite = diceSprites[defenderRollValue-1];
             isRolled = true;
         }
     }

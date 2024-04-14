@@ -293,7 +293,11 @@ public class Territory : MonoBehaviour
     {
         if (attackUI.activeSelf == true)
         {
-            turn.dice.SetActive(false);
+            turn.attackerDice[0].SetActive(false);
+            turn.defenderDice[0].SetActive(false);
+            turn.attackerDice[1].SetActive(false);
+            turn.defenderDice[1].SetActive(false);
+            turn.attackerDice[2].SetActive(false);
             attackUI.SetActive(false);
             turn.attackUIActive = false;
         }
