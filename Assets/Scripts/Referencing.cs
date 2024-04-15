@@ -5,13 +5,43 @@ using UnityEngine.UIElements;
 
 public class Referencing : MonoBehaviour
 {
-    public SpriteRenderer spriteR1;
-    public SpriteRenderer spriteR2;
-    public Sprite old;
-    public Sprite cyber;
-    public int test;
+    public SpriteRenderer spriteRenderer; // Example component to change
+    public List<Sprite> defaultSprites;
+    public List<Sprite> cyberSprites;
+    // Method to switch themes
+    public SkinManager skinManager;
 
-    void swap(){
-        spriteR1.sprite = old;
+    public List<GameObject> list;
+
+    public int Theme;
+
+    public void SwapTheme()
+    {
+        if (Theme == 1)
+        {
+           int skinnumber = 0;
+           Theme = 2;
+
+            foreach (Sprite item in defaultSprites)
+            {
+                skinManager.skins[skinnumber] = item;
+                list[skinnumber].GetComponent<SpriteRenderer>().sprite = item;
+                skinnumber ++;
+            }
+        }
+        else 
+        {
+            int skinnumber = 0;
+            Theme = 1;
+
+            foreach (Sprite item in cyberSprites)
+            {
+                skinManager.skins[skinnumber] = item;
+                list[skinnumber].GetComponent<SpriteRenderer>().sprite = item;
+                skinnumber ++;
+            }     
+        }
     }
+    
+   
 }

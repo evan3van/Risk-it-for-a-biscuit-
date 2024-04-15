@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
-/// <summary>
-/// Manages audio settings for the game, allowing for volume adjustments through an AudioMixer.
-/// </summary>
 public class SettingsMenu : MonoBehaviour
 {
     /// <summary>
@@ -13,31 +11,66 @@ public class SettingsMenu : MonoBehaviour
     /// </summary>
     public AudioMixer audioMixer;
 
+    /// <summary>
+    /// Reference to the GameManager to adjust game-specific settings.
+    /// </summary>
     public GameManager gameManager;
+
+    /// <summary>
+    /// Array of objects that should change theme when Cyberpunk mode is toggled.
+    /// </summary>
+    public Referencing[] referencingObjects;
+
+    /// <summary>
+    /// Toggle for enabling/disabling Cyberpunk mode.
+    /// </summary>
+    public Toggle cyberpunkToggle;
+
+    void Start()
+    {
+        
+
+        // Initialize GameManager reference if not set
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+            if (gameManager == null)
+            {
+                Debug.LogError("GameManager not found in the scene.");
+            }
+        }
+    }
 
     /// <summary>
     /// Sets the game's volume to a specified level.
     /// </summary>
-    /// <param name="volume">The volume level, typically a value between -80 (mute) and 20 (max), 
+    /// <param name="volume">The volume level, typically a value between -80 (mute) and 20 (max),
     /// but can be adjusted based on the AudioMixer's settings.</param>
-    public void SetVolume (float volume)
+    public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", volume);
-    }
-
-    
- public void SetNumOfAIPlayers(int aiPlayers)
-    {
-        gameManager.numOfAIPlayers = aiPlayers; // Access the numOfAIPlayers variable from the GameManager instance
-        // Add option to pick how many!
-    }
-
-    private void Start()
-    {
-        // If you don't have a reference to the GameManager, you can find it in the scene
-        if (gameManager == null)
+        if (audioMixer != null)
         {
-            gameManager = FindObjectOfType<GameManager>();
+            audioMixer.SetFloat("Volume", volume);
+        }
+        else
+        {
+            Debug.LogError("AudioMixer is not assigned in the inspector.");
+        }
+    }
+
+    /// <summary>
+    /// Sets the number of AI players in the game.
+    /// </summary>
+    /// <param name="aiPlayers">Number of AI players to set.</param>
+    public void SetNumOfAIPlayers(int aiPlayers)
+    {
+        if (gameManager != null)
+        {
+            gameManager.numOfAIPlayers = aiPlayers;
+        }
+        else
+        {
+            Debug.LogError("GameManager reference not set or found.");
         }
     }
 }
