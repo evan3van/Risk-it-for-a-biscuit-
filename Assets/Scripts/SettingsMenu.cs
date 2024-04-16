@@ -17,29 +17,9 @@ public class SettingsMenu : MonoBehaviour
     public GameManager gameManager;
 
     /// <summary>
-    /// Array of objects that should change theme when Cyberpunk mode is toggled.
-    /// </summary>
-    public Referencing[] referencingObjects;
-
-    /// <summary>
     /// Toggle for enabling/disabling Cyberpunk mode.
     /// </summary>
     public Toggle cyberpunkToggle;
-
-    void Start()
-    {
-        
-
-        // Initialize GameManager reference if not set
-        if (gameManager == null)
-        {
-            gameManager = FindObjectOfType<GameManager>();
-            if (gameManager == null)
-            {
-                Debug.LogError("GameManager not found in the scene.");
-            }
-        }
-    }
 
     /// <summary>
     /// Sets the game's volume to a specified level.

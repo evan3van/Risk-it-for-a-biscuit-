@@ -383,7 +383,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SetNeighbours()
     {
-        // Creates a dictionary that maps all the neighbours
+        // Creates a dictionary that maps all the neighbours to each other
         territoriesNeighbours = new Dictionary<string, List<string>>
         {
             {"North Africa", new List<string> {"Egypt", "Central Africa", "East Africa", "Western Europe", "Southern Europe"}},

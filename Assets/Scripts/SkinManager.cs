@@ -40,16 +40,6 @@ public class SkinManager : MonoBehaviour
     /// </summary>
     public Button backButton;
 
-    void Start()
-    {
-        // Subscribe to the button click events
-        if (nextButton != null)
-            nextButton.onClick.AddListener(NextOption);
-
-        if (backButton != null)
-            backButton.onClick.AddListener(BackOption);
-    }
-
     /// <summary>
     /// Advances to the next skin option, wrapping around to the first skin if the end of the list is reached.
     /// </summary>

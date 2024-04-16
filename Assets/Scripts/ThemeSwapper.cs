@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
-public class Referencing : MonoBehaviour
+public class ThemeSwapper : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer; // Example component to change
+    public SpriteRenderer spriteRenderer; 
     public List<Sprite> defaultSprites;
     public List<Sprite> cyberSprites;
-    // Method to switch themes
     public SkinManager skinManager;
 
     public List<GameObject> list;
 
     public int Theme;
+    public GameObject background;
+    public Sprite defaultBackground,cyberBackground;
 
     public void SwapTheme()
     {
@@ -28,6 +30,8 @@ public class Referencing : MonoBehaviour
                 list[skinnumber].GetComponent<SpriteRenderer>().sprite = item;
                 skinnumber ++;
             }
+
+            background.GetComponent<UnityEngine.UI.Image>().sprite = defaultBackground;
         }
         else 
         {
@@ -39,7 +43,10 @@ public class Referencing : MonoBehaviour
                 skinManager.skins[skinnumber] = item;
                 list[skinnumber].GetComponent<SpriteRenderer>().sprite = item;
                 skinnumber ++;
-            }     
+            }
+
+            background.GetComponent<UnityEngine.UI.Image>().sprite = cyberBackground;
+
         }
     }
     

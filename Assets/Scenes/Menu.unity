@@ -401,7 +401,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 7672e14c0c222e840b85df3426651cef, type: 2}
   gameManager: {fileID: 0}
-  referencingObjects: []
   cyberpunkToggle: {fileID: 0}
 --- !u!1 &174238360
 GameObject:
@@ -2019,7 +2018,6 @@ GameObject:
   - component: {fileID: 980257463}
   - component: {fileID: 980257465}
   - component: {fileID: 980257464}
-  - component: {fileID: 980257466}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2084,24 +2082,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980257462}
   m_CullTransparentMesh: 1
---- !u!114 &980257466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980257462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676d63f6f08a53d4f8d7430d9fd97735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  defaultSprites: []
-  cyberSprites: []
-  skinManager: {fileID: 0}
-  list: []
-  Theme: 0
 --- !u!1 &1089239539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,13 +3950,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: f52055f6a18403443a15ddea24a4b9c2, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1128271586}
+        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+        m_MethodName: BackOption
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4388,13 +4368,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: f52055f6a18403443a15ddea24a4b9c2, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1128271586}
+        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+        m_MethodName: NextOption
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4449,7 +4429,7 @@ GameObject:
   - component: {fileID: 2052994855}
   - component: {fileID: 2052994854}
   m_Layer: 0
-  m_Name: Test
+  m_Name: ThemeSwapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4491,6 +4471,9 @@ MonoBehaviour:
   - {fileID: 1416947491}
   - {fileID: 2090504074}
   Theme: 0
+  background: {fileID: 980257462}
+  defaultBackground: {fileID: 21300000, guid: 93bc0f28bcf3dee45b996a471fca9875, type: 3}
+  cyberBackground: {fileID: 21300000, guid: 8c1cade7f7d82c64189cfc65b021b879, type: 3}
 --- !u!4 &2052994855
 Transform:
   m_ObjectHideFlags: 0

@@ -201,11 +201,11 @@ public class Territory : MonoBehaviour
                     turn.attacker = turn.selected;
                     attackTargetText.text = "Target = "+attackTargetName;
 
-                    if(counter.troopCount == 2){
+                    if(turn.attacker.counter.troopCount == 2){
                         turn.SetNumberOfAttackDice(1);
-                    }else if(counter.troopCount == 3){
+                    }else if(turn.attacker.counter.troopCount == 3){
                         turn.SetNumberOfAttackDice(2);
-                    }else if(counter.troopCount > 3){
+                    }else if(turn.attacker.counter.troopCount > 3){
                         turn.SetNumberOfAttackDice(3);
                     }else{
                         Debug.Log("Too few troops to attack with");
