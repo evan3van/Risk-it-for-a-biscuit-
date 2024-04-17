@@ -671,8 +671,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 03af570c3fd6b45949d0ecc88bc771d6, type: 3}
   - {fileID: 21300000, guid: 8b8a01c8e403e487d8fb2b88bb13d0ec, type: 3}
   - {fileID: 21300000, guid: be45d36ce63414ce8953e5de65db7083, type: 3}
-  attackerdice: {fileID: 113060818}
-  defenderdice: {fileID: 704289881}
   turn: {fileID: 586586672}
   attacker: {fileID: 0}
   defender: {fileID: 0}
@@ -1031,8 +1029,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 03af570c3fd6b45949d0ecc88bc771d6, type: 3}
   - {fileID: 21300000, guid: 8b8a01c8e403e487d8fb2b88bb13d0ec, type: 3}
   - {fileID: 21300000, guid: be45d36ce63414ce8953e5de65db7083, type: 3}
-  attackerdice: {fileID: 146668675}
-  defenderdice: {fileID: 1087377140}
   turn: {fileID: 586586672}
   attacker: {fileID: 0}
   defender: {fileID: 0}
@@ -4495,6 +4491,16 @@ MonoBehaviour:
   isAttackHighlighted: 0
   attackTargetText: {fileID: 267414991}
   attackButtonText: {fileID: 1013690984}
+  numberOfRolledDice: 0
+  defenseDice1: {fileID: 1087377142}
+  defenseDice2: {fileID: 704289883}
+  diceSprites:
+  - {fileID: 21300000, guid: f464870cb45b14c4b873396ec3413b24, type: 3}
+  - {fileID: 21300000, guid: 4a0c20b0f85cb49a4b508f25ca4ffa17, type: 3}
+  - {fileID: 21300000, guid: 236c4a583687541bb94bafdded909823, type: 3}
+  - {fileID: 21300000, guid: 03af570c3fd6b45949d0ecc88bc771d6, type: 3}
+  - {fileID: 21300000, guid: 8b8a01c8e403e487d8fb2b88bb13d0ec, type: 3}
+  - {fileID: 21300000, guid: be45d36ce63414ce8953e5de65db7083, type: 3}
 --- !u!4 &586586673
 Transform:
   m_ObjectHideFlags: 0
@@ -6890,8 +6896,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 03af570c3fd6b45949d0ecc88bc771d6, type: 3}
   - {fileID: 21300000, guid: 8b8a01c8e403e487d8fb2b88bb13d0ec, type: 3}
   - {fileID: 21300000, guid: be45d36ce63414ce8953e5de65db7083, type: 3}
-  attackerdice: {fileID: 880256883}
-  defenderdice: {fileID: 1087377140}
   turn: {fileID: 586586672}
   attacker: {fileID: 0}
   defender: {fileID: 0}
@@ -11922,7 +11926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1655392519
 Transform:
   m_ObjectHideFlags: 0
@@ -15607,7 +15611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2048369584
 Transform:
   m_ObjectHideFlags: 0

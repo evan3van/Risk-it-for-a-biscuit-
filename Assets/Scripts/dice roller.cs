@@ -17,11 +17,6 @@ public class DiceRoller : MonoBehaviour
     /// A list of sprites representing the faces of a dice.
     /// </summary>
     public List<Sprite> diceSprites;
-    
-    /// <summary>
-    /// The GameObjects that visually represent the dice.
-    /// </summary>
-    public GameObject attackerdice,defenderdice;
 
     /// <summary>
     /// Reference to the current turn manager.
@@ -44,6 +39,8 @@ public class DiceRoller : MonoBehaviour
     /// The number of dice the defender rolls.
     /// </summary>
     public int attackerDiceNum = 1,defenderDiceNum = 1;
+
+    public bool isChecked = false;
 
     /// <summary>
     /// Initializes the turn by finding the relevant GameObject in the scene.
@@ -79,56 +76,11 @@ public class DiceRoller : MonoBehaviour
     {
         if(!isRolled)
         {
-            int[] attackerRolls = new int[attackerDiceNum];
-            int[] defenderRolls = new int[defenderDiceNum];
-            
-            for (int i = 0; i < attackerDiceNum; i++)
-            {
-                attackerRolls[i] = RollDice(1);
-            }
-            
-            for (int i = 0; i < defenderDiceNum; i++)
-            {
-                defenderRolls[i] = RollDice(1);
-            }
-            SetDiceSprites(attackerRolls[0],defenderRolls[0]);
-            
-            Array.Sort(attackerRolls);
-            Array.Sort(defenderRolls);
-            Array.Reverse(attackerRolls);
-            Array.Reverse(defenderRolls);
-            
-            int comparisonCount = Math.Min(attackerDiceNum, defenderDiceNum);
-            
-            int attackerLosses = 0;
-            int defenderLosses = 0;
-            
-            for (int i = 0; i < comparisonCount; i++)
-            {
-                if (attackerRolls[i] > defenderRolls[i])
-                {
-                    defenderLosses++;
-                }
-                else
-                {
-                    attackerLosses++;
-                }
-            }
+            int result1 = RollDice(1);
+            SetDiceSprite(result1);
 
-            int result1 = attackerRolls[0];
-            int result2 = defenderRolls[0];
-            
-            Debug.Log($"Attacker: {result1} , Defender: {result2}");
-            Debug.Log($"Attacker losses: {attackerLosses} | Defender losses: {defenderLosses}");
+            Debug.Log($"Attacker: {result1}");
 
-            if(defenderLosses > attackerLosses)
-            {
-                //Defender loses
-            }
-            else
-            {
-                //Attacker loses
-            }
         }
     }
 
@@ -137,13 +89,14 @@ public class DiceRoller : MonoBehaviour
     /// </summary>
     /// <param name="rollValue">The value rolled, used to select the corresponding dice sprite.</param>
 
-    public void SetDiceSprites(int defenderRollValue, int attackerRollValue)
+    public void SetDiceSprite(int roll)
     {
         if(!isRolled)
         {
-            attackerdice.GetComponent<Image>().sprite = diceSprites[attackerRollValue-1];
-            defenderdice.GetComponent<Image>().sprite = diceSprites[defenderRollValue-1];
+            GetComponent<Image>().sprite = diceSprites[roll-1];
             isRolled = true;
+            turn.numberOfRolledDice++;
+            turn.CheckIfDiceRolled(roll);
         }
     }
 }

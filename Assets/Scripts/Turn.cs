@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// Manages turn-based gameplay, including tracking the current player, turn number, and game phase. 
@@ -88,6 +89,11 @@ public class Turn : MonoBehaviour
     /// </summary>
     public TextMeshProUGUI attackTargetText,attackButtonText;
 
+    public int numberOfRolledDice;
+    public UnityEngine.UI.Image defenseDice1,defenseDice2;
+    public List<Sprite> diceSprites;
+    public List<int> attackRolls;
+
     public void EndTurn()
 {
      // Example implementation to transition to the next player's turn
@@ -167,6 +173,16 @@ public class Turn : MonoBehaviour
         attackerDice[1].GetComponent<DiceRoller>().isRolled = false;
         attackerDice[2].GetComponent<DiceRoller>().isRolled = false;
         errorText.GetComponent<TextMeshProUGUI>().enabled = true;
+
+        foreach (GameObject item in attackerDice)
+        {
+            item.SetActive(false);
+        }
+        foreach (GameObject item in defenderDice)
+        {
+            item.SetActive(false);
+        }
+        attackerDice[0].transform.parent.gameObject.SetActive(false);
 
         if(selected != null)
         {
@@ -252,5 +268,142 @@ public class Turn : MonoBehaviour
     }
     public void SetNumberOfDefenseDice(int number){
         numberOfDefenseDice = number;
+    }
+
+    public void CheckIfDiceRolled(int rollNumber){
+        attackRolls.Add(rollNumber);
+        if(numberOfRolledDice >= numberOfAttackDice){
+            System.Random rand = new System.Random();
+            int defenderRoll1 = rand.Next(1, 7);
+            int defenderRoll2 = rand.Next(1, 7);
+            defenseDice1.sprite = diceSprites[defenderRoll1-1];
+            defenseDice2.sprite = diceSprites[defenderRoll2-1];
+
+            bool compareMultiple = true;
+            if (numberOfDefenseDice == 1)
+            {
+                compareMultiple = false;
+            }
+
+            HandleWinOrLoss(defenderRoll1,defenderRoll2,compareMultiple);
+        }
+    }
+
+    public void HandleWinOrLoss(int defenderRoll1, int defenderRoll2, bool compareMultiple)
+    {
+        int highestAttackRoll1 = GetHighestAttackRoll();
+        int highestDefenseRoll1 = Mathf.Max(defenderRoll1, defenderRoll2);
+        int highestDefenseRoll2 = Mathf.Min(defenderRoll1, defenderRoll2);
+
+        if (highestAttackRoll1 > highestDefenseRoll1)
+        {
+            Debug.Log("Attacker wins the first comparison");
+            if (attackRolls.Count > 1 && compareMultiple)
+            {
+                int highestAttackRoll2 = GetSecondHighestAttackRoll(highestAttackRoll1);
+                if (highestAttackRoll2 > highestDefenseRoll2)
+                {
+                    Debug.Log("Defender loses 2 armies");
+                    attackTarget.controlledBy.unitCount -= 2;
+                }
+                else if(highestAttackRoll2 < highestDefenseRoll2)
+                {
+                    Debug.Log("Defender and attacker lose 1 army");
+                    attackTarget.controlledBy.unitCount -= 1;
+                }
+                else
+                {
+                    Debug.Log("Attacker and defender lose 1 army");
+                    attackTarget.controlledBy.unitCount -= 1;
+                    attacker.controlledBy.unitCount -= 1;
+                }
+            }
+            else
+            {
+                Debug.Log("Defender loses 1 army");
+                attackTarget.controlledBy.unitCount -= 1;
+            }
+        }
+        else if (highestAttackRoll1 < highestDefenseRoll1)
+        {
+            Debug.Log("Attacker loses the first comparison");
+            if (attackRolls.Count > 1 && compareMultiple)
+            {
+                int highestAttackRoll2 = GetSecondHighestAttackRoll(highestAttackRoll1);
+                if (highestAttackRoll2 > highestDefenseRoll2)
+                {
+                    Debug.Log("Defender loses 1 army, attacker loses 1 army");
+                    attackTarget.controlledBy.unitCount -= 1;
+                    attacker.controlledBy.unitCount -= 1;
+                }
+                else if (highestAttackRoll2 < highestDefenseRoll2)
+                {
+                    Debug.Log("Attacker loses 2 armies");
+                    attacker.controlledBy.unitCount -= 2;
+                }
+                else
+                {
+                    Debug.Log("Attacker loses 2 armies");
+                    attacker.controlledBy.unitCount -= 2;
+                }
+            }
+            else
+            {
+                Debug.Log("Attacker loses 1 army");
+                attacker.controlledBy.unitCount -= 1;
+            }
+        }
+        else
+        {
+            Debug.Log("Attacker and defender drew highest rolls");
+            if (attackRolls.Count > 1 && compareMultiple)
+            {
+                int highestAttackRoll2 = GetSecondHighestAttackRoll(highestAttackRoll1);
+                if (highestAttackRoll2 > highestDefenseRoll2)
+                {
+                    Debug.Log("Defender loses 1 army");
+                    attackTarget.controlledBy.unitCount -= 1;
+                }
+                else if(highestAttackRoll2 < highestDefenseRoll2)
+                {
+                    Debug.Log("Attacker loses 2 armies");
+                    attacker.controlledBy.unitCount -= 1;
+                }
+                else
+                {
+                    Debug.Log("Attacker and defender lose 1 army");
+                    attackTarget.controlledBy.unitCount -= 1;
+                    attacker.controlledBy.unitCount -= 1;
+                }
+            }
+            else
+            {
+                Debug.Log("Attacker loses 1 army");
+                attacker.controlledBy.unitCount -= 1;
+            }
+        }
+    }
+
+    private int GetHighestAttackRoll()
+    {
+        int highestAttackRoll = int.MinValue;
+        foreach (int roll in attackRolls)
+        {
+            highestAttackRoll = Mathf.Max(highestAttackRoll, roll);
+        }
+        return highestAttackRoll;
+    }
+
+    private int GetSecondHighestAttackRoll(int highestRoll1)
+    {
+        int highestAttackRoll2 = int.MinValue;
+        foreach (int roll in attackRolls)
+        {
+            if (roll != highestRoll1)
+            {
+                highestAttackRoll2 = Mathf.Max(highestAttackRoll2, roll);
+            }
+        }
+        return highestAttackRoll2;
     }
 }
