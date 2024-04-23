@@ -95,130 +95,133 @@ public class Territory : MonoBehaviour
     }
     private void OnMouseDown() 
     {
-        if(turn.myTurn == controlledBy)
+        if(turn.territoryInteractToggle)
         {
-            //Debug.Log(name);
-            if(turn.turnMode == "Reinforcement")
+            if(turn.myTurn == controlledBy)
             {
-                downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
-                upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
-                deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
-                arrowUp.counter = counter;
-                arrowDown.counter = counter;
-                deployButtonScript.counter = counter;
-                arrowUp.availableReinforcements = turn.deployableTroops;
-                arrowDown.availableReinforcements = turn.deployableTroops;
-                deployButtonScript.availableReinforcements = turn.deployableTroops;
-                arrowUp.initialCounterNum = counter.troopCount;
-                arrowDown.initialCounterNum = counter.troopCount;
-                deployButtonScript.initialCounterNum = counter.troopCount;
-                upButton.GetComponent<SpriteRenderer>().enabled = true;
-                downButton.GetComponent<SpriteRenderer>().enabled = true;
-                deployButton.GetComponent<SpriteRenderer>().enabled = true;
-
-                if(turn.deployableTroops == 0)
+                //Debug.Log(name);
+                if(turn.turnMode == "Reinforcement")
                 {
-                    errorText.gameObject.transform.position = new Vector3(transform.position.x,transform.position.y-50,-6);
-                    errorText.text = "No more troops left!";
-                    errorText.gameObject.GetComponent<MeshRenderer>().enabled = true;
-                }
-            }
-            else if(turn.turnMode == "Attack")
-            {
+                    downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
+                    upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
+                    deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
+                    arrowUp.counter = counter;
+                    arrowDown.counter = counter;
+                    deployButtonScript.counter = counter;
+                    arrowUp.availableReinforcements = turn.deployableTroops;
+                    arrowDown.availableReinforcements = turn.deployableTroops;
+                    deployButtonScript.availableReinforcements = turn.deployableTroops;
+                    arrowUp.initialCounterNum = counter.troopCount;
+                    arrowDown.initialCounterNum = counter.troopCount;
+                    deployButtonScript.initialCounterNum = counter.troopCount;
+                    upButton.GetComponent<SpriteRenderer>().enabled = true;
+                    downButton.GetComponent<SpriteRenderer>().enabled = true;
+                    deployButton.GetComponent<SpriteRenderer>().enabled = true;
 
-                turn.previousSelected = turn.selected;
-                turn.selected = this;
-                attackTarget = turn.attackTarget;
-
-                if(turn.previousSelected != this & turn.selected == this & isArrowsActive == false)
-                {
-                    ShowArrows();
-                    EnableAttackHighlight();
-                }
-                else if(turn.previousSelected != this & turn.selected == this & isArrowsActive == true)
-                {
-                    HideArrows();
-                    DisableAttackHighlight();
-                    turn.selected = null;
-                    if(turn.attackUIActive)
+                    if(turn.deployableTroops == 0)
                     {
-                        ToggleAttackUI();
-                        turn.attackUIActive = false;
+                        errorText.gameObject.transform.position = new Vector3(transform.position.x,transform.position.y-50,-6);
+                        errorText.text = "No more troops left!";
+                        errorText.gameObject.GetComponent<MeshRenderer>().enabled = true;
                     }
                 }
-                else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == false)
+                else if(turn.turnMode == "Attack")
                 {
-                    ShowArrows();
-                    EnableAttackHighlight();
-                }
-                else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == true)
-                {
-                    HideArrows();
-                    DisableAttackHighlight();
-                    turn.selected = null;
-                    if(turn.attackUIActive)
-                    {
-                        ToggleAttackUI();
-                        turn.attackUIActive = false;
-                    }
-                }
 
-                if(turn.previousSelected != this & turn.previousSelected != null)
-                {
-                    turn.previousSelected.HideArrows();
-                    turn.previousSelected.DisableAttackHighlight();
-                }
-            }
-        }
-        
-        if (turn.selected != null & turn.turnMode == "Attack")
-        {
-            foreach (Territory neighbour in turn.selected.neighbourTerritories)
-            {
-                if (neighbour == this)
-                {
-                    //Debug.Log($"Attack: {this}");
-                    attackButtonText.text = $"Attack: {this.gameObject.name}";
-                    attackButtonText.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-                    turn.attackTarget = neighbour;
-                    if(turn.isAttackHighlighted == false)
-                    {
-                        gameObject.GetComponent<OnHoverHighlight>().origionalColor = Color.red;
-                        turn.isAttackHighlighted = true;
-                    }
-                    else
-                    {
-                        gameObject.GetComponent<OnHoverHighlight>().origionalColor = oldColor;
-                        turn.isAttackHighlighted = false;
-                    }
+                    turn.previousSelected = turn.selected;
+                    turn.selected = this;
                     attackTarget = turn.attackTarget;
-                    string attackTargetName = attackTarget.name;
-                    attackTargetText = turn.attackTargetText;
-                    if(attackUIIsActive == false)
+
+                    if(turn.previousSelected != this & turn.selected == this & isArrowsActive == false)
                     {
-                        ToggleAttackUI();
+                        ShowArrows();
+                        EnableAttackHighlight();
                     }
-                    turn.attacker = turn.selected;
-                    attackTargetText.text = "Target = "+attackTargetName;
-
-                    if(turn.attacker.counter.troopCount == 2){
-                        turn.SetNumberOfAttackDice(1);
-                    }else if(turn.attacker.counter.troopCount == 3){
-                        turn.SetNumberOfAttackDice(2);
-                    }else if(turn.attacker.counter.troopCount > 3){
-                        turn.SetNumberOfAttackDice(3);
-                    }else{
-                        Debug.Log("Too few troops to attack with");
-                        attackUIIsActive = false;
-                        ToggleAttackUI();
+                    else if(turn.previousSelected != this & turn.selected == this & isArrowsActive == true)
+                    {
+                        HideArrows();
+                        DisableAttackHighlight();
+                        turn.selected = null;
+                        if(turn.attackUIActive)
+                        {
+                            ToggleAttackUI();
+                            turn.attackUIActive = false;
+                        }
+                    }
+                    else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == false)
+                    {
+                        ShowArrows();
+                        EnableAttackHighlight();
+                    }
+                    else if(turn.previousSelected == this & turn.selected == this & isArrowsActive == true)
+                    {
+                        HideArrows();
+                        DisableAttackHighlight();
+                        turn.selected = null;
+                        if(turn.attackUIActive)
+                        {
+                            ToggleAttackUI();
+                            turn.attackUIActive = false;
+                        }
                     }
 
-                    if(neighbour!=null){
-                        if(neighbour.counter.troopCount <= 2){
-                            turn.SetNumberOfDefenseDice(1);
-                        }else if(neighbour.counter.troopCount > 2){
-                            turn.SetNumberOfDefenseDice(2);
-                        }else{Debug.Log("Should not be here");}
+                    if(turn.previousSelected != this & turn.previousSelected != null)
+                    {
+                        turn.previousSelected.HideArrows();
+                        turn.previousSelected.DisableAttackHighlight();
+                    }
+                }
+            }
+            
+            if (turn.selected != null & turn.turnMode == "Attack")
+            {
+                foreach (Territory neighbour in turn.selected.neighbourTerritories)
+                {
+                    if (neighbour == this)
+                    {
+                        //Debug.Log($"Attack: {this}");
+                        attackButtonText.text = $"Attack: {this.gameObject.name}";
+                        attackButtonText.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                        turn.attackTarget = neighbour;
+                        if(turn.isAttackHighlighted == false)
+                        {
+                            gameObject.GetComponent<OnHoverHighlight>().origionalColor = Color.red;
+                            turn.isAttackHighlighted = true;
+                        }
+                        else
+                        {
+                            gameObject.GetComponent<OnHoverHighlight>().origionalColor = oldColor;
+                            turn.isAttackHighlighted = false;
+                        }
+                        attackTarget = turn.attackTarget;
+                        string attackTargetName = attackTarget.name;
+                        attackTargetText = turn.attackTargetText;
+                        if(attackUIIsActive == false)
+                        {
+                            ToggleAttackUI();
+                        }
+                        turn.attacker = turn.selected;
+                        attackTargetText.text = "Target = "+attackTargetName;
+
+                        if(turn.attacker.counter.troopCount == 2){
+                            turn.SetNumberOfAttackDice(1);
+                        }else if(turn.attacker.counter.troopCount == 3){
+                            turn.SetNumberOfAttackDice(2);
+                        }else if(turn.attacker.counter.troopCount > 3){
+                            turn.SetNumberOfAttackDice(3);
+                        }else{
+                            Debug.Log("Too few troops to attack with");
+                            attackUIIsActive = false;
+                            ToggleAttackUI();
+                        }
+
+                        if(neighbour!=null){
+                            if(neighbour.counter.troopCount <= 2){
+                                turn.SetNumberOfDefenseDice(1);
+                            }else if(neighbour.counter.troopCount > 2){
+                                turn.SetNumberOfDefenseDice(2);
+                            }else{Debug.Log("Should not be here");}
+                        }
                     }
                 }
             }
@@ -312,6 +315,7 @@ public class Territory : MonoBehaviour
     /// </summary>
     public void ToggleAttackUI()
     {
+        turn.attackAgainButton.SetActive(true);
         if (attackUI.activeSelf == true)
         {
             turn.attackerDice[0].SetActive(false);

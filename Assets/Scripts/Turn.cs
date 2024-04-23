@@ -61,7 +61,7 @@ public class Turn : MonoBehaviour
     public int attackTroops = 1;
 
     // References to UI elements related to reinforcements and attacks
-    public GameObject arrowUp,arrowDown,deployButton,errorText,diceSelection;
+    public GameObject arrowUp,arrowDown,deployButton,errorText,diceSelection,diceMenu,attackAgainButton;
 
     public List<GameObject> attackerDice,defenderDice,attackerDiceChoice,defenderDiceChoice;
 
@@ -93,6 +93,7 @@ public class Turn : MonoBehaviour
     public UnityEngine.UI.Image defenseDice1,defenseDice2;
     public List<Sprite> diceSprites;
     public List<int> attackRolls;
+    public bool territoryInteractToggle = true;
 
     public void EndTurn()
 {
@@ -215,7 +216,8 @@ public class Turn : MonoBehaviour
             attackUI.SetActive(false);
         }
 
-
+        attackAgainButton.SetActive(true);
+        territoryInteractToggle = true;
     }
 
     /// <summary>
@@ -265,6 +267,7 @@ public class Turn : MonoBehaviour
             errorText.GetComponent<TextMeshProUGUI>().text = "No territory selected!";
             return;
         }
+        territoryInteractToggle = false;
         attackUI.SetActive(false);
         attackUIActive = false;
         diceSelection.SetActive(true);
@@ -305,6 +308,7 @@ public class Turn : MonoBehaviour
 
     public void HandleWinOrLoss(int defenderRoll1, int defenderRoll2, bool compareMultiple)
     {
+
         int highestAttackRoll1 = GetHighestAttackRoll();
         int highestDefenseRoll1 = Mathf.Max(defenderRoll1, defenderRoll2);
         int highestDefenseRoll2 = Mathf.Min(defenderRoll1, defenderRoll2);
@@ -458,13 +462,15 @@ public class Turn : MonoBehaviour
             }
         }
 
+
+        Debug.Log("attackerLosesTerritory: "+attackerLosesTerritory+ " defenderLosesTerritory: "+defenderLosesTerritory);
         if(attackerLosesTerritory)
         {
-            HandleTerritoryCapture(attacker,attackTarget);
+            HandleTerritoryCapture(attackTarget,attacker);
         }
         else if(defenderLosesTerritory)
         {
-            HandleTerritoryCapture(attackTarget,attacker);
+            HandleTerritoryCapture(attacker,attackTarget);
         }
     }
 
@@ -498,15 +504,50 @@ public class Turn : MonoBehaviour
         loser.controlledBy = winnerPlayer;
 
         loser.counter.troopCount = 1;
-        attacker.counter.UpdateCount(attacker.counter.troopCount);
+        loser.counter.UpdateCount(loser.counter.troopCount);
+        loser.counter.gameObject.GetComponent<SpriteRenderer>().color = new Color(winnerPlayer.playerColor.r * 0.8f, winnerPlayer.playerColor.g * 0.8f, winnerPlayer.playerColor.b * 0.8f);
+        attacker.counter.UpdateCount(attacker.counter.troopCount-1);
         attacker.counter.troopCount -= 1;
         loserPlayer.unitCount -= 1;
         loserPlayer.counters.Remove(loser.counter);
         loserPlayer.controlledTerritories.Remove(loser);
         loser.gameObject.GetComponent<SpriteRenderer>().color = winnerPlayer.playerColor;
         loser.gameObject.GetComponent<OnHoverHighlight>().origionalColor = winnerPlayer.playerColor;
+        loser.gameObject.GetComponent<OnHoverHighlight>().player = winnerPlayer;
 
         winnerPlayer.controlledTerritories.Add(loser);
         winnerPlayer.counters.Add(loser.counter);
+    }
+
+    public void AttackAgain()
+    {
+        SetNumberOfAttackDice(0);
+        SetNumberOfDefenseDice(0);
+
+        foreach (GameObject attackDice in attackerDice)
+        {
+            attackDice.SetActive(false);
+            attackDice.GetComponent<DiceRoller>().isRolled = false;
+            attackDice.GetComponent<DiceRoller>().isChecked = false;
+            attackDice.GetComponent<UnityEngine.UI.Image>().sprite = diceSprites[0];
+        }
+        foreach (GameObject defenseDice in defenderDice)
+        {
+            defenseDice.SetActive(false);
+        }
+
+        attackTarget.gameObject.GetComponent<SpriteRenderer>().color = attackTarget.controlledBy.playerColor;
+        diceSelection.SetActive(false);
+        diceMenu.SetActive(false);
+        numberOfRolledDice = 0;
+        attackRolls = new List<int>();
+    }
+
+    public void TriggerTerritoryInteract()
+    {
+        territoryInteractToggle = true;
+        selected = null;
+        attacker = null;
+        attackTarget = null;
     }
 }

@@ -99,5 +99,10 @@ public class DiceRoller : MonoBehaviour
             turn.CheckIfDiceRolled(roll);
         }
     }
+
+    public void SetIsRolled(bool Rolled)
+    {
+        isRolled = Rolled;
+    }
 }
 

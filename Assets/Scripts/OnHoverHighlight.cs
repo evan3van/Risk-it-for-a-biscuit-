@@ -47,17 +47,19 @@ public class OnHoverHighlight : MonoBehaviour
     /// </summary>
     private void OnMouseEnter() 
     {
-        if(player == currentTurn.myTurn & mode == "Default")
-        {
-            spriteRenderer.color = newColor;
-        }
-        else if(player != currentTurn.myTurn & mode == "Attack")
-        {
-            spriteRenderer.color = newColor;
-        }
-        else if(mode == "Dice")
-        {
-            spriteRenderer.color = newColor;
+        if(currentTurn.territoryInteractToggle){
+            if(player == currentTurn.myTurn & mode == "Default")
+            {
+                spriteRenderer.color = newColor;
+            }
+            else if(player != currentTurn.myTurn & mode == "Attack")
+            {
+                spriteRenderer.color = newColor;
+            }
+            else if(mode == "Dice")
+            {
+                spriteRenderer.color = newColor;
+            }
         }
     }
 
