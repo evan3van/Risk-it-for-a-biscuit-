@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The cards currently held by the player.
     /// </summary>
-    public List<Card> cards;
+    public List<GameObject> cards;
 
     /// <summary>
     /// The territories currently controlled by the player.
