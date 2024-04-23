@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    private string type;
+    public List <GameObject> cardList;
+
 
 }
