@@ -169,6 +169,18 @@ public class Turn : MonoBehaviour
         Debug.Log("FortifyPhase");
         turnMode = "Fortify";
 
+        attackTroops = 0;
+
+        if(selected != null)
+        {
+            selected.gameObject.GetComponent<OnHoverHighlight>().mode = default;
+            selected = null;
+        }
+
+        numberOfRolledDice = 0;
+        numberOfAttackDice = 0;
+        numberOfDefenseDice = 0;
+
         attackerDice[0].GetComponent<DiceRoller>().isRolled = false;
         attackerDice[1].GetComponent<DiceRoller>().isRolled = false;
         attackerDice[2].GetComponent<DiceRoller>().isRolled = false;
@@ -202,6 +214,8 @@ public class Turn : MonoBehaviour
             attackUIActive = false;
             attackUI.SetActive(false);
         }
+
+
     }
 
     /// <summary>
@@ -210,7 +224,6 @@ public class Turn : MonoBehaviour
     public void IncrementAttackTroops()
     {
         attacker.attackTroops++;
-        Debug.Log(attacker.counter.troopCount);
         if (attacker.attackTroops >= attacker.counter.troopCount-1)
         {
             attacker.attackTroops = attacker.counter.troopCount-1;
@@ -219,6 +232,7 @@ public class Turn : MonoBehaviour
                 attacker.attackTroops = 1;
             }
         }
+        attackTroops++;
         attackUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = attacker.attackTroops.ToString();
     }
 
@@ -233,6 +247,7 @@ public class Turn : MonoBehaviour
             attacker.attackTroops = 1;
         }
         attackUI.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = attacker.attackTroops.ToString();
+        attackTroops--;
     }
 
     /// <summary>
@@ -279,12 +294,11 @@ public class Turn : MonoBehaviour
             defenseDice1.sprite = diceSprites[defenderRoll1-1];
             defenseDice2.sprite = diceSprites[defenderRoll2-1];
 
-            bool compareMultiple = true;
-            if (numberOfDefenseDice == 1)
-            {
-                compareMultiple = false;
-            }
+            bool compareMultiple = numberOfDefenseDice == 2;
 
+            attacker.HideArrows();
+            attackTarget.GetComponent<OnHoverHighlight>().origionalColor = attackTarget.controlledBy.playerColor;
+            attackTarget.GetComponent<OnHoverHighlight>().mode = "Default";
             HandleWinOrLoss(defenderRoll1,defenderRoll2,compareMultiple);
         }
     }
@@ -294,6 +308,15 @@ public class Turn : MonoBehaviour
         int highestAttackRoll1 = GetHighestAttackRoll();
         int highestDefenseRoll1 = Mathf.Max(defenderRoll1, defenderRoll2);
         int highestDefenseRoll2 = Mathf.Min(defenderRoll1, defenderRoll2);
+        if (!compareMultiple)
+        {
+            highestDefenseRoll1 = defenderRoll1;
+            highestDefenseRoll2 = 0;
+        }
+        bool defenderLosesTerritory = false;
+        bool attackerLosesTerritory = false;
+        Debug.Log("Highest attack roll: "+highestAttackRoll1+" Highest defense roll: "+highestDefenseRoll1);
+        
 
         if (highestAttackRoll1 > highestDefenseRoll1)
         {
@@ -303,25 +326,46 @@ public class Turn : MonoBehaviour
                 int highestAttackRoll2 = GetSecondHighestAttackRoll(highestAttackRoll1);
                 if (highestAttackRoll2 > highestDefenseRoll2)
                 {
+                    if (attackTarget.counter.troopCount <= 2)
+                    {
+                        defenderLosesTerritory = true;
+                    }
                     Debug.Log("Defender loses 2 armies");
-                    attackTarget.controlledBy.unitCount -= 2;
+                    attackTarget.controlledBy.unitCount -= 2; 
+                    attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-2);
                 }
                 else if(highestAttackRoll2 < highestDefenseRoll2)
                 {
+                    if (attackTarget.counter.troopCount <= 1)
+                    {
+                        defenderLosesTerritory = true;
+                    }
                     Debug.Log("Defender and attacker lose 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
+                    attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
                 }
                 else
                 {
+                    if (attackTarget.counter.troopCount <= 1)
+                    {
+                        defenderLosesTerritory = true;
+                    }
                     Debug.Log("Attacker and defender lose 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
                     attacker.controlledBy.unitCount -= 1;
+                    attacker.counter.UpdateCount(attacker.counter.troopCount-1);
+                    attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
                 }
             }
             else
             {
+                if (attackTarget.counter.troopCount <= 1)
+                {
+                    defenderLosesTerritory = true;
+                }
                 Debug.Log("Defender loses 1 army");
                 attackTarget.controlledBy.unitCount -= 1;
+                attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
             }
         }
         else if (highestAttackRoll1 < highestDefenseRoll1)
@@ -332,25 +376,42 @@ public class Turn : MonoBehaviour
                 int highestAttackRoll2 = GetSecondHighestAttackRoll(highestAttackRoll1);
                 if (highestAttackRoll2 > highestDefenseRoll2)
                 {
+                    if (attackTarget.counter.troopCount <= 1)
+                    {
+                        defenderLosesTerritory = true;
+                    }
                     Debug.Log("Defender loses 1 army, attacker loses 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
                     attacker.controlledBy.unitCount -= 1;
+                    attacker.counter.UpdateCount(attacker.counter.troopCount-1);
+                    attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
                 }
                 else if (highestAttackRoll2 < highestDefenseRoll2)
                 {
+                    if (attacker.counter.troopCount <= 2)
+                    {
+                        attackerLosesTerritory = true;
+                    }
                     Debug.Log("Attacker loses 2 armies");
                     attacker.controlledBy.unitCount -= 2;
+                    attacker.counter.UpdateCount(attacker.counter.troopCount-2);
                 }
                 else
                 {
+                    if (attacker.counter.troopCount <= 2)
+                    {
+                        attackerLosesTerritory = true;
+                    }
                     Debug.Log("Attacker loses 2 armies");
                     attacker.controlledBy.unitCount -= 2;
+                    attacker.counter.UpdateCount(attacker.counter.troopCount-2);
                 }
             }
             else
             {
                 Debug.Log("Attacker loses 1 army");
                 attacker.controlledBy.unitCount -= 1;
+                attacker.counter.UpdateCount(attacker.counter.troopCount-1);
             }
         }
         else
@@ -361,26 +422,49 @@ public class Turn : MonoBehaviour
                 int highestAttackRoll2 = GetSecondHighestAttackRoll(highestAttackRoll1);
                 if (highestAttackRoll2 > highestDefenseRoll2)
                 {
+                    if (attackTarget.counter.troopCount <= 1)
+                    {
+                        defenderLosesTerritory = true;
+                    }
                     Debug.Log("Defender loses 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
+                    attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
                 }
                 else if(highestAttackRoll2 < highestDefenseRoll2)
                 {
+                    if (attacker.counter.troopCount <= 2)
+                    {
+                        attackerLosesTerritory = true;
+                    }
                     Debug.Log("Attacker loses 2 armies");
-                    attacker.controlledBy.unitCount -= 1;
+                    attacker.controlledBy.unitCount -= 2;
+                    attacker.counter.UpdateCount(attacker.counter.troopCount-2);
                 }
                 else
                 {
                     Debug.Log("Attacker and defender lose 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
                     attacker.controlledBy.unitCount -= 1;
+                    attacker.counter.UpdateCount(attacker.counter.troopCount-1);
+                    attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
+                    
                 }
             }
             else
             {
                 Debug.Log("Attacker loses 1 army");
                 attacker.controlledBy.unitCount -= 1;
+                attacker.counter.UpdateCount(attacker.counter.troopCount-1);
             }
+        }
+
+        if(attackerLosesTerritory)
+        {
+            HandleTerritoryCapture(attacker,attackTarget);
+        }
+        else if(defenderLosesTerritory)
+        {
+            HandleTerritoryCapture(attackTarget,attacker);
         }
     }
 
@@ -405,5 +489,24 @@ public class Turn : MonoBehaviour
             }
         }
         return highestAttackRoll2;
+    }
+
+    public void HandleTerritoryCapture(Territory winner,Territory loser)
+    {
+        Player winnerPlayer = winner.controlledBy;
+        Player loserPlayer = loser.controlledBy;
+        loser.controlledBy = winnerPlayer;
+
+        loser.counter.troopCount = 1;
+        attacker.counter.UpdateCount(attacker.counter.troopCount);
+        attacker.counter.troopCount -= 1;
+        loserPlayer.unitCount -= 1;
+        loserPlayer.counters.Remove(loser.counter);
+        loserPlayer.controlledTerritories.Remove(loser);
+        loser.gameObject.GetComponent<SpriteRenderer>().color = winnerPlayer.playerColor;
+        loser.gameObject.GetComponent<OnHoverHighlight>().origionalColor = winnerPlayer.playerColor;
+
+        winnerPlayer.controlledTerritories.Add(loser);
+        winnerPlayer.counters.Add(loser.counter);
     }
 }

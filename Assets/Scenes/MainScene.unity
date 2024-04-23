@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 15051567}
   - component: {fileID: 15051568}
   - component: {fileID: 15051569}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Central America
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 39650117}
   - component: {fileID: 39650119}
   - component: {fileID: 39650118}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 63847499}
   - component: {fileID: 63847501}
   - component: {fileID: 63847502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eastern Australia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 113060822}
   - component: {fileID: 113060821}
   - component: {fileID: 113060820}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackerDice3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,6 +677,7 @@ MonoBehaviour:
   isRolled: 0
   attackerDiceNum: 1
   defenderDiceNum: 1
+  isChecked: 0
 --- !u!114 &113060821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,7 +784,7 @@ GameObject:
   - component: {fileID: 142252684}
   - component: {fileID: 142252686}
   - component: {fileID: 142252687}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Middle East
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,7 +984,7 @@ GameObject:
   - component: {fileID: 146668679}
   - component: {fileID: 146668678}
   - component: {fileID: 146668677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackerDice1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1035,6 +1036,7 @@ MonoBehaviour:
   isRolled: 0
   attackerDiceNum: 1
   defenderDiceNum: 1
+  isChecked: 0
 --- !u!114 &146668678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,7 +1143,7 @@ GameObject:
   - component: {fileID: 153541337}
   - component: {fileID: 153541339}
   - component: {fileID: 153541340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Afghanistan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,7 +1312,7 @@ GameObject:
   - component: {fileID: 160008436}
   - component: {fileID: 160008438}
   - component: {fileID: 160008439}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: India
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1501,7 +1503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199921348}
   - component: {fileID: 199921349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1558,6 +1560,8 @@ MonoBehaviour:
   turn: {fileID: 0}
   playerUIName: {fileID: 396721780}
   playerSprites: []
+  themeSwapper: {fileID: 0}
+  map: {fileID: 1154367749}
 --- !u!1 &225195921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,7 +1574,7 @@ GameObject:
   - component: {fileID: 225195923}
   - component: {fileID: 225195924}
   - component: {fileID: 225195925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eastern United States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1747,7 +1751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243241716}
   - component: {fileID: 243241717}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: South America
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1800,7 +1804,7 @@ GameObject:
   - component: {fileID: 261685786}
   - component: {fileID: 261685788}
   - component: {fileID: 261685789}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ukraine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1985,7 +1989,7 @@ GameObject:
   - component: {fileID: 267414990}
   - component: {fileID: 267414992}
   - component: {fileID: 267414991}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2120,7 +2124,7 @@ GameObject:
   - component: {fileID: 279725472}
   - component: {fileID: 279725475}
   - component: {fileID: 279725474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mongolia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2304,7 +2308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294118997}
   - component: {fileID: 294118998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Africa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2355,7 +2359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 308311267}
   - component: {fileID: 308311268}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Europe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2409,7 +2413,7 @@ GameObject:
   - component: {fileID: 325301900}
   - component: {fileID: 325301902}
   - component: {fileID: 325301903}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Argentina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2609,7 +2613,7 @@ GameObject:
   - component: {fileID: 379895921}
   - component: {fileID: 379895923}
   - component: {fileID: 379895924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Kamchatka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2953,7 +2957,7 @@ GameObject:
   - component: {fileID: 400540885}
   - component: {fileID: 400540888}
   - component: {fileID: 400540889}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Zealand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3118,7 +3122,7 @@ GameObject:
   - component: {fileID: 505829013}
   - component: {fileID: 505829015}
   - component: {fileID: 505829016}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Siberia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3454,7 +3458,7 @@ GameObject:
   - component: {fileID: 521270681}
   - component: {fileID: 521270683}
   - component: {fileID: 521270684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: South America Island 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3617,7 +3621,7 @@ GameObject:
   - component: {fileID: 526921494}
   - component: {fileID: 526921495}
   - component: {fileID: 526921496}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quebec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3798,7 +3802,7 @@ GameObject:
   - component: {fileID: 541390014}
   - component: {fileID: 541390016}
   - component: {fileID: 541390015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4221,7 +4225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577675757}
   - component: {fileID: 577675758}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dice Selection Defender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4302,7 +4306,7 @@ GameObject:
   - component: {fileID: 578214360}
   - component: {fileID: 578214362}
   - component: {fileID: 578214361}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4501,6 +4505,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 03af570c3fd6b45949d0ecc88bc771d6, type: 3}
   - {fileID: 21300000, guid: 8b8a01c8e403e487d8fb2b88bb13d0ec, type: 3}
   - {fileID: 21300000, guid: be45d36ce63414ce8953e5de65db7083, type: 3}
+  attackRolls: 
 --- !u!4 &586586673
 Transform:
   m_ObjectHideFlags: 0
@@ -4528,7 +4533,7 @@ GameObject:
   - component: {fileID: 606365711}
   - component: {fileID: 606365710}
   - component: {fileID: 606365709}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4709,7 +4714,7 @@ GameObject:
   - component: {fileID: 610445663}
   - component: {fileID: 610445665}
   - component: {fileID: 610445666}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Southern Europe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4884,7 +4889,7 @@ GameObject:
   - component: {fileID: 637075017}
   - component: {fileID: 637075020}
   - component: {fileID: 637075019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Irkutsk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5066,7 +5071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 649240849}
   - component: {fileID: 649240850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Oceania
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5163,7 +5168,7 @@ GameObject:
   - component: {fileID: 704289882}
   - component: {fileID: 704289884}
   - component: {fileID: 704289883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DefenderDice2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5239,7 +5244,7 @@ GameObject:
   - component: {fileID: 715402124}
   - component: {fileID: 715402126}
   - component: {fileID: 715402127}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Northern Europe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5408,7 +5413,7 @@ GameObject:
   - component: {fileID: 719447688}
   - component: {fileID: 719447690}
   - component: {fileID: 719447689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5543,7 +5548,7 @@ GameObject:
   - component: {fileID: 724811546}
   - component: {fileID: 724811548}
   - component: {fileID: 724811549}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: South America Island 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5709,7 +5714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 761283600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5748,7 +5753,7 @@ GameObject:
   - component: {fileID: 767736832}
   - component: {fileID: 767736831}
   - component: {fileID: 767736830}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5928,7 +5933,7 @@ GameObject:
   - component: {fileID: 772187582}
   - component: {fileID: 772187584}
   - component: {fileID: 772187583}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6063,7 +6068,7 @@ GameObject:
   - component: {fileID: 785455634}
   - component: {fileID: 785455636}
   - component: {fileID: 785455637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: South Africa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6245,7 +6250,7 @@ GameObject:
   - component: {fileID: 795710450}
   - component: {fileID: 795710455}
   - component: {fileID: 795710456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: North Africa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6432,7 +6437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 809221817}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6604,7 +6609,7 @@ GameObject:
   - component: {fileID: 835814993}
   - component: {fileID: 835814992}
   - component: {fileID: 835814991}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LessTroops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6851,7 +6856,7 @@ GameObject:
   - component: {fileID: 880256887}
   - component: {fileID: 880256886}
   - component: {fileID: 880256885}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackerDice2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6902,6 +6907,7 @@ MonoBehaviour:
   isRolled: 0
   attackerDiceNum: 1
   defenderDiceNum: 1
+  isChecked: 0
 --- !u!114 &880256886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7008,7 +7014,7 @@ GameObject:
   - component: {fileID: 896666059}
   - component: {fileID: 896666061}
   - component: {fileID: 896666062}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Peru
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7207,7 +7213,7 @@ GameObject:
   - component: {fileID: 900956254}
   - component: {fileID: 900956256}
   - component: {fileID: 900956257}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Western Australia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7388,7 +7394,7 @@ GameObject:
   - component: {fileID: 907643689}
   - component: {fileID: 907643690}
   - component: {fileID: 907643691}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Greenland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7571,7 +7577,7 @@ GameObject:
   - component: {fileID: 922404296}
   - component: {fileID: 922404298}
   - component: {fileID: 922404299}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Brazil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7923,7 +7929,7 @@ GameObject:
   - component: {fileID: 949143951}
   - component: {fileID: 949143950}
   - component: {fileID: 949143949}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8092,7 +8098,7 @@ GameObject:
   - component: {fileID: 961989209}
   - component: {fileID: 961989208}
   - component: {fileID: 961989207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8225,7 +8231,7 @@ GameObject:
   - component: {fileID: 984333770}
   - component: {fileID: 984333772}
   - component: {fileID: 984333773}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Madagascar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8386,7 +8392,7 @@ GameObject:
   - component: {fileID: 1013690983}
   - component: {fileID: 1013690985}
   - component: {fileID: 1013690984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8521,7 +8527,7 @@ GameObject:
   - component: {fileID: 1038567427}
   - component: {fileID: 1038567426}
   - component: {fileID: 1038567425}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8713,7 +8719,7 @@ GameObject:
   - component: {fileID: 1062058275}
   - component: {fileID: 1062058277}
   - component: {fileID: 1062058276}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8847,7 +8853,7 @@ GameObject:
   - component: {fileID: 1087377141}
   - component: {fileID: 1087377143}
   - component: {fileID: 1087377142}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DefenderDice1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8924,7 +8930,7 @@ GameObject:
   - component: {fileID: 1139466532}
   - component: {fileID: 1139466534}
   - component: {fileID: 1139466535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Scandinavia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9102,7 +9108,7 @@ GameObject:
   - component: {fileID: 1143865772}
   - component: {fileID: 1143865773}
   - component: {fileID: 1143865774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Western United States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9343,7 +9349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1154367751}
   - component: {fileID: 1154367750}
-  m_Layer: 1
+  m_Layer: 8
   m_Name: old-nautical-map-template_225004-981
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9563,7 +9569,7 @@ GameObject:
   - component: {fileID: 1252698121}
   - component: {fileID: 1252698122}
   - component: {fileID: 1252698123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cuba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9863,7 +9869,7 @@ GameObject:
   - component: {fileID: 1260206520}
   - component: {fileID: 1260206522}
   - component: {fileID: 1260206523}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Indonesia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10039,7 +10045,7 @@ GameObject:
   - component: {fileID: 1279730923}
   - component: {fileID: 1279730925}
   - component: {fileID: 1279730926}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Iceland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10359,7 +10365,7 @@ GameObject:
   - component: {fileID: 1326760023}
   - component: {fileID: 1326760025}
   - component: {fileID: 1326760026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Siam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10539,7 +10545,7 @@ GameObject:
   - component: {fileID: 1375188991}
   - component: {fileID: 1375188993}
   - component: {fileID: 1375188994}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Western Europe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10745,7 +10751,7 @@ GameObject:
   - component: {fileID: 1409201201}
   - component: {fileID: 1409201203}
   - component: {fileID: 1409201202}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10926,7 +10932,7 @@ GameObject:
   - component: {fileID: 1416753647}
   - component: {fileID: 1416753649}
   - component: {fileID: 1416753648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11061,7 +11067,7 @@ GameObject:
   - component: {fileID: 1489548180}
   - component: {fileID: 1489548182}
   - component: {fileID: 1489548183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Venezuela
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11238,7 +11244,7 @@ GameObject:
   - component: {fileID: 1512491704}
   - component: {fileID: 1512491706}
   - component: {fileID: 1512491707}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: China
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11436,7 +11442,7 @@ GameObject:
   - component: {fileID: 1573714766}
   - component: {fileID: 1573714768}
   - component: {fileID: 1573714769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alaska
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11761,7 +11767,7 @@ GameObject:
   - component: {fileID: 1627827430}
   - component: {fileID: 1627827432}
   - component: {fileID: 1627827433}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alberta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11920,7 +11926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1655392519}
   - component: {fileID: 1655392520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPhase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11972,7 +11978,7 @@ GameObject:
   - component: {fileID: 1663296641}
   - component: {fileID: 1663296643}
   - component: {fileID: 1663296644}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Guinea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12207,7 +12213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1706128781}
   - component: {fileID: 1706128782}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dice Selection Attacker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12290,7 +12296,7 @@ GameObject:
   - component: {fileID: 1727890263}
   - component: {fileID: 1727890265}
   - component: {fileID: 1727890266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Central Africa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12462,7 +12468,7 @@ GameObject:
   - component: {fileID: 1749972875}
   - component: {fileID: 1749972877}
   - component: {fileID: 1749972876}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12597,7 +12603,7 @@ GameObject:
   - component: {fileID: 1750111119}
   - component: {fileID: 1750111121}
   - component: {fileID: 1750111122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ontario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12769,7 +12775,7 @@ GameObject:
   - component: {fileID: 1753640277}
   - component: {fileID: 1753640279}
   - component: {fileID: 1753640278}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13164,7 +13170,7 @@ GameObject:
   - component: {fileID: 1852908483}
   - component: {fileID: 1852908485}
   - component: {fileID: 1852908486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Great Britain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13500,7 +13506,7 @@ GameObject:
   - component: {fileID: 1880033443}
   - component: {fileID: 1880033445}
   - component: {fileID: 1880033444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13634,7 +13640,7 @@ GameObject:
   - component: {fileID: 1906033624}
   - component: {fileID: 1906033626}
   - component: {fileID: 1906033625}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13769,7 +13775,7 @@ GameObject:
   - component: {fileID: 1907805966}
   - component: {fileID: 1907805969}
   - component: {fileID: 1907805968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Japan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13933,7 +13939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911346441}
   - component: {fileID: 1911346442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Asia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13991,7 +13997,7 @@ GameObject:
   - component: {fileID: 1937068776}
   - component: {fileID: 1937068778}
   - component: {fileID: 1937068777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14068,7 +14074,7 @@ GameObject:
   - component: {fileID: 1943694170}
   - component: {fileID: 1943694169}
   - component: {fileID: 1943694168}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MoreTroops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14201,7 +14207,7 @@ GameObject:
   - component: {fileID: 1944826320}
   - component: {fileID: 1944826322}
   - component: {fileID: 1944826323}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ural
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14380,7 +14386,7 @@ GameObject:
   - component: {fileID: 1967064885}
   - component: {fileID: 1967064887}
   - component: {fileID: 1967064888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Philipines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14544,7 +14550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1967978858}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Continents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14584,7 +14590,7 @@ GameObject:
   - component: {fileID: 1985758804}
   - component: {fileID: 1985758806}
   - component: {fileID: 1985758807}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Egypt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14761,7 +14767,7 @@ GameObject:
   - component: {fileID: 1991270666}
   - component: {fileID: 1991270668}
   - component: {fileID: 1991270669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: North West Territory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15095,7 +15101,7 @@ GameObject:
   - component: {fileID: 2035912546}
   - component: {fileID: 2035912545}
   - component: {fileID: 2035912544}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15264,7 +15270,7 @@ GameObject:
   - component: {fileID: 2036217147}
   - component: {fileID: 2036217149}
   - component: {fileID: 2036217150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yakutsk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15436,7 +15442,7 @@ GameObject:
   - component: {fileID: 2040158993}
   - component: {fileID: 2040158995}
   - component: {fileID: 2040158996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: East Africa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15928,7 +15934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2101057246}
   - component: {fileID: 2101057247}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: North America
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15985,7 +15991,7 @@ GameObject:
   - component: {fileID: 2101629356}
   - component: {fileID: 2101629355}
   - component: {fileID: 2101629354}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: start turn button (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16141,7 +16147,7 @@ GameObject:
   - component: {fileID: 2116079940}
   - component: {fileID: 2116079942}
   - component: {fileID: 2116079941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16306,7 +16312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2130357613}
   - component: {fileID: 2130357612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: world-map-outline-isolated-on-transparent-background-free-png (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

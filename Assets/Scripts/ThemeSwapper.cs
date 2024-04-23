@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class ThemeSwapper : MonoBehaviour
 {
@@ -13,16 +14,20 @@ public class ThemeSwapper : MonoBehaviour
 
     public List<GameObject> list;
 
-    public int Theme;
+    public string Theme = "Normal";
     public GameObject background;
     public Sprite defaultBackground,cyberBackground;
 
+    private void Start() {
+        Theme = "Normal";
+    }
+
     public void SwapTheme()
     {
-        if (Theme == 1)
+        if (Theme == "Cyber")
         {
            int skinnumber = 0;
-           Theme = 2;
+           Theme = "Normal";
 
             foreach (Sprite item in defaultSprites)
             {
@@ -36,7 +41,7 @@ public class ThemeSwapper : MonoBehaviour
         else 
         {
             int skinnumber = 0;
-            Theme = 1;
+            Theme = "Cyber";
 
             foreach (Sprite item in cyberSprites)
             {

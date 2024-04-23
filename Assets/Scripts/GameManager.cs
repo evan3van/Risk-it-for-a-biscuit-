@@ -90,8 +90,23 @@ public class GameManager : MonoBehaviour
     /// List of sprites representing players.
     /// </summary>
     public List<Sprite> playerSprites;
+
+    public ThemeSwapper themeSwapper;
+
+    public GameObject map;
+
+    public Sprite cyberMap;
     void Start()
-    {   
+    {
+        if(GameObject.Find("ThemeSwapper") != null ){
+            themeSwapper = GameObject.Find("ThemeSwapper").GetComponent<ThemeSwapper>();
+            if(themeSwapper.Theme == "Cyber"){
+                map.GetComponent<SpriteRenderer>().sprite = themeSwapper.cyberBackground;
+            }
+            else{}
+        }
+
+
 
         // Iterates through each continent in the continents collection.
         foreach (Continent continent in continents)

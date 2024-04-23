@@ -17,6 +17,7 @@ public class MainMenuScript : MonoBehaviour
     /// </summary>
     public void PlayGame()
     {
+        DontDestroyOnLoad(GameObject.Find("ThemeSwapper"));
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
