@@ -171,6 +171,53 @@ public class Territory : MonoBehaviour
                         turn.previousSelected.DisableAttackHighlight();
                     }
                 }
+                else if(turn.turnMode == "Fortify")
+                {
+                    if (turn.selected != this)
+                    {
+                        turn.previousSelected = turn.selected;
+                    }
+                    if (turn.previousSelected != null)
+                    {
+                        turn.previousSelected.HideArrows();
+                    }
+
+                    turn.selected = this;
+                    turn.chooseSender.SetActive(true);
+                    turn.sendTo.SetActive(false);
+                    turn.resetButton.SetActive(true);
+
+                    int possibleTerritories = 0;
+                    foreach (Territory neighbour in turn.selected.neighbourTerritories)
+                    {
+                        if(neighbour.controlledBy == controlledBy)
+                        {
+                            foreach (GameObject arrow in arrows)
+                            {
+                                if(arrow.name == neighbour.name)
+                                {
+                                    arrow.SetActive(true);
+                                }
+                            }
+                            possibleTerritories++;
+                        }
+                    }
+                    if (possibleTerritories == 0)
+                    {
+                        Debug.Log("No possible territories");
+                    }
+                }
+            }
+
+            if (turn.selected != null && turn.turnMode == "Fortify")
+            {
+                foreach (Territory neighbour in turn.selected.neighbourTerritories)
+                {
+                    if (neighbour == this)
+                    {
+                        
+                    }
+                }
             }
             
             if (turn.selected != null & turn.turnMode == "Attack")
@@ -250,7 +297,7 @@ public class Territory : MonoBehaviour
 
             arrow.transform.position = arrowPosition;
 
-            arrow.name = "Arrow from: "+name+" to: "+neighbour.name;
+            arrow.name = neighbour.name;
 
             arrow.GetComponent<SpriteRenderer>().color = new Color(255,255,255,0.9f);
 

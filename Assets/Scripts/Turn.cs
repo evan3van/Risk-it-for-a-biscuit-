@@ -94,6 +94,7 @@ public class Turn : MonoBehaviour
     public List<Sprite> diceSprites;
     public List<int> attackRolls;
     public bool territoryInteractToggle = true;
+    public GameObject chooseSender,sendTo,resetButton;
 
     public void EndTurn()
 {
@@ -218,6 +219,7 @@ public class Turn : MonoBehaviour
 
         attackAgainButton.SetActive(true);
         territoryInteractToggle = true;
+
     }
 
     /// <summary>
@@ -549,5 +551,19 @@ public class Turn : MonoBehaviour
         selected = null;
         attacker = null;
         attackTarget = null;
+    }
+
+    public void ResetFortify()
+    {
+        if (selected != null)
+        {
+            selected.HideArrows();
+        }
+        if (previousSelected != null)
+        {
+            previousSelected.HideArrows();
+        }
+        selected = null;
+        previousSelected = null;
     }
 }
