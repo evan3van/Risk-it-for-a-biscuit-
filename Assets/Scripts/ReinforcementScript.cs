@@ -44,8 +44,9 @@ public class ReinforcementScript : MonoBehaviour
     /// </summary>
     private void OnMouseDown() 
     {
-        if (turn.turnMode == "Reinforcement")
+        if (turn.turnMode == "Reinforcement" | turn.turnMode == "Fortify")
         {
+            turn.territoryInteractToggle = false;
             if(name == "UpButton")
             {
                 if(availableReinforcements > 0){
@@ -81,6 +82,16 @@ public class ReinforcementScript : MonoBehaviour
                 deployButton.GetComponent<SpriteRenderer>().enabled = false;
                 
                 turn.deployableTroops -= deployedTroops;
+
+                if (turn.turnMode == "Fortify")
+                {
+                    turn.previousSelected.counter.troopCount -= deployedTroops;
+                    turn.previousSelected.counter.UpdateCount(turn.previousSelected.counter.troopCount);
+                    turn.resetButton.SetActive(false);
+                    turn.chooseSender.SetActive(false);
+                    turn.sendTo.SetActive(false);
+                }
+                turn.territoryInteractToggle = true;
                 deployedTroops = 0;
             }
             else{Debug.Log("Button not found");}

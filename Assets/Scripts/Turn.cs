@@ -12,10 +12,11 @@ using UnityEngine.UIElements;
 /// </summary>
 public class Turn : MonoBehaviour
 {
+    public GameManager gameManager;
     /// <summary>
     /// Index of the current player in the players list.
     /// </summary>
-    int playerPointer = 0;
+    public int playerPointer = 0;
     
     /// <summary>
     /// The current turn number in the game.
@@ -94,18 +95,12 @@ public class Turn : MonoBehaviour
     public List<Sprite> diceSprites;
     public List<int> attackRolls;
     public bool territoryInteractToggle = true;
-    public GameObject chooseSender,sendTo,resetButton;
+    public GameObject chooseSender,sendTo,resetButton,fortifyUI;
 
-    public void EndTurn()
-{
-     // Example implementation to transition to the next player's turn
-        playerPointer = (playerPointer + 1) % players.Count; // Cycle through the players list
-        myTurn = players[playerPointer];
-        // Reset or update necessary states for the new turn
-        turnMode = "Reinforcement"; // For example, starting a new turn with Reinforcement phase
-        // Additional logic to update UI or game state as needed
-}
-
+    public Player GetNextPlayer()
+    {
+        return nextPlayer;
+    }
     /// <summary>
     /// Transitions the game to the Play phase.
     /// </summary>
@@ -127,6 +122,15 @@ public class Turn : MonoBehaviour
             Debug.Log("Full round complete");
         }
         nextPlayer = players[playerPointer];
+
+        territoryInteractToggle = true;
+        chooseSender.SetActive(true);
+        sendTo.SetActive(false);
+
+        foreach (Territory territory in gameManager.allTerritories)
+        {
+            territory.DisableAttackHighlight();
+        }
     }
 
     /// <summary>
@@ -159,7 +163,7 @@ public class Turn : MonoBehaviour
         deployButton.GetComponent<SpriteRenderer>().enabled = false;
         errorText.GetComponent<TextMeshProUGUI>().enabled = true;
 
-        
+        territoryInteractToggle = true;
     }
 
     /// <summary>
@@ -339,6 +343,7 @@ public class Turn : MonoBehaviour
                     Debug.Log("Defender loses 2 armies");
                     attackTarget.controlledBy.unitCount -= 2; 
                     attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-2);
+                    attackTarget.counter.troopCount -= 2;
                 }
                 else if(highestAttackRoll2 < highestDefenseRoll2)
                 {
@@ -349,6 +354,7 @@ public class Turn : MonoBehaviour
                     Debug.Log("Defender and attacker lose 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
                     attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
+                    attackTarget.counter.troopCount -= 1;
                 }
                 else
                 {
@@ -361,6 +367,8 @@ public class Turn : MonoBehaviour
                     attacker.controlledBy.unitCount -= 1;
                     attacker.counter.UpdateCount(attacker.counter.troopCount-1);
                     attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
+                    attacker.counter.troopCount -= 1;
+                    attackTarget.counter.troopCount -= 1;
                 }
             }
             else
@@ -372,6 +380,7 @@ public class Turn : MonoBehaviour
                 Debug.Log("Defender loses 1 army");
                 attackTarget.controlledBy.unitCount -= 1;
                 attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
+                attackTarget.counter.troopCount -= 1;
             }
         }
         else if (highestAttackRoll1 < highestDefenseRoll1)
@@ -391,6 +400,8 @@ public class Turn : MonoBehaviour
                     attacker.controlledBy.unitCount -= 1;
                     attacker.counter.UpdateCount(attacker.counter.troopCount-1);
                     attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
+                    attacker.counter.troopCount -= 1;
+                    attackTarget.counter.troopCount -= 1;
                 }
                 else if (highestAttackRoll2 < highestDefenseRoll2)
                 {
@@ -401,6 +412,7 @@ public class Turn : MonoBehaviour
                     Debug.Log("Attacker loses 2 armies");
                     attacker.controlledBy.unitCount -= 2;
                     attacker.counter.UpdateCount(attacker.counter.troopCount-2);
+                    attacker.counter.troopCount -= 2;
                 }
                 else
                 {
@@ -411,6 +423,7 @@ public class Turn : MonoBehaviour
                     Debug.Log("Attacker loses 2 armies");
                     attacker.controlledBy.unitCount -= 2;
                     attacker.counter.UpdateCount(attacker.counter.troopCount-2);
+                    attacker.counter.troopCount -= 2;
                 }
             }
             else
@@ -418,6 +431,7 @@ public class Turn : MonoBehaviour
                 Debug.Log("Attacker loses 1 army");
                 attacker.controlledBy.unitCount -= 1;
                 attacker.counter.UpdateCount(attacker.counter.troopCount-1);
+                attacker.counter.troopCount -= 1;
             }
         }
         else
@@ -435,6 +449,7 @@ public class Turn : MonoBehaviour
                     Debug.Log("Defender loses 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
                     attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
+                    attackTarget.counter.troopCount -= 1;
                 }
                 else if(highestAttackRoll2 < highestDefenseRoll2)
                 {
@@ -445,6 +460,7 @@ public class Turn : MonoBehaviour
                     Debug.Log("Attacker loses 2 armies");
                     attacker.controlledBy.unitCount -= 2;
                     attacker.counter.UpdateCount(attacker.counter.troopCount-2);
+                    attacker.counter.troopCount -= 2;
                 }
                 else
                 {
@@ -453,6 +469,8 @@ public class Turn : MonoBehaviour
                     attacker.controlledBy.unitCount -= 1;
                     attacker.counter.UpdateCount(attacker.counter.troopCount-1);
                     attackTarget.counter.UpdateCount(attackTarget.counter.troopCount-1);
+                    attacker.counter.troopCount -= 1;
+                    attackTarget.counter.troopCount -= 1;
                     
                 }
             }
@@ -461,6 +479,7 @@ public class Turn : MonoBehaviour
                 Debug.Log("Attacker loses 1 army");
                 attacker.controlledBy.unitCount -= 1;
                 attacker.counter.UpdateCount(attacker.counter.troopCount-1);
+                attacker.counter.troopCount -= 1;
             }
         }
 
@@ -523,8 +542,8 @@ public class Turn : MonoBehaviour
 
     public void AttackAgain()
     {
-        SetNumberOfAttackDice(0);
-        SetNumberOfDefenseDice(0);
+        SetNumberOfAttackDice(1);
+        SetNumberOfDefenseDice(1);
 
         foreach (GameObject attackDice in attackerDice)
         {
@@ -536,6 +555,7 @@ public class Turn : MonoBehaviour
         foreach (GameObject defenseDice in defenderDice)
         {
             defenseDice.SetActive(false);
+            defenseDice.GetComponent<UnityEngine.UI.Image>().sprite = diceSprites[0];
         }
 
         attackTarget.gameObject.GetComponent<SpriteRenderer>().color = attackTarget.controlledBy.playerColor;

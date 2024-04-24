@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Net;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
@@ -93,11 +94,31 @@ public class GameManager : MonoBehaviour
 
     public ThemeSwapper themeSwapper;
 
-    public GameObject map;
+    public GameObject map,winMenu,gameCanvas;
 
     public Sprite cyberMap;
+
+    private void Update() 
+    {
+        foreach (Player player in playerList)
+        {
+            if (player.unitCount == 0)
+            {
+                EliminatePlayer(player);
+                Debug.Log($"Player: {player}, has been eliminated");
+            }
+        }
+        if (playerList.Count <= 1)
+        {
+            gameCanvas.SetActive(false);
+            gameObject.SetActive(false);
+            winMenu.SetActive(true);
+        }
+    }
     void Start()
     {
+        gameObject.SetActive(true);
+        gameCanvas.SetActive(true);
         if(GameObject.Find("ThemeSwapper") != null ){
             themeSwapper = GameObject.Find("ThemeSwapper").GetComponent<ThemeSwapper>();
             if(themeSwapper.Theme == "Cyber"){
@@ -105,9 +126,6 @@ public class GameManager : MonoBehaviour
             }
             else{}
         }
-
-
-
         // Iterates through each continent in the continents collection.
         foreach (Continent continent in continents)
         {
@@ -506,5 +524,11 @@ public class GameManager : MonoBehaviour
             keyValuePair.Key.neighbourTerritories = keyValuePair.Value;
         }
         
+    }
+
+    public void EliminatePlayer(Player player)
+    {
+        playerList.Remove(player);
+        turn.players.Remove(player);
     }
 }

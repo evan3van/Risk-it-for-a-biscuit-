@@ -36,8 +36,6 @@ public class AIBehavior : MonoBehaviour
                 AIFortify();
                 break;
         }
-        // Simulate end of turn for AI
-        turnManager.EndTurn();
     }
 
    void AIReinforce()

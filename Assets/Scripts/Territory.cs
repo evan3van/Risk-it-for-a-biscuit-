@@ -84,12 +84,11 @@ public class Territory : MonoBehaviour
         arrowUp = upButton.GetComponent<ReinforcementScript>();
         arrowDown = downButton.GetComponent<ReinforcementScript>();
         deployButtonScript = deployButton.GetComponent<ReinforcementScript>();
-        errorText = GameObject.Find("ErrorText").GetComponent<TextMeshPro>();
         oldColor = GetComponent<OnHoverHighlight>().origionalColor;
         attackUI = turn.attackUI;
         attackButtonText = turn.attackButtonText;
 
-
+        errorText = turn.errorText.GetComponent<TextMeshPro>();
         arrows = new List<GameObject>();
         DrawArrows();
     }
@@ -120,9 +119,7 @@ public class Territory : MonoBehaviour
 
                     if(turn.deployableTroops == 0)
                     {
-                        errorText.gameObject.transform.position = new Vector3(transform.position.x,transform.position.y-50,-6);
-                        errorText.text = "No more troops left!";
-                        errorText.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                        Debug.Log("No troops remain");
                     }
                 }
                 else if(turn.turnMode == "Attack")
@@ -171,7 +168,7 @@ public class Territory : MonoBehaviour
                         turn.previousSelected.DisableAttackHighlight();
                     }
                 }
-                else if(turn.turnMode == "Fortify")
+                else if(turn.turnMode == "Fortify" && counter.troopCount > 1)
                 {
                     if (turn.selected != this)
                     {
@@ -181,41 +178,61 @@ public class Territory : MonoBehaviour
                     {
                         turn.previousSelected.HideArrows();
                     }
-
-                    turn.selected = this;
-                    turn.chooseSender.SetActive(true);
-                    turn.sendTo.SetActive(false);
-                    turn.resetButton.SetActive(true);
-
-                    int possibleTerritories = 0;
-                    foreach (Territory neighbour in turn.selected.neighbourTerritories)
+                    if (turn.selected != null)
                     {
-                        if(neighbour.controlledBy == controlledBy)
+                        foreach (Territory neighbour in turn.selected.neighbourTerritories)
                         {
-                            foreach (GameObject arrow in arrows)
+                            if (neighbour == this)
                             {
-                                if(arrow.name == neighbour.name)
-                                {
-                                    arrow.SetActive(true);
-                                }
+                                turn.deployableTroops = turn.selected.counter.troopCount-1;
+                                turn.previousSelected = turn.selected;
+                                turn.selected = this;
+                                turn.fortifyUI.SetActive(true);
+                                turn.territoryInteractToggle=false;
+                                turn.resetButton.SetActive(true);
+                                downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
+                                upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
+                                deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
+                                arrowUp.counter = counter;
+                                arrowDown.counter = counter;
+                                deployButtonScript.counter = counter;
+                                arrowUp.availableReinforcements = turn.deployableTroops;
+                                arrowDown.availableReinforcements = turn.deployableTroops;
+                                deployButtonScript.availableReinforcements = turn.deployableTroops;
+                                arrowUp.initialCounterNum = counter.troopCount;
+                                arrowDown.initialCounterNum = counter.troopCount;
+                                deployButtonScript.initialCounterNum = counter.troopCount;
+                                upButton.GetComponent<SpriteRenderer>().enabled = true;
+                                downButton.GetComponent<SpriteRenderer>().enabled = true;
+                                deployButton.GetComponent<SpriteRenderer>().enabled = true;
                             }
-                            possibleTerritories++;
                         }
                     }
-                    if (possibleTerritories == 0)
+                    if (!turn.fortifyUI.activeSelf)
                     {
-                        Debug.Log("No possible territories");
-                    }
-                }
-            }
+                        turn.selected = this;
+                        turn.chooseSender.SetActive(true);
+                        turn.sendTo.SetActive(false);
 
-            if (turn.selected != null && turn.turnMode == "Fortify")
-            {
-                foreach (Territory neighbour in turn.selected.neighbourTerritories)
-                {
-                    if (neighbour == this)
-                    {
-                        
+                        int possibleTerritories = 0;
+                        foreach (Territory neighbour in turn.selected.neighbourTerritories)
+                        {
+                            if(neighbour.controlledBy == controlledBy)
+                            {
+                                foreach (GameObject arrow in arrows)
+                                {
+                                    if(arrow.name == neighbour.name)
+                                    {
+                                        arrow.SetActive(true);
+                                    }
+                                }
+                                possibleTerritories++;
+                            }
+                        }
+                        if (possibleTerritories == 0)
+                        {
+                            Debug.Log("No possible territories");
+                        }
                     }
                 }
             }
@@ -372,11 +389,13 @@ public class Territory : MonoBehaviour
             turn.attackerDice[2].SetActive(false);
             attackUI.SetActive(false);
             turn.attackUIActive = false;
+            turn.territoryInteractToggle = false;
         }
         else
         {
             attackUI.SetActive(true);
             turn.attackUIActive = true;
+            turn.territoryInteractToggle = false;
         }
     }
 }
