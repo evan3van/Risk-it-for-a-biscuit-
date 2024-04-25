@@ -4,8 +4,6 @@ using System.Data;
 using System.Net;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Animations;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;

@@ -88,7 +88,7 @@ public class Turn : MonoBehaviour
     /// UI text element that displays the target of an attack.
     /// UI text element that displays the attack button text.
     /// </summary>
-    public TextMeshProUGUI attackTargetText,attackButtonText;
+    public TextMeshProUGUI attackTargetText,attackButtonText,reinforcementUINumber;
 
     public int numberOfRolledDice;
     public UnityEngine.UI.Image defenseDice1,defenseDice2;
@@ -140,8 +140,6 @@ public class Turn : MonoBehaviour
     {
         Debug.Log("ReinforcementPhase");
         turnMode = "Reinforcement";
-
-        TextMeshProUGUI reinforcementUINumber = GameObject.Find("ReinforceTroopNumber").GetComponent<TextMeshProUGUI>();
 
         int reinforcementNum = myTurn.controlledTerritories.Count / 3;
         deployableTroops = reinforcementNum;
