@@ -100,9 +100,9 @@ public class Territory : MonoBehaviour
                 //Debug.Log(name);
                 if(turn.turnMode == "Reinforcement")
                 {
-                    downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
-                    upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
-                    deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
+                    downButton.transform.position = new Vector3(transform.position.x+10,transform.position.y-10,-6);
+                    upButton.transform.position = new Vector3(transform.position.x+10,transform.position.y+10,-6);
+                    deployButton.transform.position = new Vector3(transform.position.x+20,transform.position.y,-6);
                     arrowUp.counter = counter;
                     arrowDown.counter = counter;
                     deployButtonScript.counter = counter;
@@ -115,6 +115,7 @@ public class Territory : MonoBehaviour
                     upButton.GetComponent<SpriteRenderer>().enabled = true;
                     downButton.GetComponent<SpriteRenderer>().enabled = true;
                     deployButton.GetComponent<SpriteRenderer>().enabled = true;
+                    turn.territoryInteractToggle = false;
 
                     if(turn.deployableTroops == 0)
                     {
