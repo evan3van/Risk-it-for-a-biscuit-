@@ -115,6 +115,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        int screenWidth = Screen.width;
+        int screenHeight = Screen.height;
+
+        Debug.Log("Screen Width: " + screenWidth);
+        Debug.Log("Screen Height: " + screenHeight);
+
         gameObject.SetActive(true);
         gameCanvas.SetActive(true);
         if(GameObject.Find("ThemeSwapper") != null ){
@@ -340,7 +346,7 @@ public class GameManager : MonoBehaviour
                 counter.GetComponent<SpriteRenderer>().color = counterColor;
                 
                 // Sets the position of the counter above the territory.
-                counter.transform.position = new Vector3(territory.transform.position.x, territory.transform.position.y, -2);
+                counter.transform.position = new Vector3(territory.transform.position.x, territory.transform.position.y, -3);
                 
                 // Sets the parent of the counter as the territory to keep hierarchy.
                 counter.transform.parent = territory.transform;

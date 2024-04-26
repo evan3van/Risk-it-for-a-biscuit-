@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7695553501320489976}
   - component: {fileID: 1891606694313248068}
   - component: {fileID: 6766759855328656097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2321821966938838389}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -6}
+  m_LocalPosition: {x: -0, y: 0, z: -5}
   m_LocalScale: {x: 40, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 464226234544084515}
   - component: {fileID: 8376720270143920813}
   - component: {fileID: 4096398062596474531}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
