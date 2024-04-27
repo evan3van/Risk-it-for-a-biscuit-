@@ -96,6 +96,7 @@ public class Turn : MonoBehaviour
     public bool territoryInteractToggle = true;
     public GameObject chooseSender,sendTo,resetButton,fortifyUI;
     public UnityEngine.UI.Image playerCharacter;
+    public CardManager cardManager;
 
     public Player GetNextPlayer()
     {
@@ -593,5 +594,10 @@ public class Turn : MonoBehaviour
         }
         selected = null;
         previousSelected = null;
+    }
+
+    public void GiveCurrentPlayerCard()
+    {
+        myTurn.GiveCard();
     }
 }

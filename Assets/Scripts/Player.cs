@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// The cards currently held by the player.
     /// </summary>
-    public List<GameObject> cards;
+    public List<GameObject> cards = new();
 
     /// <summary>
     /// The territories currently controlled by the player.
@@ -41,19 +42,29 @@ public class Player : MonoBehaviour
     /// The sprite used to represent the player visually in the game.
     /// </summary>
     public Sprite sprite;
+    public CardManager cardManager;
+    public int numOfTradedInSets = 0;
 
     private void Start() 
     {
-        
+        cardManager = GameObject.Find("Turn").GetComponent<Turn>().cardManager;
     }
 
     /// <summary>
     /// Adds a card to the player's hand.
     /// </summary>
-    /// <param name="card">The card to be given to the player.</param>
-    public void GiveCard(Card card)
+    public void GiveCard()
     {
-        //Some code to give the player a card
+        System.Random random = new System.Random();
+        int randomNumber = random.Next(0,cardManager.cardList.Count);
+        if (cards.Count < 6)
+        {
+            cards.Add(cardManager.cardList[randomNumber]);
+        }
+        else
+        {
+            ForceTradeInCards();
+        }
     }
     
     /// <summary>
@@ -65,15 +76,78 @@ public class Player : MonoBehaviour
         unitCount += number;
         //More code to make something visually happen here
     }
-    
-    /// <summary>
-    /// Decreases the player's unit count by a specified number.
-    /// </summary>
-    /// <param name="number">The number of units to be removed.</param>
-    public void RemoveTroops(int number)
+
+    public void ForceTradeInCards()
     {
-        unitCount -= number;
-        //More code to make something visually happen here
+        bool canTradeInCards = false;
+        List<int> cardTypeCount = new()
+        {
+            0,
+            0,
+            0,
+            0
+        };
+        List<string> types = new()
+        {
+            "Infantry",
+            "Cavalry",
+            "Artillery",
+            "Wild"
+        };
+        foreach (GameObject card in cards)
+        {
+            Card cardScript = card.GetComponent<Card>();
+            if (cardScript.type == types[0])
+            {
+                cardTypeCount[0]++;
+            }
+            else if (cardScript.type == types[1])
+            {
+                cardTypeCount[1]++;
+            }
+            else if (cardScript.type == types[2])
+            {
+                cardTypeCount[2]++;
+            }
+            else if (cardScript.type == types[3])
+            {
+                cardTypeCount[3]++;
+            }
+        }
+        string tradeInType = "";
+        for (int i = 0; i < 4; i++)
+        {
+            if (cardTypeCount[i] >= 3)
+            {
+                canTradeInCards=true;
+                tradeInType = types[i];
+                break;
+            }
+        }
+
+        if (canTradeInCards)
+        {
+            List<Card> tradeInCards = new();
+            foreach (GameObject card in cards)
+            {
+                if((card.GetComponent<Card>().type == tradeInType | card.GetComponent<Card>().type == types[3]) && tradeInCards.Count < 3)
+                {
+                    tradeInCards.Add(card.GetComponent<Card>());
+                }
+            }
+            Debug.Log("Cards traded in");
+            TradeInCards(tradeInCards[0],tradeInCards[1],tradeInCards[2]);
+        }
+        else
+        {
+            Debug.Log("Removing last card");
+            cards.Remove(cards[5]);
+        }
+    }
+
+    public void TradeInCards(Card card1,Card card2,Card card3)
+    {
+
     }
 
     public bool IsAI = false;
