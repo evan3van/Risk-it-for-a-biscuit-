@@ -42,6 +42,11 @@ public class Player : MonoBehaviour
     /// </summary>
     public Sprite sprite;
 
+    private void Start() 
+    {
+        
+    }
+
     /// <summary>
     /// Adds a card to the player's hand.
     /// </summary>

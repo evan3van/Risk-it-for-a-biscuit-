@@ -17,6 +17,7 @@ public class ThemeSwapper : MonoBehaviour
     public string Theme = "Normal";
     public GameObject background;
     public Sprite defaultBackground,cyberBackground;
+    public List<Sprite> playerSprites;
 
     private void Start() {
         Theme = "Normal";

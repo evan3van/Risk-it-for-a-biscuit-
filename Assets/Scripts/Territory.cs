@@ -189,7 +189,6 @@ public class Territory : MonoBehaviour
                                 turn.selected = this;
                                 turn.fortifyUI.SetActive(true);
                                 turn.territoryInteractToggle=false;
-                                turn.resetButton.SetActive(true);
                                 downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
                                 upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
                                 deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
@@ -211,8 +210,8 @@ public class Territory : MonoBehaviour
                     if (!turn.fortifyUI.activeSelf)
                     {
                         turn.selected = this;
-                        turn.chooseSender.SetActive(true);
-                        turn.sendTo.SetActive(false);
+                        turn.chooseSender.SetActive(false);
+                        turn.sendTo.SetActive(true);
 
                         int possibleTerritories = 0;
                         foreach (Territory neighbour in turn.selected.neighbourTerritories)

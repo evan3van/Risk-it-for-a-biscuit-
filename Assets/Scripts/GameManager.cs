@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
             if(themeSwapper.Theme == "Cyber"){
                 map.GetComponent<SpriteRenderer>().sprite = themeSwapper.cyberBackground;
             }
-            else{}
+            playerSprites = themeSwapper.playerSprites;
         }
         // Iterates through each continent in the continents collection.
         foreach (Continent continent in continents)
@@ -193,13 +193,13 @@ public class GameManager : MonoBehaviour
             GameObject playerObject = new GameObject("Player "+(i+1));
             Player player = playerObject.AddComponent<Player>();
             player.playerColor = playerColors[i];
-             //
-             if (i >= numOfPlayers - numOfAIPlayers) // 
+             if (i >= numOfPlayers - numOfAIPlayers)
              {
                  player.IsAI = true;
-                 playerObject.AddComponent<AIBehavior>(); // 
+                 playerObject.AddComponent<AIBehavior>();
              }
-             playerList.Add(player);
+            player.sprite = playerSprites[i];
+            playerList.Add(player);
         }
 
         // Calculating the max army size starting at 40 and reducing by 5 for each player.

@@ -85,8 +85,7 @@ public class Turn : MonoBehaviour
     public bool attackUIActive,isAttackHighlighted = false;
 
     /// <summary>
-    /// UI text element that displays the target of an attack.
-    /// UI text element that displays the attack button text.
+    /// UI text elements to signal important game mechanics to the player.
     /// </summary>
     public TextMeshProUGUI attackTargetText,attackButtonText,reinforcementUINumber;
 
@@ -96,6 +95,7 @@ public class Turn : MonoBehaviour
     public List<int> attackRolls;
     public bool territoryInteractToggle = true;
     public GameObject chooseSender,sendTo,resetButton,fortifyUI;
+    public UnityEngine.UI.Image playerCharacter;
 
     public Player GetNextPlayer()
     {
@@ -113,8 +113,10 @@ public class Turn : MonoBehaviour
         playerPointer++;
 
         myTurn = players[playerPointer-1];
+        playerCharacter.sprite = myTurn.sprite;
 
         playerUIName.GetComponent<TextMeshProUGUI>().text = players[playerPointer-1].name;
+        playerUIName.GetComponent<TextMeshProUGUI>().color = myTurn.playerColor;
 
         if(playerPointer>=players.Count)
         {
@@ -177,7 +179,15 @@ public class Turn : MonoBehaviour
 
         if(selected != null)
         {
-            selected.gameObject.GetComponent<OnHoverHighlight>().mode = default;
+            selected.gameObject.GetComponent<OnHoverHighlight>().mode = "Default";
+            foreach (Territory neighbour in selected.neighbourTerritories)
+            {
+                neighbour.gameObject.GetComponent<OnHoverHighlight>().mode = "Default";
+            }
+            foreach (GameObject arrow in selected.arrows)
+            {
+                arrow.SetActive(false);
+            }
             selected = null;
         }
 
