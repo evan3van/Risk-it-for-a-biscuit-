@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3055279994734286011}
   - component: {fileID: 1190423805648018185}
+  - component: {fileID: -2491595725049512163}
   m_Layer: 0
   m_Name: 'eastern Australia '
   m_TagString: Untagged
@@ -84,3 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2491595725049512163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7262180371674364479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3603b2acb3f554eab18b9fd09dc380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: Infantry
+  owner: {fileID: 0}
+  cardManager: {fileID: 0}

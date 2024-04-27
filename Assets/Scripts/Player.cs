@@ -43,11 +43,14 @@ public class Player : MonoBehaviour
     /// </summary>
     public Sprite sprite;
     public CardManager cardManager;
-    public int numOfTradedInSets = 0;
+    public Turn turn;
+    public bool IsAI = false;
+    public int extraReinforcements = 0;
 
     private void Start() 
     {
-        cardManager = GameObject.Find("Turn").GetComponent<Turn>().cardManager;
+        turn = GameObject.Find("Turn").GetComponent<Turn>();
+        cardManager = turn.cardManager;
     }
 
     /// <summary>
@@ -147,8 +150,17 @@ public class Player : MonoBehaviour
 
     public void TradeInCards(Card card1,Card card2,Card card3)
     {
-
+        turn.numOfTradedInSets++;
+        cards.Remove(card1.gameObject);
+        cards.Remove(card2.gameObject);
+        cards.Remove(card3.gameObject);
+        if(turn.numOfTradedInSets <= 6)
+        {
+            extraReinforcements += turn.tradedInSetReinforcements[turn.numOfTradedInSets];
+        }
+        else if(turn.numOfTradedInSets > 6)
+        {
+            extraReinforcements += 15+((turn.numOfTradedInSets-6)*5);
+        }
     }
-
-    public bool IsAI = false;
 }

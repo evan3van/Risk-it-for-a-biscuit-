@@ -97,6 +97,8 @@ public class Turn : MonoBehaviour
     public GameObject chooseSender,sendTo,resetButton,fortifyUI;
     public UnityEngine.UI.Image playerCharacter;
     public CardManager cardManager;
+    public int numOfTradedInSets = 0;
+    public List<int> tradedInSetReinforcements = new(){4,6,8,10,12,15};
 
     public Player GetNextPlayer()
     {
@@ -134,6 +136,9 @@ public class Turn : MonoBehaviour
         {
             territory.DisableAttackHighlight();
         }
+
+        cardManager.selectedCards.Clear();
+        
     }
 
     /// <summary>
@@ -145,6 +150,12 @@ public class Turn : MonoBehaviour
         turnMode = "Reinforcement";
 
         int reinforcementNum = myTurn.controlledTerritories.Count / 3;
+        if(reinforcementNum < 3)
+        {
+            reinforcementNum = 3;
+        }
+        reinforcementNum += myTurn.extraReinforcements;
+        myTurn.extraReinforcements = 0;
         deployableTroops = reinforcementNum;
         reinforcementUINumber.text = reinforcementNum.ToString();
         myTurn.GiveTroops(reinforcementNum);
