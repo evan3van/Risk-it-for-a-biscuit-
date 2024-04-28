@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -99,6 +100,7 @@ public class Turn : MonoBehaviour
     public CardManager cardManager;
     public int numOfTradedInSets = 0;
     public List<int> tradedInSetReinforcements = new(){4,6,8,10,12,15};
+    public UnityEngine.UI.Button reinforceButton,attackButton,fortifyButton,endTurnButton;
 
     public Player GetNextPlayer()
     {
@@ -138,7 +140,11 @@ public class Turn : MonoBehaviour
         }
 
         cardManager.selectedCards.Clear();
-        
+
+        if (myTurn.IsAI)
+        {
+            myTurn.aIBehavior.PerformAITurn();
+        }
     }
 
     /// <summary>
@@ -160,6 +166,10 @@ public class Turn : MonoBehaviour
         reinforcementUINumber.text = reinforcementNum.ToString();
         myTurn.GiveTroops(reinforcementNum);
 
+        if (myTurn.IsAI)
+        {
+            myTurn.aIBehavior.PerformAITurn();
+        }
     }
 
     /// <summary>
@@ -176,6 +186,11 @@ public class Turn : MonoBehaviour
         errorText.GetComponent<TextMeshProUGUI>().enabled = true;
 
         territoryInteractToggle = true;
+
+        if (myTurn.IsAI)
+        {
+            myTurn.aIBehavior.PerformAITurn();
+        }
     }
 
     /// <summary>
@@ -244,6 +259,10 @@ public class Turn : MonoBehaviour
         attackAgainButton.SetActive(true);
         territoryInteractToggle = true;
 
+        if (myTurn.IsAI)
+        {
+            myTurn.aIBehavior.PerformAITurn();
+        }
     }
 
     /// <summary>

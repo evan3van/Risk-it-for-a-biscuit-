@@ -3225,7 +3225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turn: {fileID: 586586672}
   selectedCards: []
-  selectedCardsText: []
+  selectedImages: []
   tradeInButton: {fileID: 501498039}
   deselectButtons:
   - {fileID: 593353908}
@@ -6961,6 +6961,10 @@ MonoBehaviour:
   cardManager: {fileID: 262141367}
   numOfTradedInSets: 0
   tradedInSetReinforcements: 0400000006000000080000000a0000000c0000000f000000
+  reinforceButton: {fileID: 1302233305}
+  attackButton: {fileID: 2058613027}
+  fortifyButton: {fileID: 2101629354}
+  endTurnButton: {fileID: 935098103}
 --- !u!4 &586586673
 Transform:
   m_ObjectHideFlags: 0
@@ -20746,7 +20750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1924581975
 RectTransform:
   m_ObjectHideFlags: 0

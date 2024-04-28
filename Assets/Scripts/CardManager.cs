@@ -11,7 +11,7 @@ public class CardManager : MonoBehaviour
     
     public Turn turn;
     public List<Card> selectedCards = new();
-    public List<TextMeshProUGUI> selectedCardsText;
+    public List<GameObject> selectedImages;
     public GameObject tradeInButton;
     public List<GameObject> deselectButtons;
     public List<GameObject> selectButtons;
@@ -53,6 +53,7 @@ public class CardManager : MonoBehaviour
         {
             if(card.GetComponent<SpriteRenderer>().sprite == imageSprite && selectedCards.Count < 3)
             {
+                selectedImages.Add(image.gameObject);
                 image.color = Color.red;
                 selectedCards.Add(card.GetComponent<Card>());
                 break;
@@ -80,6 +81,7 @@ public class CardManager : MonoBehaviour
         {
             if(card.GetComponent<SpriteRenderer>().sprite == imageSprite && selectedCards.Count > 0)
             {
+                selectedImages.Remove(image.gameObject);
                 image.color = Color.white;
                 selectedCards.Remove(card.GetComponent<Card>());
                 break;
@@ -93,6 +95,28 @@ public class CardManager : MonoBehaviour
         Card card1 = selectedCards[0];
         Card card2 = selectedCards[1];
         Card card3 = selectedCards[2];
+        foreach (Card card in selectedCards)
+        {
+            foreach (GameObject imageObject in displayCards)
+            {
+                bool isSelected = false;
+                foreach (GameObject selected in selectedImages)
+                {
+                    if (selected == imageObject)
+                    {
+                        isSelected = true;
+                        break;
+                    }
+                }
+                UnityEngine.UI.Image image = imageObject.GetComponent<UnityEngine.UI.Image>();
+                Sprite imageSprite = image.sprite;
+                if(card.gameObject.GetComponent<SpriteRenderer>().sprite == imageSprite && selectedCards.Count > 0 && isSelected)
+                {
+                    image.color = Color.white;
+                    selectedCards.Remove(card.GetComponent<Card>());
+                }
+            }
+        }
         turn.myTurn.TradeInCards(card1,card2,card3);
         selectedCards.Clear();
     }

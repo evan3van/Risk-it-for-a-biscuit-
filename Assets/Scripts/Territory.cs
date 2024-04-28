@@ -91,7 +91,7 @@ public class Territory : MonoBehaviour
         arrows = new List<GameObject>();
         DrawArrows();
     }
-    private void OnMouseDown() 
+    public void OnMouseDown() 
     {
         if(turn.territoryInteractToggle)
         {
@@ -276,6 +276,7 @@ public class Territory : MonoBehaviour
                             Debug.Log("Too few troops to attack with");
                             attackUIIsActive = false;
                             ToggleAttackUI();
+                            turn.territoryInteractToggle = true;
                         }
 
                         if(neighbour!=null){

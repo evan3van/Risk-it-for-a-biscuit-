@@ -14,7 +14,6 @@ using UnityEngine.UI;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    int debugCounter = 0;
     private int maxArmySize = 40;
     private int totalTerritories = 47;
 

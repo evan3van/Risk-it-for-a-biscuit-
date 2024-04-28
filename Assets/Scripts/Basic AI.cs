@@ -1,86 +1,87 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class AIBehavior : MonoBehaviour
 {
-    private Player player;
-    private Turn turnManager;
+    public int timeBetweenActions = 3000; //(Milisecs)
+    public Player player;
+    public Turn turn;
+    public ReinforcementScript reinforcementScript;
+    public string mode = "Easy";
 
     void Start()
     {
-        player = GetComponent<Player>();
-        turnManager = FindObjectOfType<Turn>();
+        turn = FindObjectOfType<Turn>();
+        player = gameObject.GetComponent<Player>();
     }
 
-    void Update()
+    public async void PerformAITurn()
     {
-        if (turnManager.myTurn == player && player.IsAI)
+        switch (turn.turnMode)
         {
-            PerformAITurn();
-        }
-    }
-
-    void PerformAITurn()
-    {
-        switch (turnManager.turnMode)
-        {
+            case "Play":
+                await Play();
+                break;
             case "Reinforcement":
-                AIReinforce();
+                await AIReinforce();
                 break;
             case "Attack":
-                AIAttack();
+                await AIAttack();
                 break;
             case "Fortify":
-                AIFortify();
+                await AIFortify();
                 break;
         }
     }
 
-   void AIReinforce()
-{
-    // Example: Distribute troops evenly among all controlled territories.
-    int troopsPerTerritory = turnManager.deployableTroops / player.controlledTerritories.Count;
-    foreach (var territory in player.controlledTerritories)
+    async Task Play()
     {
-        territory.counter.troopCount += troopsPerTerritory;
+        //Skip play phase
+        await Task.Delay(timeBetweenActions);
+        turn.reinforceButton.onClick.Invoke();
     }
-    // Consider any remaining troops due to rounding.
-    int remainingTroops = turnManager.deployableTroops % player.controlledTerritories.Count;
-    if (remainingTroops > 0)
+    async Task AIReinforce()
     {
-        player.controlledTerritories[0].counter.troopCount += remainingTroops;
-    }
-}
+        //Select a random territory
+        while(turn.deployableTroops > 0){
+            await Task.Delay(timeBetweenActions);
+            System.Random random = new System.Random();
+            int territorySelect = random.Next(0,player.controlledTerritories.Count);
+            Territory chosenTerritory = player.controlledTerritories[territorySelect];
+            chosenTerritory.OnMouseDown();
 
-    void AIAttack()
-{
-    // Example: Attack a random neighboring territory with fewer troops.
-    foreach (var territory in player.controlledTerritories)
-    {
-        foreach (var neighbor in territory.neighbourTerritories)
-        {
-            if (neighbor.controlledBy != player && territory.counter.troopCount > neighbor.counter.troopCount)
+            //Deploy troops onto selected territory
+            int numberOfTerritoriesToDeploy = random.Next(1,turn.deployableTroops);
+            for (int i = 0; i < numberOfTerritoriesToDeploy; i++)
             {
-                // Simulate an attack...
-                // This is a placeholder; you'd implement the logic to execute an attack here.
-                return; // Exit after one attack for simplicity.
+                await Task.Delay(timeBetweenActions/2);
+                turn.arrowUp.GetComponent<ReinforcementScript>().OnMouseDown();
             }
-        }
-    }
-}
 
-    void AIFortify()
-{
-    // Example: Move some troops from the territory with the most troops to the one with the least.
-    Territory mostTroops = player.controlledTerritories.OrderByDescending(t => t.counter.troopCount).FirstOrDefault();
-    Territory leastTroops = player.controlledTerritories.OrderBy(t => t.counter.troopCount).FirstOrDefault();
-    if (mostTroops != null && leastTroops != null && mostTroops.counter.troopCount > leastTroops.counter.troopCount + 1)
-    {
-        // Move a troop from mostTroops to leastTroops.
-        mostTroops.counter.troopCount -= 1;
-        leastTroops.counter.troopCount += 1;
+            //Select deploy button
+            await Task.Delay(timeBetweenActions);
+            turn.deployButton.GetComponent<ReinforcementScript>().OnMouseDown();
+        }
+
+        //Press attack phase button
+        await Task.Delay(timeBetweenActions);
+        turn.attackButton.onClick.Invoke();
     }
-}
+
+    async Task AIAttack()
+    {
+        await Task.Delay(timeBetweenActions);
+        turn.fortifyButton.onClick.Invoke();
+    }
+
+    async Task AIFortify()
+    {
+        await Task.Delay(timeBetweenActions);
+        turn.endTurnButton.onClick.Invoke();
+    }
 }

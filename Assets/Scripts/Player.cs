@@ -46,11 +46,17 @@ public class Player : MonoBehaviour
     public Turn turn;
     public bool IsAI = false;
     public int extraReinforcements = 0;
+    public AIBehavior aIBehavior;
 
     private void Start() 
     {
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         cardManager = turn.cardManager;
+        if(playerColor == Color.magenta)
+        {
+            IsAI = true;
+            aIBehavior = gameObject.AddComponent<AIBehavior>();
+        }
     }
 
     /// <summary>

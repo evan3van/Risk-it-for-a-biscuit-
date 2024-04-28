@@ -42,7 +42,7 @@ public class ReinforcementScript : MonoBehaviour
     /// Handles click events on this GameObject, performing different actions based on the object's name.
     /// Actions include incrementing or decrementing troop count, and deploying troops.
     /// </summary>
-    private void OnMouseDown() 
+    public void OnMouseDown() 
     {
         if (turn.turnMode == "Reinforcement" | turn.turnMode == "Fortify" && turn.deployableTroops > 0)
         {
