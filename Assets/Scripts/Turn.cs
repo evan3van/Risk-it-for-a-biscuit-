@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -101,6 +102,10 @@ public class Turn : MonoBehaviour
     public int numOfTradedInSets = 0;
     public List<int> tradedInSetReinforcements = new(){4,6,8,10,12,15};
     public UnityEngine.UI.Button reinforceButton,attackButton,fortifyButton,endTurnButton;
+    public UnityEngine.UI.Button attackButtonUI;
+    public List<UnityEngine.UI.Button> attackDiceNumbers;
+    public List<UnityEngine.UI.Button> defenseDiceNumbers;
+    public bool isDefenseDiceSelected = false;
 
     public Player GetNextPlayer()
     {
@@ -326,14 +331,21 @@ public class Turn : MonoBehaviour
         }
     }
 
-    public void SetNumberOfAttackDice(int number){
+    public void SetNumberOfAttackDice(int number)
+    {
         numberOfAttackDice = number;
     }
-    public void SetNumberOfDefenseDice(int number){
+    public void SetNumberOfDefenseDice(int number)
+    {
         numberOfDefenseDice = number;
     }
+    public void SetIsDefenseDiceActive()
+    {
+        isDefenseDiceSelected = true;
+    }
 
-    public void CheckIfDiceRolled(int rollNumber){
+    public void CheckIfDiceRolled(int rollNumber)
+    {
         attackRolls.Add(rollNumber);
         if(numberOfRolledDice >= numberOfAttackDice){
             System.Random rand = new System.Random();

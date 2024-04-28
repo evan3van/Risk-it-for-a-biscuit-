@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -47,13 +48,14 @@ public class AIBehavior : MonoBehaviour
     }
     async Task AIReinforce()
     {
-        //Select a random territory
         while(turn.deployableTroops > 0){
+            //Select a random territory
             await Task.Delay(timeBetweenActions);
             System.Random random = new System.Random();
             int territorySelect = random.Next(0,player.controlledTerritories.Count);
             Territory chosenTerritory = player.controlledTerritories[territorySelect];
             chosenTerritory.OnMouseDown();
+            chosenTerritory.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
             //Deploy troops onto selected territory
             int numberOfTerritoriesToDeploy = random.Next(1,turn.deployableTroops);
@@ -66,6 +68,7 @@ public class AIBehavior : MonoBehaviour
             //Select deploy button
             await Task.Delay(timeBetweenActions);
             turn.deployButton.GetComponent<ReinforcementScript>().OnMouseDown();
+            chosenTerritory.gameObject.GetComponent<SpriteRenderer>().color = player.playerColor;
         }
 
         //Press attack phase button
@@ -75,6 +78,73 @@ public class AIBehavior : MonoBehaviour
 
     async Task AIAttack()
     {
+        //Select a random territory with army value larger than 1 and neighbours not controlled by this
+        System.Random random = new System.Random();
+        int counterValue = 0;
+        Territory chosenTerritory = null;
+        bool canSelect = false;
+        foreach (Territory territory in player.controlledTerritories)
+        {
+            foreach (Territory neighbour in territory.neighbourTerritories)
+            {
+                if (neighbour.controlledBy != player && territory.counter.troopCount > 1)
+                {
+                    canSelect = true;
+                }
+            }
+        }
+        while (counterValue <= 1 && canSelect)
+        {
+            int territorySelect = random.Next(0,player.controlledTerritories.Count);
+            chosenTerritory = player.controlledTerritories[territorySelect];
+            counterValue = chosenTerritory.counter.troopCount;
+            foreach (Territory territory in chosenTerritory.neighbourTerritories)
+            {
+                if (territory.controlledBy != player && chosenTerritory.counter.troopCount > 1)
+                {
+                    canSelect = false;
+                    break;
+                }
+            }
+        }
+        if(chosenTerritory != null)
+        {
+            await Task.Delay(timeBetweenActions);
+            chosenTerritory.OnMouseDown();
+
+            //Choose a territory to attack and select it
+            List<Territory> options = new List<Territory>();
+            foreach (Territory neighbour in chosenTerritory.neighbourTerritories)
+            {
+                if(neighbour.controlledBy != player)
+                {
+                    options.Add(neighbour);
+                }
+            }
+            int chosenNeighbour = random.Next(0,options.Count);
+            Territory target = options[chosenNeighbour];
+            await Task.Delay(timeBetweenActions);
+            target.OnMouseDown();
+
+            await Task.Delay(timeBetweenActions);
+            turn.attackButtonUI.onClick.Invoke();
+            
+            int diceNumChoice = random.Next(1,turn.numberOfAttackDice);
+            await Task.Delay(timeBetweenActions);
+            turn.attackDiceNumbers[diceNumChoice].onClick.Invoke();
+
+            if (turn.attackTarget.controlledBy.IsAI)
+            {
+                int diceNumChoice2 = random.Next(1,turn.numberOfDefenseDice);
+                turn.defenseDiceNumbers[diceNumChoice2].onClick.Invoke();
+            }
+            else
+            {
+                //while(!turn.isDefenseDiceSelected){}
+                Debug.Log("after");
+            }
+        }
+
         await Task.Delay(timeBetweenActions);
         turn.fortifyButton.onClick.Invoke();
     }
@@ -84,4 +154,5 @@ public class AIBehavior : MonoBehaviour
         await Task.Delay(timeBetweenActions);
         turn.endTurnButton.onClick.Invoke();
     }
+
 }
