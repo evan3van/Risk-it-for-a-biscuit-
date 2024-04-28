@@ -13,13 +13,4 @@ public class Card : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(2.1f,3.3f);
         gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(-0.05f,0.05f);
     }
-    
-    private void OnMouseDown() 
-    {
-        if (cardManager.selectedCards.Count >= 3)
-        {
-            cardManager.selectedCards.Remove(cardManager.selectedCards[2]);
-        }
-        cardManager.selectedCards.Add(this);
-    }
 }

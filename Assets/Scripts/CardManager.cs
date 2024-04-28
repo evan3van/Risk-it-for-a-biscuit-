@@ -12,6 +12,9 @@ public class CardManager : MonoBehaviour
     public Turn turn;
     public List<Card> selectedCards = new();
     public List<TextMeshProUGUI> selectedCardsText;
+    public GameObject tradeInButton;
+    public List<GameObject> deselectButtons;
+    public List<GameObject> selectButtons;
     private void Start() 
     {
         foreach (GameObject card in cardList)
@@ -46,35 +49,66 @@ public class CardManager : MonoBehaviour
     public void CardSelect(UnityEngine.UI.Image image)
     {
         Sprite imageSprite = image.sprite;
-        bool select = true;
         foreach (GameObject card in cardList)
         {
             if(card.GetComponent<SpriteRenderer>().sprite == imageSprite && selectedCards.Count < 3)
             {
-                foreach (Card selectedCard in selectedCards)
-                {
-                    if (selectedCard == card.GetComponent<Card>())
-                    {
-                        select = false;
-                    }
-                }
-                if (select)
-                {
-                    image.color = Color.red;
-                    selectedCards.Add(card.GetComponent<Card>());
-                }
-                else
-                {
-                    image.color = Color.white;
-                    selectedCards.Remove(card.GetComponent<Card>());
-                }
-            }
-            else if (selectedCards.Count >=3)
-            {
                 image.color = Color.red;
-                selectedCards.RemoveAt(2);
                 selectedCards.Add(card.GetComponent<Card>());
+                break;
             }
         }
+        Debug.Log(selectedCards.Count);
+        if (selectedCards.Count == 3)
+        {
+            Card card1 = selectedCards[0];
+            Card card2 = selectedCards[1];
+            Card card3 = selectedCards[2];
+            Debug.Log($"{card1.type},{card2.type},{card3.type}");
+            Debug.Log($"{card1.name},{card2.name},{card3.name}");
+            if (card1.type == card2.type && card2.type == card3.type)
+            {
+                tradeInButton.SetActive(true);
+            }
+        }
+    }
+
+    public void CardDeselect(UnityEngine.UI.Image image)
+    {
+        Sprite imageSprite = image.sprite;
+        foreach (GameObject card in cardList)
+        {
+            if(card.GetComponent<SpriteRenderer>().sprite == imageSprite && selectedCards.Count > 0)
+            {
+                image.color = Color.white;
+                selectedCards.Remove(card.GetComponent<Card>());
+                break;
+            }
+        }
+        tradeInButton.SetActive(false);
+    }
+
+    public void TradeInPlayerCards()
+    {
+        Card card1 = selectedCards[0];
+        Card card2 = selectedCards[1];
+        Card card3 = selectedCards[2];
+        turn.myTurn.TradeInCards(card1,card2,card3);
+        selectedCards.Clear();
+    }
+    
+    public void ResetCardSelect()
+    {
+        foreach (GameObject image in displayCards)
+        {
+            image.GetComponent<UnityEngine.UI.Graphic>().color = Color.white;
+        }
+        for (int i = 0; i < selectButtons.Count; i++)
+        {
+            selectButtons[i].SetActive(true);
+            deselectButtons[i].SetActive(false);
+        }
+        tradeInButton.SetActive(false);
+        selectedCards.Clear();
     }
 }
