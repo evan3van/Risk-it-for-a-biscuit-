@@ -9,10 +9,11 @@ using UnityEngine;
 
 public class AIBehavior : MonoBehaviour
 {
-    public int timeBetweenActions = 3000; //(Milisecs)
+    public int timeBetweenActions = 500; //(Milisecs)
     public Player player;
     public Turn turn;
     public ReinforcementScript reinforcementScript;
+    private TaskCompletionSource<bool> waitForDefenseDiceSelected;
     public string mode = "Easy";
 
     void Start()
@@ -78,70 +79,88 @@ public class AIBehavior : MonoBehaviour
 
     async Task AIAttack()
     {
-        //Select a random territory with army value larger than 1 and neighbours not controlled by this
-        System.Random random = new System.Random();
-        int counterValue = 0;
-        Territory chosenTerritory = null;
-        bool canSelect = false;
-        foreach (Territory territory in player.controlledTerritories)
+        for (int i = 0; i < player.unitCount/2; i++)
         {
-            foreach (Territory neighbour in territory.neighbourTerritories)
+            //Select a random territory with army value larger than 1 and neighbours not controlled by this
+            System.Random random = new System.Random();
+            int counterValue = 0;
+            Territory chosenTerritory = null;
+            bool canSelect = false;
+            List<Territory> possibleTerritories = new();
+            foreach (Territory territory in player.controlledTerritories)
             {
-                if (neighbour.controlledBy != player && territory.counter.troopCount > 1)
+                foreach (Territory neighbour in territory.neighbourTerritories)
                 {
-                    canSelect = true;
+                    if (neighbour.controlledBy != player && territory.counter.troopCount > 1)
+                    {
+                        canSelect = true;
+                        if(!possibleTerritories.Contains(territory))
+                        {
+                            possibleTerritories.Add(territory);
+                        }
+                    }
                 }
             }
-        }
-        while (counterValue <= 1 && canSelect)
-        {
-            int territorySelect = random.Next(0,player.controlledTerritories.Count);
-            chosenTerritory = player.controlledTerritories[territorySelect];
-            counterValue = chosenTerritory.counter.troopCount;
-            foreach (Territory territory in chosenTerritory.neighbourTerritories)
+            while (counterValue <= 1 && canSelect)
             {
-                if (territory.controlledBy != player && chosenTerritory.counter.troopCount > 1)
+                int territorySelect = random.Next(0,possibleTerritories.Count-1);
+                chosenTerritory = possibleTerritories[territorySelect];
+                counterValue = chosenTerritory.counter.troopCount;
+                foreach (Territory territory in chosenTerritory.neighbourTerritories)
                 {
-                    canSelect = false;
-                    break;
+                    if (territory.controlledBy != player && chosenTerritory.counter.troopCount > 1)
+                    {
+                        canSelect = false;
+                        break;
+                    }
                 }
             }
-        }
-        if(chosenTerritory != null)
-        {
-            await Task.Delay(timeBetweenActions);
-            chosenTerritory.OnMouseDown();
-
-            //Choose a territory to attack and select it
-            List<Territory> options = new List<Territory>();
-            foreach (Territory neighbour in chosenTerritory.neighbourTerritories)
+            if(chosenTerritory != null)
             {
-                if(neighbour.controlledBy != player)
+                await Task.Delay(timeBetweenActions);
+                chosenTerritory.OnMouseDown();
+
+                //Choose a territory to attack and select it
+                List<Territory> options = new List<Territory>();
+                foreach (Territory neighbour in chosenTerritory.neighbourTerritories)
                 {
-                    options.Add(neighbour);
+                    if(neighbour.controlledBy != player)
+                    {
+                        options.Add(neighbour);
+                    }
                 }
-            }
-            int chosenNeighbour = random.Next(0,options.Count);
-            Territory target = options[chosenNeighbour];
-            await Task.Delay(timeBetweenActions);
-            target.OnMouseDown();
+                int chosenNeighbour = random.Next(0,options.Count-1);
+                Territory target = options[chosenNeighbour];
+                await Task.Delay(timeBetweenActions);
+                target.OnMouseDown();
 
-            await Task.Delay(timeBetweenActions);
-            turn.attackButtonUI.onClick.Invoke();
-            
-            int diceNumChoice = random.Next(1,turn.numberOfAttackDice);
-            await Task.Delay(timeBetweenActions);
-            turn.attackDiceNumbers[diceNumChoice].onClick.Invoke();
+                await Task.Delay(timeBetweenActions);
+                turn.attackButtonUI.onClick.Invoke();
+                
+                int diceNumChoice = random.Next(1,turn.numberOfAttackDice);
+                await Task.Delay(timeBetweenActions);
+                turn.attackDiceNumbers[diceNumChoice].onClick.Invoke();
 
-            if (turn.attackTarget.controlledBy.IsAI)
-            {
-                int diceNumChoice2 = random.Next(1,turn.numberOfDefenseDice);
-                turn.defenseDiceNumbers[diceNumChoice2].onClick.Invoke();
-            }
-            else
-            {
-                //while(!turn.isDefenseDiceSelected){}
-                Debug.Log("after");
+                if (turn.attackTarget.controlledBy.IsAI)
+                {
+                    int diceNumChoice2 = random.Next(1,turn.numberOfDefenseDice);
+                    turn.defenseDiceNumbers[diceNumChoice2].onClick.Invoke();
+                }
+                else
+                {
+                    waitForDefenseDiceSelected = new TaskCompletionSource<bool>();
+                    await waitForDefenseDiceSelected.Task;
+                    Debug.Log("after");
+
+                    for (int j = 0; i < turn.numberOfAttackDice; j++)
+                    {
+                        await Task.Delay(timeBetweenActions);
+                        turn.attackerDice[i].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                    }
+
+                    await Task.Delay(timeBetweenActions);
+                    turn.attackAgainButton.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                }
             }
         }
 
@@ -155,4 +174,8 @@ public class AIBehavior : MonoBehaviour
         turn.endTurnButton.onClick.Invoke();
     }
 
+    public void StartWaitingForDefenseDiceSelected()
+    {
+        waitForDefenseDiceSelected.SetResult(true);
+    }
 }

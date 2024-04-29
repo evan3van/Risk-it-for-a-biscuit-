@@ -642,4 +642,12 @@ public class Turn : MonoBehaviour
     {
         myTurn.GiveCard();
     }
+    
+    public void AwaitPlayerSelection()
+    {
+        if (myTurn.IsAI)
+        {
+            myTurn.GetComponent<AIBehavior>().StartWaitingForDefenseDiceSelected();
+        }
+    }
 }

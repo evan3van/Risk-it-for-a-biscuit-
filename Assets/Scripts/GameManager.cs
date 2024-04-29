@@ -94,25 +94,8 @@ public class GameManager : MonoBehaviour
     public GameObject map,winMenu,gameCanvas;
 
     public Sprite cyberMap;
-
-    private void Update() 
-    {
-        foreach (Player player in playerList)
-        {
-            if (player.unitCount == 0)
-            {
-                EliminatePlayer(player);
-                Debug.Log($"Player: {player}, has been eliminated");
-            }
-        }
-        if (playerList.Count <= 1)
-        {
-            gameCanvas.SetActive(false);
-            gameObject.SetActive(false);
-            winMenu.SetActive(true);
-        }
-    }
-    void Start()
+    public bool canUpdate = false;
+    void Awake()
     {
         int screenWidth = Screen.width;
         int screenHeight = Screen.height;
@@ -173,7 +156,26 @@ public class GameManager : MonoBehaviour
             territory.turn = turn;
             territory.arrowPrefab = arrowPrefab;
         }
-
+        canUpdate = true;
+    }
+    private void Update() 
+    {
+        if (canUpdate){
+            foreach (Player player in playerList)
+            {
+                if (player.unitCount == 0)
+                {
+                    EliminatePlayer(player);
+                    Debug.Log($"Player: {player}, has been eliminated");
+                }
+            }
+            if (playerList.Count <= 1)
+            {
+                gameCanvas.SetActive(false);
+                gameObject.SetActive(false);
+                winMenu.SetActive(true);
+            }
+        }
     }
      
     /// <summary>

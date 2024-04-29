@@ -97,7 +97,6 @@ public class Territory : MonoBehaviour
         {
             if(turn.myTurn == controlledBy)
             {
-                //Debug.Log(name);
                 if(turn.turnMode == "Reinforcement")
                 {
                     downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
@@ -124,7 +123,6 @@ public class Territory : MonoBehaviour
                 }
                 else if(turn.turnMode == "Attack")
                 {
-
                     turn.previousSelected = turn.selected;
                     turn.selected = this;
                     attackTarget = turn.attackTarget;
@@ -308,7 +306,7 @@ public class Territory : MonoBehaviour
             float angleDegrees = angleRadians * Mathf.Rad2Deg;
             arrow.transform.rotation = Quaternion.Euler(0f, 0f, angleDegrees-45);
 
-            Vector3 arrowPosition = new Vector3(transform.position.x+(direction.x/2),transform.position.y+(direction.y/2),-3f);
+            Vector3 arrowPosition = new Vector3(transform.position.x+(direction.x/2),transform.position.y+(direction.y/2),-7f);
 
             arrow.transform.localScale = new Vector3(0.1f,0.1f,0);
 
@@ -345,9 +343,18 @@ public class Territory : MonoBehaviour
     public void ShowArrows()
     {
         //Debug.Log("Active");
-        foreach (GameObject arrow in arrows)
+        foreach (Territory neighbour in neighbourTerritories)
         {
-            arrow.gameObject.SetActive(true);
+            if (neighbour.controlledBy!=controlledBy)
+            {
+                foreach (GameObject arrow in arrows)
+                {
+                    if (arrow.name == neighbour.name)
+                    {
+                        arrow.gameObject.SetActive(true);
+                    }
+                }
+            }
         }
         isArrowsActive = true;
     }
