@@ -244,19 +244,10 @@ public class GameManager : MonoBehaviour
         // Determines the number of players.
         int playerCount = playerList.Count;
 
-        // Checks if the number of players is less than or equal to 2.
-        if (playerList.Count <= 2){
-
-            // If there are 2 or fewer players, creates a neutral player.
-            GameObject neutralPlayer = new GameObject("Neutral");
-            Player neutral = neutralPlayer.AddComponent<Player>();
-            neutral.playerColor = neutralColor;
-
-            // Adds the neutral player to the player list.
-            playerList.Add(neutral);
-
-            // Adjusts the player count to 3.
-            playerCount = 3;
+        // Checks if the number of players is less than or equal to 1.
+        if (playerList.Count <= 1){
+            // Adjusts the player count to 2.
+            playerCount = 2;
         }
 
         // Calculates the number of territories each player should control.

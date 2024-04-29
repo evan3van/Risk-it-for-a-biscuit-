@@ -33,6 +33,15 @@ public class Counter : MonoBehaviour
         //Debug.Log(transform.GetChild(0).name);
     }
 
+    private void Update() 
+    {
+        if (troopCount <= 0)
+        {
+            troopCount = 1;
+            UpdateCount(1);
+        }
+    }
+
     /// <summary>
     /// Updates the displayed troop count to the specified number.
     /// </summary>

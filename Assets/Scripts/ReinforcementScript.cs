@@ -46,6 +46,7 @@ public class ReinforcementScript : MonoBehaviour
     {
         if (turn.turnMode == "Reinforcement" | turn.turnMode == "Fortify" && turn.deployableTroops > 0)
         {
+            
             turn.chooseSender.SetActive(false);
             turn.sendTo.SetActive(false);
             turn.territoryInteractToggle = false;
@@ -92,6 +93,10 @@ public class ReinforcementScript : MonoBehaviour
                     turn.previousSelected.counter.UpdateCount(turn.previousSelected.counter.troopCount);
                 }
                 turn.territoryInteractToggle = true;
+                if (turn.turnMode == "Fortify")
+                {
+                    turn.territoryInteractToggle = false;
+                }
                 deployedTroops = 0;
             }
             else{Debug.Log("Button not found");}

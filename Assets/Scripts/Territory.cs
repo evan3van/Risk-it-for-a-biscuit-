@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using System.IO;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Represents a territory in the game, managing its state, interactions, and UI elements related to attack and reinforcement phases.
@@ -166,9 +167,10 @@ public class Territory : MonoBehaviour
                         turn.previousSelected.DisableAttackHighlight();
                     }
                 }
-                else if(turn.turnMode == "Fortify" && counter.troopCount > 1)
+                else if(turn.turnMode == "Fortify")
                 {
-                    if (turn.selected != this)
+                    turn.sendTo.GetComponent<TextMeshProUGUI>().text = "Choose a territory to send troops to";
+                    if (turn.selected != this && counter.troopCount > 1)
                     {
                         turn.previousSelected = turn.selected;
                     }
@@ -176,7 +178,7 @@ public class Territory : MonoBehaviour
                     {
                         turn.previousSelected.HideArrows();
                     }
-                    if (turn.selected != null)
+                    if (turn.selected != null && counter.troopCount > 1)
                     {
                         foreach (Territory neighbour in turn.selected.neighbourTerritories)
                         {
@@ -211,24 +213,34 @@ public class Territory : MonoBehaviour
                         turn.chooseSender.SetActive(false);
                         turn.sendTo.SetActive(true);
 
-                        int possibleTerritories = 0;
-                        foreach (Territory neighbour in turn.selected.neighbourTerritories)
+                        if (counter.troopCount > 1)
                         {
-                            if(neighbour.controlledBy == controlledBy)
+                            int possibleTerritories = 0;
+                            foreach (Territory neighbour in turn.selected.neighbourTerritories)
                             {
-                                foreach (GameObject arrow in arrows)
+                                if(neighbour.controlledBy == controlledBy)
                                 {
-                                    if(arrow.name == neighbour.name)
+                                    foreach (GameObject arrow in arrows)
                                     {
-                                        arrow.SetActive(true);
+                                        if(arrow.name == neighbour.name)
+                                        {
+                                            arrow.SetActive(true);
+                                        }
                                     }
+                                    possibleTerritories++;
                                 }
-                                possibleTerritories++;
+                            }
+                            if (possibleTerritories == 0)
+                            {
+                                Debug.Log("No possible territories");
+                                turn.sendTo.GetComponent<TextMeshProUGUI>().text = "No possible territories";
+                                StartCoroutine(Wait5());
                             }
                         }
-                        if (possibleTerritories == 0)
+                        else
                         {
-                            Debug.Log("No possible territories");
+                            turn.sendTo.GetComponent<TextMeshProUGUI>().text = "Not enough troops";
+                            StartCoroutine(Wait5());
                         }
                     }
                 }
@@ -404,6 +416,16 @@ public class Territory : MonoBehaviour
             turn.attackUIActive = true;
             turn.territoryInteractToggle = false;
         }
+    }
+
+    IEnumerator Wait5()
+    {
+        turn.territoryInteractToggle = false;
+        yield return new WaitForSeconds(5);
+        turn.territoryInteractToggle = true;
+        turn.sendTo.GetComponent<TextMeshProUGUI>().text = "Choose a territory to send troops to";
+        turn.sendTo.SetActive(false);
+        turn.chooseSender.SetActive(true);
     }
 }
  
