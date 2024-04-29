@@ -17,7 +17,10 @@ public class MainMenuScript : MonoBehaviour
     /// </summary>
     public void PlayGame()
     {
+        GameObject slider = GameObject.Find("Slider");
         DontDestroyOnLoad(GameObject.Find("ThemeSwapper"));
+        DontDestroyOnLoad(slider);
+        slider.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -28,6 +31,17 @@ public class MainMenuScript : MonoBehaviour
     public void GoToSettingsMenu()
     {
         SceneManager.LoadScene("SettingsMenu");
+    }
+
+
+    /// <summary>
+    /// Navigates to the Player menu scene
+    /// selecting number of players determining NO. of AI.
+    /// </summary>
+
+    public void GoToPlayerMenu()
+    {
+        SceneManager.LoadScene("playerMenu");
     }
 
     /// <summary>
