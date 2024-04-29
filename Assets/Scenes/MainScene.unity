@@ -2483,6 +2483,7 @@ MonoBehaviour:
   winMenu: {fileID: 187854483}
   gameCanvas: {fileID: 1817745406}
   cyberMap: {fileID: 21300000, guid: 8c1cade7f7d82c64189cfc65b021b879, type: 3}
+  canUpdate: 0
 --- !u!1 &200914529
 GameObject:
   m_ObjectHideFlags: 0
@@ -20855,7 +20856,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 874425640}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
