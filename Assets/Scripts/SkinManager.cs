@@ -68,8 +68,7 @@ public class SkinManager : MonoBehaviour
     /// </summary>
     public void PlayGame()
     {
-        // Assuming your PlayGame method implementation is correct
-        // Remember to replace prefab saving logic for runtime builds
+        
         SceneManager.LoadScene("MainScene");
     }
 }

@@ -117,7 +117,6 @@ public class Turn : MonoBehaviour
     public void PlayPhase()
     {
         Debug.Log("PlayPhase");
-        //Debug.Log(players.Count);
         turnMode = "Play";
         turnNumber++;
         playerPointer++;

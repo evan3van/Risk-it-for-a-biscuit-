@@ -341,7 +341,7 @@ public class Territory : MonoBehaviour
     /// </summary>
     public void HideArrows()
     {
-        //Debug.Log("Inactive");
+        
         foreach (GameObject arrow in arrows)
         {
             arrow.gameObject.SetActive(false);
@@ -354,7 +354,7 @@ public class Territory : MonoBehaviour
     /// </summary>
     public void ShowArrows()
     {
-        //Debug.Log("Active");
+        
         foreach (Territory neighbour in neighbourTerritories)
         {
             if (neighbour.controlledBy!=controlledBy)

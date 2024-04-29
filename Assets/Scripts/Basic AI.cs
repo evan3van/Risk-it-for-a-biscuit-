@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class AIBehavior : MonoBehaviour
 {
-    public int timeBetweenActions = 500; //(Milisecs)
+    public int timeBetweenActions = 500; 
     public Player player;
     public Turn turn;
     public ReinforcementScript reinforcementScript;
@@ -43,14 +43,12 @@ public class AIBehavior : MonoBehaviour
 
     async Task Play()
     {
-        //Skip play phase
         await Task.Delay(timeBetweenActions);
         turn.reinforceButton.onClick.Invoke();
     }
     async Task AIReinforce()
     {
         while(turn.deployableTroops > 0){
-            //Select a random territory
             await Task.Delay(timeBetweenActions);
             System.Random random = new System.Random();
             int territorySelect = random.Next(0,player.controlledTerritories.Count);
@@ -58,7 +56,7 @@ public class AIBehavior : MonoBehaviour
             chosenTerritory.OnMouseDown();
             chosenTerritory.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 
-            //Deploy troops onto selected territory
+            
             int numberOfTerritoriesToDeploy = random.Next(1,turn.deployableTroops);
             for (int i = 0; i < numberOfTerritoriesToDeploy; i++)
             {
@@ -66,13 +64,13 @@ public class AIBehavior : MonoBehaviour
                 turn.arrowUp.GetComponent<ReinforcementScript>().OnMouseDown();
             }
 
-            //Select deploy button
+            
             await Task.Delay(timeBetweenActions);
             turn.deployButton.GetComponent<ReinforcementScript>().OnMouseDown();
             chosenTerritory.gameObject.GetComponent<SpriteRenderer>().color = player.playerColor;
         }
 
-        //Press attack phase button
+       
         await Task.Delay(timeBetweenActions);
         turn.attackButton.onClick.Invoke();
     }
@@ -81,7 +79,6 @@ public class AIBehavior : MonoBehaviour
     {
         for (int i = 0; i < player.unitCount/2; i++)
         {
-            //Select a random territory with army value larger than 1 and neighbours not controlled by this
             System.Random random = new System.Random();
             int counterValue = 0;
             Territory chosenTerritory = null;
@@ -120,7 +117,7 @@ public class AIBehavior : MonoBehaviour
                 await Task.Delay(timeBetweenActions);
                 chosenTerritory.OnMouseDown();
 
-                //Choose a territory to attack and select it
+                
                 List<Territory> options = new List<Territory>();
                 foreach (Territory neighbour in chosenTerritory.neighbourTerritories)
                 {

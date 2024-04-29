@@ -140,7 +140,7 @@ public class CameraMovement : MonoBehaviour
         {
             maxDragDistanceY = 550;
         }
-        //Debug.Log(maxDragDistanceX);
+        
     }
 
     /// <summary>
@@ -174,7 +174,7 @@ public class CameraMovement : MonoBehaviour
         {
             maxDragDistanceY = 550;
         }
-        //Debug.Log(maxDragDistanceX);
+        
     }
 
 }
