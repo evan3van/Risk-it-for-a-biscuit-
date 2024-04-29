@@ -152,10 +152,10 @@ public class AIBehavior : MonoBehaviour
                     await waitForDefenseDiceSelected.Task;
                     Debug.Log("after");
 
-                    for (int j = 0; i < turn.numberOfAttackDice; j++)
+                    for (int j = 0; j < turn.numberOfAttackDice; j++)
                     {
                         await Task.Delay(timeBetweenActions);
-                        turn.attackerDice[i].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                        turn.attackerDice[j].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
                     }
 
                     await Task.Delay(timeBetweenActions);
