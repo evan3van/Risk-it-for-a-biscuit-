@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Number of players participating in the game.
     /// </summary>
-    public int numOfPlayers = 3;
+    public int numOfPlayers = 6;
 
     public int numOfAIPlayers;
 
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
 
     public Sprite cyberMap;
     public bool canUpdate = false;
-    void Awake()
+    void Start()
     {
         int screenWidth = Screen.width;
         int screenHeight = Screen.height;
@@ -192,11 +192,11 @@ public class GameManager : MonoBehaviour
             GameObject playerObject = new GameObject("Player "+(i+1));
             Player player = playerObject.AddComponent<Player>();
             player.playerColor = playerColors[i];
-             if (i >= numOfPlayers - numOfAIPlayers)
-             {
-                 player.IsAI = true;
-                 playerObject.AddComponent<AIBehavior>();
-             }
+            if (i >= numOfPlayers - numOfAIPlayers)
+            {
+                player.IsAI = true;
+                playerObject.AddComponent<AIBehavior>();
+            }
             player.sprite = playerSprites[i];
             playerList.Add(player);
         }
@@ -240,9 +240,9 @@ public class GameManager : MonoBehaviour
         int playerCount = playerList.Count;
 
         
-        if (playerList.Count <= 1){
+        if (playerList.Count <= 3){
         
-            playerCount = 2;
+            playerCount = 3;
         }
 
         

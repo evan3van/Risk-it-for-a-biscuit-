@@ -52,11 +52,11 @@ public class Player : MonoBehaviour
     {
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         cardManager = turn.cardManager;
-        if(playerColor == Color.magenta)
-        {
-            IsAI = true;
-            aIBehavior = gameObject.AddComponent<AIBehavior>();
-        }
+        //if(playerColor == Color.magenta)
+        //{
+        //    IsAI = true;
+        //    aIBehavior = gameObject.AddComponent<AIBehavior>();
+        //}
     }
 
     /// <summary>

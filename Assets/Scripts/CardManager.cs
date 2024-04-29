@@ -27,6 +27,7 @@ public class CardManager : MonoBehaviour
        for (int i = 0; i < turn.myTurn.cards.Count; i++)
         {
             Debug.Log("Displaying card "+i);
+            selectButtons[i].SetActive(true);
             displayCards[i].SetActive(true);
             displayCards[i].GetComponent<UnityEngine.UI.Image>().sprite = turn.myTurn.cards[i].gameObject.GetComponent<SpriteRenderer>().sprite;
         }
@@ -38,6 +39,10 @@ public class CardManager : MonoBehaviour
         foreach (GameObject image in displayCards)
         {
             image.SetActive(false);
+        }
+        foreach (GameObject button in selectButtons)
+        {
+            button.SetActive(false);
         }
     }
 
