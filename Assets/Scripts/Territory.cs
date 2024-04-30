@@ -100,9 +100,12 @@ public class Territory : MonoBehaviour
             {
                 if(turn.turnMode == "Reinforcement")
                 {
-                    downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
-                    upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
-                    deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
+                    downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,0);
+                    upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,0);
+                    deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,0);
+                    downButton.transform.localPosition = new Vector3(downButton.transform.localPosition.x,downButton.transform.localPosition.y,550);
+                    upButton.transform.localPosition = new Vector3(upButton.transform.localPosition.x,upButton.transform.localPosition.y,550);
+                    deployButton.transform.localPosition = new Vector3(deployButton.transform.localPosition.x,deployButton.transform.localPosition.y,550);
                     arrowUp.counter = counter;
                     arrowDown.counter = counter;
                     deployButtonScript.counter = counter;
@@ -189,9 +192,12 @@ public class Territory : MonoBehaviour
                                 turn.selected = this;
                                 turn.fortifyUI.SetActive(true);
                                 turn.territoryInteractToggle=false;
-                                downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,-6);
-                                upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,-6);
-                                deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,-6);
+                                downButton.transform.position = new Vector3(transform.position.x+30,transform.position.y-30,0);
+                                upButton.transform.position = new Vector3(transform.position.x+30,transform.position.y+30,0);
+                                deployButton.transform.position = new Vector3(transform.position.x+50,transform.position.y,0);
+                                downButton.transform.localPosition = new Vector3(downButton.transform.localPosition.x,downButton.transform.localPosition.y,550);
+                                upButton.transform.localPosition = new Vector3(upButton.transform.localPosition.x,upButton.transform.localPosition.y,550);
+                                deployButton.transform.localPosition = new Vector3(deployButton.transform.localPosition.x,deployButton.transform.localPosition.y,550);
                                 arrowUp.counter = counter;
                                 arrowDown.counter = counter;
                                 deployButtonScript.counter = counter;
@@ -318,9 +324,10 @@ public class Territory : MonoBehaviour
             float angleDegrees = angleRadians * Mathf.Rad2Deg;
             arrow.transform.rotation = Quaternion.Euler(0f, 0f, angleDegrees-45);
 
-            Vector3 arrowPosition = new Vector3(transform.position.x+(direction.x/2),transform.position.y+(direction.y/2),-7f);
+            Vector3 arrowPosition = new Vector3(transform.position.x+(direction.x/2),transform.position.y+(direction.y/2),95f);
+            
 
-            arrow.transform.localScale = new Vector3(0.1f,0.1f,0);
+            arrow.transform.localScale = new Vector3(0.1f,0.1f,-100);
 
             arrow.transform.position = arrowPosition;
 
