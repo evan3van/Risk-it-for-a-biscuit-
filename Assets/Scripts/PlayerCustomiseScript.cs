@@ -55,10 +55,15 @@ public class PlayerCustomiseScript : MonoBehaviour
 
     public void CheckIfOnePlayer()
     {
-        if(playerIndex == 1)
+        if(numberOfHumanPlayers == 1)
         {
             playButton.SetActive(true);
             nextPlayer.SetActive(false);
         }
+    }
+
+    public void SetPlayerName()
+    {
+        playerNumber.text = "Player "+playerIndex;
     }
 }
