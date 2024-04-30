@@ -324,12 +324,13 @@ public class Territory : MonoBehaviour
             float angleDegrees = angleRadians * Mathf.Rad2Deg;
             arrow.transform.rotation = Quaternion.Euler(0f, 0f, angleDegrees-45);
 
-            Vector3 arrowPosition = new Vector3(transform.position.x+(direction.x/2),transform.position.y+(direction.y/2),95f);
+            Vector3 arrowPosition = new Vector3(transform.position.x+(direction.x/2),transform.position.y+(direction.y/2),0f);
             
 
-            arrow.transform.localScale = new Vector3(0.1f,0.1f,-100);
+            arrow.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
 
             arrow.transform.position = arrowPosition;
+            arrow.transform.localPosition = new Vector3(arrow.transform.localPosition.x,arrow.transform.localPosition.y,-5);
 
             arrow.name = neighbour.name;
 
