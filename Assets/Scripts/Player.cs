@@ -47,16 +47,17 @@ public class Player : MonoBehaviour
     public bool IsAI = false;
     public int extraReinforcements = 0;
     public AIBehavior aIBehavior;
+    public Sprite missionCard;
 
     private void Start() 
     {
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         cardManager = turn.cardManager;
-        //if(playerColor == Color.magenta)
-        //{
-        //    IsAI = true;
-        //    aIBehavior = gameObject.AddComponent<AIBehavior>();
-        //}
+        if(false)//playerColor == Color.magenta
+        {
+            IsAI = true;
+            aIBehavior = gameObject.AddComponent<AIBehavior>();
+        }
     }
 
     /// <summary>
@@ -160,6 +161,7 @@ public class Player : MonoBehaviour
         cards.Remove(card1.gameObject);
         cards.Remove(card2.gameObject);
         cards.Remove(card3.gameObject);
+        cardManager.selectedCards.Clear();
         if(turn.numOfTradedInSets <= 6)
         {
             extraReinforcements += turn.tradedInSetReinforcements[turn.numOfTradedInSets];
@@ -169,4 +171,6 @@ public class Player : MonoBehaviour
             extraReinforcements += 15+((turn.numOfTradedInSets-6)*5);
         }
     }
+
+    public void CompleteMission(){}
 }

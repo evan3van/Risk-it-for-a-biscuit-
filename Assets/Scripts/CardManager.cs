@@ -14,6 +14,7 @@ public class CardManager : MonoBehaviour
     public GameObject tradeInButton;
     public List<GameObject> deselectButtons;
     public List<GameObject> selectButtons;
+    public UnityEngine.UI.Image missionCard;
     private void Start() 
     {
         foreach (GameObject card in cardList)
@@ -30,7 +31,7 @@ public class CardManager : MonoBehaviour
             displayCards[i].SetActive(true);
             displayCards[i].GetComponent<UnityEngine.UI.Image>().sprite = turn.myTurn.cards[i].gameObject.GetComponent<SpriteRenderer>().sprite;
         }
-       
+        missionCard.sprite = turn.myTurn.missionCard;
     }
 
     public void GoTocanvasMenu()
@@ -120,6 +121,8 @@ public class CardManager : MonoBehaviour
                 if(card.gameObject.GetComponent<SpriteRenderer>().sprite == imageSprite && isSelected)
                 {
                     image.color = Color.white;
+                    image.sprite = null;
+                    imageObject.SetActive(false);
                     selectedCards.Remove(card);
                 }
             }

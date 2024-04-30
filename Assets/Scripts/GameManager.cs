@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public Sprite cyberMap;
     public bool canUpdate = false;
+    public List<Sprite> missionCards;
     void Start()
     {
         int screenWidth = Screen.width;
@@ -199,6 +200,14 @@ public class GameManager : MonoBehaviour
             }
             player.sprite = playerSprites[i];
             playerList.Add(player);
+        }
+
+        System.Random random = new System.Random();
+        foreach (Player player in playerList)
+        {
+            int value = random.Next(0,missionCards.Count);
+            player.missionCard = missionCards[value];
+            missionCards.RemoveAt(value);
         }
 
         
