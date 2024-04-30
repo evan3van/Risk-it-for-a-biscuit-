@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Background2
+  - 
   - Water
   - UI
   - Game character
   - Buttons
   - Map Interactables
-  - Background
+  - 
   - 
   - 
   - 
@@ -46,7 +46,4 @@ TagManager:
     locked: 0
   - name: New Layer 2
     uniqueID: 2982976149
-    locked: 0
-  - name: New Layer 3
-    uniqueID: 655875129
     locked: 0
