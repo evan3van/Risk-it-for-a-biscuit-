@@ -10,7 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    public GameObject slider;
+    public GameObject customisation;
+    public GameObject test;
 
     /// <summary>
     /// Loads the game scene immediately following the current scene in the build settings.
@@ -18,9 +19,9 @@ public class MainMenuScript : MonoBehaviour
     /// </summary>
     public void PlayGame()
     {
+        DontDestroyOnLoad(customisation);
         DontDestroyOnLoad(GameObject.Find("ThemeSwapper"));
-        DontDestroyOnLoad(slider);
-        slider.SetActive(false);
+        DontDestroyOnLoad(test);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

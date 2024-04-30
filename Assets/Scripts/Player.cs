@@ -48,16 +48,12 @@ public class Player : MonoBehaviour
     public int extraReinforcements = 0;
     public AIBehavior aIBehavior;
     public Sprite missionCard;
+    public string myName;
 
     private void Start() 
     {
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         cardManager = turn.cardManager;
-        if(false)//playerColor == Color.magenta
-        {
-            IsAI = true;
-            aIBehavior = gameObject.AddComponent<AIBehavior>();
-        }
     }
 
     /// <summary>

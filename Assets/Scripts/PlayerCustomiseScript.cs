@@ -7,16 +7,26 @@ using UnityEngine.UI;
 public class PlayerCustomiseScript : MonoBehaviour
 {
     public int numberOfHumanPlayers = 0;
-    public Slider slider;
+    public int numberOfAIPlayers = 0;
+    public Slider slider,slider2;
     public List<Sprite> chosenSprites = new();
     public List<string> playerNames = new();
-    public TextMeshProUGUI playerNumber,playerName;
+    public TextMeshProUGUI playerNumber,playerName,AIMax;
     public GameObject playButton,selectedSkin,nextPlayer;
     public int playerIndex = 1;
+    public void SetMaxAI()
+    {
+        AIMax.text = ""+(6-numberOfHumanPlayers);
+        slider2.maxValue = 6-numberOfHumanPlayers;
+    }
 
     public void ChangeNumberOfPlayers()
     {
         numberOfHumanPlayers = (int)slider.value;
+    }
+    public void ChangeNumberOfAI()
+    {
+        numberOfAIPlayers = (int)slider2.value;
     }
 
     public void AddPlayerSprite()

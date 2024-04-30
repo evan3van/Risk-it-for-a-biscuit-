@@ -124,7 +124,11 @@ public class Turn : MonoBehaviour
         myTurn = players[playerPointer-1];
         playerCharacter.sprite = myTurn.sprite;
 
-        playerUIName.GetComponent<TextMeshProUGUI>().text = players[playerPointer-1].name;
+        if (players[playerPointer-1].myName != null)
+        {
+            playerUIName.GetComponent<TextMeshProUGUI>().text = players[playerPointer-1].myName;
+        }
+        else{playerUIName.GetComponent<TextMeshProUGUI>().text = players[playerPointer-1].name;}
         playerUIName.GetComponent<TextMeshProUGUI>().color = myTurn.playerColor;
 
         if(playerPointer>=players.Count)

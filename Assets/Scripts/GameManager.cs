@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
     public Sprite cyberMap;
     public bool canUpdate = false;
     public List<Sprite> missionCards;
+    public PlayerCustomiseScript playerCustomiseScript;
+    public List<string> playerNames;
     void Start()
     {
         int screenWidth = Screen.width;
@@ -112,6 +114,12 @@ public class GameManager : MonoBehaviour
                 map.GetComponent<SpriteRenderer>().sprite = themeSwapper.cyberBackground;
             }
             playerSprites = themeSwapper.playerSprites;
+        }
+        if (GameObject.Find("CustomiseInfo") != null )
+        {
+            playerCustomiseScript = GameObject.Find("CustomiseInfo").GetComponent<PlayerCustomiseScript>();
+            numOfPlayers = playerCustomiseScript.numberOfHumanPlayers;
+            playerNames = playerCustomiseScript.playerNames;
         }
         
         foreach (Continent continent in continents)
@@ -193,12 +201,22 @@ public class GameManager : MonoBehaviour
             GameObject playerObject = new GameObject("Player "+(i+1));
             Player player = playerObject.AddComponent<Player>();
             player.playerColor = playerColors[i];
-            if (i >= numOfPlayers - numOfAIPlayers)
+            if (playerNames.Count > 0)
+            {
+                player.myName = playerNames[i];
+            }
+            else
+            {
+                player.myName = "Player "+(i+1);
+            }
+
+            player.sprite = playerCustomiseScript.chosenSprites[i];
+    
+            if (i > numOfPlayers - playerCustomiseScript.numberOfHumanPlayers)
             {
                 player.IsAI = true;
                 playerObject.AddComponent<AIBehavior>();
             }
-            player.sprite = playerSprites[i];
             playerList.Add(player);
         }
 
