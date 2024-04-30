@@ -330,7 +330,8 @@ public class GameManager : MonoBehaviour
                 counter.GetComponent<SpriteRenderer>().color = counterColor;
                 
                 
-                counter.transform.position = new Vector3(territory.transform.position.x, territory.transform.position.y, -3);
+                counter.transform.position = new Vector3(territory.transform.position.x, territory.transform.position.y, 0);
+                counter.transform.localPosition = new Vector3(counter.transform.localPosition.x, counter.transform.localPosition.y, -10);
                 
                 
                 counter.transform.parent = territory.transform;

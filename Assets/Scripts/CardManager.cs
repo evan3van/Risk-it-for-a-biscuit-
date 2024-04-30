@@ -82,25 +82,28 @@ public class CardManager : MonoBehaviour
     public void CardDeselect(UnityEngine.UI.Image image)
     {
         Sprite imageSprite = image.sprite;
+        Card cardToRemove = null;
         foreach (GameObject card in cardList)
         {
             if(card.GetComponent<SpriteRenderer>().sprite == imageSprite && selectedCards.Count > 0)
             {
                 selectedImages.Remove(image.gameObject);
                 image.color = Color.white;
-                selectedCards.Remove(card.GetComponent<Card>());
+                cardToRemove = card.GetComponent<Card>();
                 break;
             }
         }
+        selectedCards.Remove(cardToRemove);
         tradeInButton.SetActive(false);
     }
 
-    public void TradeInPlayerCards()
+   public void TradeInPlayerCards()
     {
         Card card1 = selectedCards[0];
         Card card2 = selectedCards[1];
         Card card3 = selectedCards[2];
-        foreach (Card card in selectedCards)
+        List<Card> cardsToRemove = new List<Card>(selectedCards);
+        foreach (Card card in cardsToRemove)
         {
             foreach (GameObject imageObject in displayCards)
             {
@@ -115,10 +118,12 @@ public class CardManager : MonoBehaviour
                 }
                 UnityEngine.UI.Image image = imageObject.GetComponent<UnityEngine.UI.Image>();
                 Sprite imageSprite = image.sprite;
-                if(card.gameObject.GetComponent<SpriteRenderer>().sprite == imageSprite && selectedCards.Count > 0 && isSelected)
+                if(card.gameObject.GetComponent<SpriteRenderer>().sprite == imageSprite && isSelected)
                 {
                     image.color = Color.white;
-                    selectedCards.Remove(card.GetComponent<Card>());
+                    imageSprite = null;
+                    imageObject.SetActive(false);
+                    selectedCards.Remove(card);
                 }
             }
         }
