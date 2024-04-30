@@ -14,7 +14,7 @@ public class PlayerCustomiseScript : MonoBehaviour
     public TextMeshProUGUI playerNumber,playerName,AIMax;
     public GameObject playButton,selectedSkin,nextPlayer;
     public int playerIndex = 1;
-    public int AISpeed;
+    public int AISpeed = 500;
     public void SetMaxAI()
     {
         AIMax.text = ""+(6-numberOfHumanPlayers);
@@ -27,7 +27,7 @@ public class PlayerCustomiseScript : MonoBehaviour
     }
     public void ChangeAISpeed()
     {
-        AISpeed = (int)slider3.value*100;
+        AISpeed = (100*50) - (int)slider3.value*50;
     }
     public void ChangeNumberOfAI()
     {

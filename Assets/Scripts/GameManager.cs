@@ -203,7 +203,14 @@ public class GameManager : MonoBehaviour
             {
                 player.IsAI = true;
                 player.aIBehavior = playerObject.AddComponent<AIBehavior>();
-                player.aIBehavior.timeBetweenActions = playerCustomiseScript.AISpeed;
+                if (playerCustomiseScript.AISpeed > 0)
+                {
+                    player.aIBehavior.timeBetweenActions = playerCustomiseScript.AISpeed;
+                }
+                else
+                {
+                    player.aIBehavior.timeBetweenActions = playerCustomiseScript.AISpeed+20;
+                }
             }
 
             if (playerNames.Count > i && player.IsAI == false)

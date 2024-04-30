@@ -139,12 +139,13 @@ public class AIBehavior : MonoBehaviour
 
                 if (turn.attackTarget.controlledBy.IsAI)
                 {
+                    waitForDefenseDiceSelected = new();
                     int diceNumChoice2 = random.Next(1,turn.numberOfDefenseDice);
                     turn.defenseDiceNumbers[diceNumChoice2].onClick.Invoke();
                 }
                 else
                 {
-                    waitForDefenseDiceSelected = new TaskCompletionSource<bool>();
+                    waitForDefenseDiceSelected = new();
                     await waitForDefenseDiceSelected.Task;
                     Debug.Log("after");
 
