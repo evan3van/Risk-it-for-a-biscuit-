@@ -2482,7 +2482,7 @@ MonoBehaviour:
   map: {fileID: 1154367749}
   winMenu: {fileID: 187854483}
   gameCanvas: {fileID: 1817745406}
-  cyberMap: {fileID: 21300000, guid: 8c1cade7f7d82c64189cfc65b021b879, type: 3}
+  cyberMap: {fileID: 21300000, guid: e987b751221e66b41bd578f4d3ffc40e, type: 3}
   canUpdate: 0
 --- !u!1 &200914529
 GameObject:
