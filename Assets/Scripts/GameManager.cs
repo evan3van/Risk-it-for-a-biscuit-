@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         if (GameObject.Find("CustomiseInfo") != null )
         {
             playerCustomiseScript = GameObject.Find("CustomiseInfo").GetComponent<PlayerCustomiseScript>();
-            numOfPlayers = playerCustomiseScript.numberOfHumanPlayers;
+            numOfPlayers = playerCustomiseScript.numberOfHumanPlayers+playerCustomiseScript.numberOfAIPlayers;
             playerNames = playerCustomiseScript.playerNames;
         }
         
@@ -192,30 +192,39 @@ public class GameManager : MonoBehaviour
     /// </summary> 
     private void InstantiateWorld()
     {
-        
-        int playerCount = numOfPlayers;
 
         
-        for (int i = 0; i < playerCount; i++)
+        for (int i = 0; i < numOfPlayers; i++)
         {
             GameObject playerObject = new GameObject("Player "+(i+1));
             Player player = playerObject.AddComponent<Player>();
             player.playerColor = playerColors[i];
-            if (playerNames.Count > 0)
+            if (i >= playerCustomiseScript.numberOfHumanPlayers)
+            {
+                player.IsAI = true;
+                player.aIBehavior = playerObject.AddComponent<AIBehavior>();
+            }
+
+            if (playerNames.Count > i && player.IsAI == false)
             {
                 player.myName = playerNames[i];
+            }
+            else if (player.IsAI == true)
+            {
+                player.myName = "AI "+i;
             }
             else
             {
                 player.myName = "Player "+(i+1);
             }
 
-            player.sprite = playerCustomiseScript.chosenSprites[i];
-    
-            if (i > numOfPlayers - playerCustomiseScript.numberOfAIPlayers)
+            if (playerCustomiseScript.chosenSprites.Count > i && player.IsAI == false)
             {
-                player.IsAI = true;
-                playerObject.AddComponent<AIBehavior>();
+                player.sprite = playerCustomiseScript.chosenSprites[i];
+            }
+            else
+            {
+                player.sprite = playerSprites[i];
             }
             playerList.Add(player);
         }
@@ -229,7 +238,7 @@ public class GameManager : MonoBehaviour
         }
 
         
-        maxArmySize -= 5*(playerCount-2);
+        maxArmySize -= 5*(numOfPlayers-2);
 
         
         SetTerritories();
