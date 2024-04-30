@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class AIBehavior : MonoBehaviour

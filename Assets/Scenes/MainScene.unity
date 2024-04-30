@@ -2452,7 +2452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ccc47469827364c92c79ded208a59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numOfPlayers: 6
+  numOfPlayers: 2
   numOfAIPlayers: 0
   playerList: []
   turnNumber: 0

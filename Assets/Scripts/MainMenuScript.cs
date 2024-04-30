@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    public GameObject slider;
 
     /// <summary>
     /// Loads the game scene immediately following the current scene in the build settings.
@@ -17,7 +18,6 @@ public class MainMenuScript : MonoBehaviour
     /// </summary>
     public void PlayGame()
     {
-        GameObject slider = GameObject.Find("Slider");
         DontDestroyOnLoad(GameObject.Find("ThemeSwapper"));
         DontDestroyOnLoad(slider);
         slider.SetActive(false);
