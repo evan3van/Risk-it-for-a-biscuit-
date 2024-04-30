@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
 
             player.sprite = playerCustomiseScript.chosenSprites[i];
     
-            if (i > numOfPlayers - playerCustomiseScript.numberOfHumanPlayers)
+            if (i > numOfPlayers - playerCustomiseScript.numberOfAIPlayers)
             {
                 player.IsAI = true;
                 playerObject.AddComponent<AIBehavior>();
