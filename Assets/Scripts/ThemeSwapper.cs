@@ -52,10 +52,11 @@ public class ThemeSwapper : MonoBehaviour
     /// </summary>
     public List<Sprite> playerSprites;
 
+    public Color themeColor = Color.black;
+
     /// <summary>
-    /// Sets the theme
+    /// Sets the theme sounds
     /// </summary>
-    
     public AudioSource audioSource;  
     public AudioMixerGroup audioMixerGroup;
     public AudioClip defaultBackgroundSound;  
@@ -88,6 +89,7 @@ public class ThemeSwapper : MonoBehaviour
             background.GetComponent<UnityEngine.UI.Image>().sprite = defaultBackground;
             audioSource.clip = defaultBackgroundSound;  
             audioSource.Play();
+            themeColor = Color.red;
         }
         else 
         {
@@ -104,7 +106,7 @@ public class ThemeSwapper : MonoBehaviour
             background.GetComponent<UnityEngine.UI.Image>().sprite = cyberBackground;
             audioSource.clip = cyberpunkSound;
             audioSource.Play();
-
+            themeColor = Color.black;
         }
     }
     

@@ -216,6 +216,10 @@ public class Turn : MonoBehaviour
         foreach (Territory territory in gameManager.allTerritories)
         {
             territory.DisableAttackHighlight();
+            if (turnNumber > 1)
+            {
+                territory.HideArrows();
+            }
         }
 
         cardManager.selectedCards.Clear();
@@ -298,8 +302,8 @@ public class Turn : MonoBehaviour
         }
 
         numberOfRolledDice = 0;
-        numberOfAttackDice = 0;
-        numberOfDefenseDice = 0;
+        numberOfAttackDice = 1;
+        numberOfDefenseDice = 1;
 
         attackerDice[0].GetComponent<DiceRoller>().isRolled = false;
         attackerDice[1].GetComponent<DiceRoller>().isRolled = false;
@@ -510,6 +514,10 @@ public class Turn : MonoBehaviour
                     {
                         defenderLosesTerritory = true;
                     }
+                    if (attacker.counter.troopCount <= 1)
+                    {
+                        attackerLosesTerritory = true;
+                    }
                     Debug.Log("Attacker and defender lose 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
                     attacker.controlledBy.unitCount -= 1;
@@ -539,6 +547,10 @@ public class Turn : MonoBehaviour
                 int highestAttackRoll2 = GetSecondHighestAttackRoll(highestAttackRoll1);
                 if (highestAttackRoll2 > highestDefenseRoll2)
                 {
+                    if (attackTarget.counter.troopCount <= 1)
+                    {
+                        defenderLosesTerritory = true;
+                    }
                     if (attackTarget.counter.troopCount <= 1)
                     {
                         defenderLosesTerritory = true;
@@ -576,6 +588,10 @@ public class Turn : MonoBehaviour
             }
             else
             {
+                if (attacker.counter.troopCount <= 1)
+                {
+                    attackerLosesTerritory = true;
+                }
                 Debug.Log("Attacker loses 1 army");
                 attacker.controlledBy.unitCount -= 1;
                 attacker.counter.UpdateCount(attacker.counter.troopCount-1);
@@ -612,6 +628,14 @@ public class Turn : MonoBehaviour
                 }
                 else
                 {
+                    if (attackTarget.counter.troopCount <= 1)
+                    {
+                        defenderLosesTerritory = true;
+                    }
+                    if (attacker.counter.troopCount <= 1)
+                    {
+                        attackerLosesTerritory = true;
+                    }
                     Debug.Log("Attacker and defender lose 1 army");
                     attackTarget.controlledBy.unitCount -= 1;
                     attacker.controlledBy.unitCount -= 1;
@@ -624,6 +648,10 @@ public class Turn : MonoBehaviour
             }
             else
             {
+                if (attacker.counter.troopCount <= 1)
+                {
+                    attackerLosesTerritory = true;
+                }
                 Debug.Log("Attacker loses 1 army");
                 attacker.controlledBy.unitCount -= 1;
                 attacker.counter.UpdateCount(attacker.counter.troopCount-1);
@@ -640,6 +668,10 @@ public class Turn : MonoBehaviour
         else if(defenderLosesTerritory)
         {
             HandleTerritoryCapture(attacker,attackTarget);
+        }
+        else if(attackerLosesTerritory && defenderLosesTerritory)
+        {
+            HandleDraw(attacker,attackTarget);
         }
     }
 
@@ -700,6 +732,18 @@ public class Turn : MonoBehaviour
 
         winnerPlayer.controlledTerritories.Add(loser);
         winnerPlayer.counters.Add(loser.counter);
+    }
+
+    public void HandleDraw(Territory territory1, Territory territory2)
+    {
+        Player player1 = territory1.controlledBy;
+        Player player2 = territory2.controlledBy;
+        territory1.counter.UpdateCount(1);
+        territory2.counter.UpdateCount(1);
+        player1.GiveTroops(1);
+        player2.GiveTroops(1);
+        territory1.counter.troopCount = 1;
+        territory2.counter.troopCount = 1;
     }
 
     /// <summary>

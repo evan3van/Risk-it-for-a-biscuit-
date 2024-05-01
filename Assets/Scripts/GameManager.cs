@@ -129,6 +129,11 @@ public class GameManager : MonoBehaviour
     public List<string> playerNames;
 
     /// <summary>
+    /// Winner player text
+    /// </summary>
+    public TextMeshProUGUI winnerName;
+
+    /// <summary>
     /// Initialises the theme swapper and customise info to pull information from the main menu.
     /// Adds territory components to each territory gameobject.
     /// Performs other general game initialisation/setup for any other scripts that need initialisation
@@ -143,19 +148,23 @@ public class GameManager : MonoBehaviour
 
         gameObject.SetActive(true);
         gameCanvas.SetActive(true);
+        Color color = Color.black;
         if(GameObject.Find("ThemeSwapper") != null ){
             themeSwapper = GameObject.Find("ThemeSwapper").GetComponent<ThemeSwapper>();
             if(themeSwapper.Theme == "Cyber"){
                 map.GetComponent<SpriteRenderer>().sprite = themeSwapper.cyberBackground;
             }
             playerSprites = themeSwapper.playerSprites;
+            color = themeSwapper.themeColor;
         }
 
+        int numOfHumans = 1;
         if (GameObject.Find("CustomiseInfo") != null )
         {
             playerCustomiseScript = GameObject.Find("CustomiseInfo").GetComponent<PlayerCustomiseScript>();
             numOfPlayers = playerCustomiseScript.numberOfHumanPlayers+playerCustomiseScript.numberOfAIPlayers;
             playerNames = playerCustomiseScript.playerNames;
+            numOfHumans = playerCustomiseScript.numberOfHumanPlayers;
         }
         else
         {
@@ -178,7 +187,27 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject gameObject in allObjects)
+        {
+            if (gameObject.GetComponent<TextMeshPro>() != null)
+            {
+                gameObject.GetComponent<TextMeshPro>().color = color;
+            }
+            else if (gameObject.GetComponent<TextMeshProUGUI>() != null)
+            {
+                gameObject.GetComponent<TextMeshProUGUI>().color = color;
+            }
+            else if(gameObject.GetComponent<TextMesh>() != null)
+            {
+                gameObject.GetComponent<TextMesh>().color = color;
+            }
+        }
+
+        if (numOfHumans == 1)
+        {
+            numOfPlayers=2;
+        }
         if(numOfPlayers > 6)
         {
             numOfPlayers = 6;
@@ -227,9 +256,11 @@ public class GameManager : MonoBehaviour
             }
             if (playerList.Count <= 1)
             {
+                Player winner = playerList[0];
                 gameCanvas.SetActive(false);
                 gameObject.SetActive(false);
                 winMenu.SetActive(true);
+                winnerName.text =  winner.myName;
             }
         }
     }
