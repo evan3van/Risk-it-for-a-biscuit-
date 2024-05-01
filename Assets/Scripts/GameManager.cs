@@ -10,94 +10,129 @@ using UnityEngine.UI;
 
 /// <summary>
 /// Manages game states, player turns, and global game settings.
-/// It initializes the game world, including territories, continents, and players, and manages the turn-based logic.
+/// It initializes the game world, including territories, continents, and players.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// The maximum number of armies to start the game with
+    /// </summary>
     private int maxArmySize = 40;
+    /// <summary>
+    /// The total number of territories
+    /// </summary>
     private int totalTerritories = 47;
 
     /// <summary>
-    /// Number of players participating in the game.
+    /// Number of players participating in the game
     /// </summary>
     public int numOfPlayers = 6;
 
+    /// <summary>
+    /// The number of AI players
+    /// </summary>
     public int numOfAIPlayers;
 
     /// <summary>
-    /// List of all player objects participating in the game.
+    /// List of all player objects in the game
     /// </summary>
     public List<Player> playerList;
 
     /// <summary>
-    /// Current turn number in the game.
+    /// Current turn number in the game
     /// </summary>
     public int turnNumber;
 
     /// <summary>
-    /// List of all continents in the game.
+    /// List of all continents in the game
     /// </summary>
     public List<Continent> continents;
 
     /// <summary>
-    /// List of all territories in the game.
+    /// List of all territories in the game
     /// </summary>
     public List<Territory> allTerritories;
 
     /// <summary>
-    /// List of colors assigned to players.
+    /// List of colors assigned to players
     /// </summary>
     public List<Color> playerColors;
 
     /// <summary>
-    /// Color assigned to neutral territories or units.
-    /// </summary>
-    public Color neutralColor;
-
-    /// <summary>
-    /// List of counter objects used to represent armies on the map.
+    /// List of counter objects used to represent armies on the map
     /// </summary>
     public List<Counter> counters;
 
     /// <summary>
-    /// Prefab used to instantiate new counter objects.
+    /// Prefab used to instantiate new counter objects
     /// </summary>
     public GameObject counterPrefab;
 
     /// <summary>
-    /// Prefab used to instantiate arrow objects.
+    /// Prefab used to instantiate arrow objects
     /// </summary>
     public GameObject arrowPrefab;
 
     /// <summary>
-    /// Reference to the current turn manager.
+    /// Reference to the current turn manager
     /// </summary>
     public Turn turn;
 
     /// <summary>
-    /// GameObject representing the player UI name display.
+    /// GameObject representing the player UI name display
     /// </summary>
     public GameObject playerUIName;
 
     /// <summary>
-    /// Dictionary mapping territory names to their neighbouring territories' names.
+    /// Dictionary mapping territory names to their neighbouring territories' names
     /// </summary>
     public Dictionary<string,List<string>> territoriesNeighbours;
 
     /// <summary>
-    /// List of sprites representing players.
+    /// List of sprites representing players
     /// </summary>
     public List<Sprite> playerSprites;
 
+    /// <summary>
+    /// A reference to the theme swapper component
+    /// </summary>
     public ThemeSwapper themeSwapper;
 
+    /// <summary>
+    /// The game objects representing the map,win menu and canvas for toggling
+    /// </summary>
     public GameObject map,winMenu,gameCanvas;
 
+    /// <summary>
+    /// The sprite for the cyber theme
+    /// </summary>
     public Sprite cyberMap;
+
+    /// <summary>
+    /// A flag to allow the update method to start
+    /// </summary>
     public bool canUpdate = false;
+
+    /// <summary>
+    /// List of all the mission cards
+    /// </summary>
     public List<Sprite> missionCards;
+
+    /// <summary>
+    /// Reference to the player customisation from the main menu
+    /// </summary>
     public PlayerCustomiseScript playerCustomiseScript;
+
+    /// <summary>
+    /// List of player UI names
+    /// </summary>
     public List<string> playerNames;
+
+    /// <summary>
+    /// Initialises the theme swapper and customise info to pull information from the main menu.
+    /// Adds territory components to each territory gameobject.
+    /// Performs other general game initialisation/setup for any other scripts that need initialisation
+    /// </summary>
     void Start()
     {
         int screenWidth = Screen.width;
@@ -175,6 +210,10 @@ public class GameManager : MonoBehaviour
         }
         canUpdate = true;
     }
+
+    /// <summary>
+    /// Checks for significant conditions such as player victory
+    /// </summary>
     private void Update() 
     {
         if (canUpdate){
@@ -523,34 +562,24 @@ public class GameManager : MonoBehaviour
         // Iterate through the original dictionary and populate the new dictionary with Territory script references.
         foreach (KeyValuePair<string, List<string>> entry in territoriesNeighbours)
         {
-            // Find the GameObject with the same name as the territory string key.
             GameObject territoryObject = GameObject.Find(entry.Key);
-    
-            // Ensure the GameObject exists.
             if (territoryObject != null)
             {
                 // Get the Territory script attached to the GameObject.
                 Territory territoryScript = territoryObject.GetComponent<Territory>();
-        
-                // Check if the Territory script is found.
+    
                 if (territoryScript != null)
                 {
                     // Create a list to hold references to neighboring territories.
                     List<Territory> neighbors = new List<Territory>();
-            
-                    // Iterate through the list of neighboring territory strings.
                     foreach (string neighborName in entry.Value)
                     {
                         // Find the GameObject with the name of the neighboring territory.
                         GameObject neighborObject = GameObject.Find(neighborName);
-                
-                        // Ensure the neighboring GameObject exists.
                         if (neighborObject != null)
                         {   
                             // Get the Territory script attached to the neighboring GameObject.
                             Territory neighborScript = neighborObject.GetComponent<Territory>();
-                    
-                            // Check if the neighboring Territory script is found.
                             if (neighborScript != null)
                             {
                                 // Add the neighboring Territory script to the list of neighbors.
@@ -577,6 +606,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Effectively eliminates a player from the game
+    /// </summary>
+    /// /// <param name="player">The player to be eliminated</param>
     public void EliminatePlayer(Player player)
     {
         playerList.Remove(player);

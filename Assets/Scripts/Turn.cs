@@ -14,7 +14,11 @@ using UnityEngine.UIElements;
 /// </summary>
 public class Turn : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to the game manager script
+    /// </summary>
     public GameManager gameManager;
+
     /// <summary>
     /// Index of the current player in the players list.
     /// </summary>
@@ -41,21 +45,23 @@ public class Turn : MonoBehaviour
     public Player myTurn;
 
     /// <summary>
-    /// The current phase of the turn (e.g., "Play", "Reinforcement", "Attack", "Fortify").
+    /// The current phase of the turn ("Play", "Reinforcement", "Attack", "Fortify").
     /// </summary>
     public string turnMode;
 
     /// <summary>
-    /// UI element that displays the name of the player whose turn it is.
-    /// UI element for managing attacks.
+    /// UI elements
     /// </summary>
     public GameObject playerUIName,attackUI;
 
     /// <summary>
-    /// The number of troops available for deployment during the reinforcement phase.
+    /// The number of troops available for deployment during the reinforcement/fortify phase.
     /// </summary>
     public int deployableTroops;
-    
+
+    /// <summary>
+    /// The number of attack and defense dice available to be rolled
+    /// </summary>
     public int numberOfAttackDice=1,numberOfDefenseDice=1;
 
     /// <summary>
@@ -63,26 +69,28 @@ public class Turn : MonoBehaviour
     /// </summary>
     public int attackTroops = 1;
 
-    // References to UI elements related to reinforcements and attacks
+    /// <summary>
+    /// UI elements related to reinforcing, attacking or fortifying
+    /// </summary>
     public GameObject arrowUp,arrowDown,deployButton,errorText,diceSelection,diceMenu,attackAgainButton;
 
+    /// <summary>
+    /// Lists of dice/dice choices
+    /// </summary>
     public List<GameObject> attackerDice,defenderDice,attackerDiceChoice,defenderDiceChoice;
 
     /// <summary>
-    /// The previously selected territory.
-    /// The currently selected territory.
+    /// The currently/previously selected territories
     /// </summary>
     public Territory previousSelected,selected = null;
 
     /// <summary>
-    /// The attacking territory during the attack phase.
-    /// The target territory during the attack phase.
+    /// The relevent territories involved in an attack
     /// </summary>
     public Territory attacker,attackTarget;
 
     /// <summary>
     /// Indicates whether the attack UI is currently active.
-    /// Indicates whether the attack highlight is currently active.
     /// </summary>
     public bool attackUIActive,isAttackHighlighted = false;
 
@@ -91,26 +99,89 @@ public class Turn : MonoBehaviour
     /// </summary>
     public TextMeshProUGUI attackTargetText,attackButtonText,reinforcementUINumber;
 
+    /// <summary>
+    /// Number of rolled dice so far this turn
+    /// </summary>
     public int numberOfRolledDice;
+
+    /// <summary>
+    /// References to defense dice UI images
+    /// </summary>
     public UnityEngine.UI.Image defenseDice1,defenseDice2;
+
+    /// <summary>
+    /// List of all dice numbered sprites
+    /// </summary>
     public List<Sprite> diceSprites;
+
+    /// <summary>
+    /// List of current attack rolls this turn
+    /// </summary>
     public List<int> attackRolls;
+
+    /// <summary>
+    /// Toggle for the player to interact with the map or not
+    /// </summary>
     public bool territoryInteractToggle = true;
+
+    /// <summary>
+    /// UI elements for fortify phase
+    /// </summary>
     public GameObject chooseSender,sendTo,resetButton,fortifyUI;
+
+    /// <summary>
+    /// Player UI image in the scene
+    /// </summary>
     public UnityEngine.UI.Image playerCharacter;
+
+    /// <summary>
+    /// Reference to the card manager
+    /// </summary>
     public CardManager cardManager;
+
+    /// <summary>
+    /// Total number of traded in sets this game
+    /// </summary>
     public int numOfTradedInSets = 0;
+
+    /// <summary>
+    /// Base number of reinforcements to recieve from trading in
+    /// </summary>
     public List<int> tradedInSetReinforcements = new(){4,6,8,10,12,15};
+
+    /// <summary>
+    /// Buttons for changing the turn mode
+    /// </summary>
     public UnityEngine.UI.Button reinforceButton,attackButton,fortifyButton,endTurnButton;
+
+    /// <summary>
+    /// Attack phase attack button
+    /// </summary>
     public UnityEngine.UI.Button attackButtonUI;
+
+    /// <summary>
+    /// Buttons for choosing the number of dice for the attacker
+    /// </summary>
     public List<UnityEngine.UI.Button> attackDiceNumbers;
+
+    /// <summary>
+    /// Buttons for choosing the number of dice for the defender
+    /// </summary>
     public List<UnityEngine.UI.Button> defenseDiceNumbers;
+
+    /// <summary>
+    /// Toggle for if the dice have been chosen by the defender or not
+    /// </summary>
     public bool isDefenseDiceSelected = false;
 
+    /// <summary>
+    /// Gets the next player in line
+    /// </summary>
     public Player GetNextPlayer()
     {
         return nextPlayer;
     }
+
     /// <summary>
     /// Transitions the game to the Play phase.
     /// </summary>
@@ -334,19 +405,36 @@ public class Turn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the number of attack dice
+    /// </summary>
+    /// <param name="number">Number of attack dice</param>
     public void SetNumberOfAttackDice(int number)
     {
         numberOfAttackDice = number;
     }
+
+    /// <summary>
+    /// Sets the numbe of defense dice
+    /// </summary>
+    /// <param name="number">Number of defense dice</param>
     public void SetNumberOfDefenseDice(int number)
     {
         numberOfDefenseDice = number;
     }
+
+    /// <summary>
+    /// Toggles the isDefenseDiceSelected field
+    /// </summary>
     public void SetIsDefenseDiceActive()
     {
         isDefenseDiceSelected = true;
     }
 
+    /// <summary>
+    /// Checks if all the dice have been rolled and auto rolls defender dice
+    /// </summary>
+    /// <param name="rollNumber">Attacker roll to add to the list</param>
     public void CheckIfDiceRolled(int rollNumber)
     {
         attackRolls.Add(rollNumber);
@@ -366,6 +454,12 @@ public class Turn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles a win or loss event for the attack based on specifications in the rules
+    /// </summary>
+    /// <param name="defenderRoll1">Defender's first roll</param>
+    /// <param name="defenderRoll2">Defender's second roll</param>
+    /// <param name="compareMultiple">Is there multiple defender dice?</param>
     public void HandleWinOrLoss(int defenderRoll1, int defenderRoll2, bool compareMultiple)
     {
 

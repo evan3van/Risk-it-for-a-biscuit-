@@ -9,40 +9,44 @@ using Image = UnityEngine.UI.Image;
 
 /// <summary>
 /// Controls the dice rolling logic for attacks within the game, including visual representation and outcome determination.
+/// This script is attatched to each attacker dice object in the scene
 /// </summary>
 public class DiceRoller : MonoBehaviour
 {
     /// <summary>
-    /// A list of sprites representing the faces of a dice.
+    /// A list of sprites representing the faces of a dice
     /// </summary>
     public List<Sprite> diceSprites;
 
     /// <summary>
-    /// Reference to the current turn manager.
+    /// Reference to the current turn manager
     /// </summary>
     public Turn turn;
 
     /// <summary>
-    /// The attacking player.
-    /// The defending player.
+    /// The attacking player
+    /// The defending player
     /// </summary>
     public Player attacker,defender;
 
     /// <summary>
-    /// Indicates if a roll has been made.
+    /// Indicates if this object has been rolled
     /// </summary>
     public bool isRolled = false;
 
     /// <summary>
-    /// The number of dice the attacker rolls.
-    /// The number of dice the defender rolls.
+    /// The number of dice the attacker can roll
+    /// The number of dice the defender can roll
     /// </summary>
     public int attackerDiceNum = 1,defenderDiceNum = 1;
 
+    /// <summary>
+    /// Indicates if this dice has been iterated over
+    /// </summary>
     public bool isChecked = false;
 
     /// <summary>
-    /// Initializes the turn by finding the relevant GameObject in the scene.
+    /// Initializes the turn by finding the relevant GameObject in the scene
     /// </summary>
     private void Start() 
     {
@@ -50,7 +54,7 @@ public class DiceRoller : MonoBehaviour
     }
 
     /// <summary>
-    /// Rolls a specified number of dice and returns the total value.
+    /// Rolls a specified number of dice and returns the total value
     /// </summary>
     /// <param name="numberOfDice">The number of dice to roll.</param>
     /// <returns>The total value rolled across all dice.</returns>
@@ -68,9 +72,8 @@ public class DiceRoller : MonoBehaviour
     }
 
     /// <summary>
-    /// Resolves an attack between the attacker and defender, determining losses based on dice rolls.
+    /// Resolves an attack between the attacker and defender, determining losses based on dice rolls
     /// </summary> 
-
     public void ResolveAttack()
     {
         if(!isRolled)
@@ -79,15 +82,13 @@ public class DiceRoller : MonoBehaviour
             SetDiceSprite(result1);
 
             Debug.Log($"Attacker: {result1}");
-
         }
     }
 
     /// <summary>
     /// Updates the visual representation of the dice based on the roll value.
     /// </summary>
-    /// <param name="rollValue">The value rolled, used to select the corresponding dice sprite.</param>
-
+    /// <param name="roll">The value rolled, used to select the corresponding dice sprite</param>
     public void SetDiceSprite(int roll)
     {
         if(!isRolled)
@@ -99,6 +100,9 @@ public class DiceRoller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set the boolean isRolled value via external method call
+    /// </summary>
     public void SetIsRolled(bool Rolled)
     {
         isRolled = Rolled;

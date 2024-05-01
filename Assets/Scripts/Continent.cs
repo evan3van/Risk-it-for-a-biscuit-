@@ -4,16 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// Represents a continent comprised of multiple territories.
-/// This class is responsible for managing the collection of territories
-/// that make up a continent in the game.
+/// Represents a continent comprised of multiple territories
 /// </summary>
 public class Continent : MonoBehaviour
 {
 
     /// <summary>
-    /// A list of all the territories that belong to this continent.
-    /// Territories are game objects in the scene hierarchy that represent distinct areas or regions within the continent.
+    /// A list of all the territories that belong to this continent
     /// </summary>
     public List<Territory> territories; 
 }

@@ -10,8 +10,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    public GameObject customisation;
-    public GameObject test;
+    /// <summary>
+    /// The customisation gameobject to move to the next scene
+    /// </summary>
+    public GameObject customise;
 
     /// <summary>
     /// Loads the game scene immediately following the current scene in the build settings.
@@ -19,9 +21,8 @@ public class MainMenuScript : MonoBehaviour
     /// </summary>
     public void PlayGame()
     {
-        DontDestroyOnLoad(customisation);
         DontDestroyOnLoad(GameObject.Find("ThemeSwapper"));
-        DontDestroyOnLoad(test);
+        DontDestroyOnLoad(customise);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -65,8 +66,7 @@ public class MainMenuScript : MonoBehaviour
     } 
 
     /// <summary>
-    /// Quits the game. When running in the Unity editor, this will not do anything.
-    /// In a built game, it will close the game application.
+    /// Quits the game
     /// </summary>
 
     public void QuitGame()

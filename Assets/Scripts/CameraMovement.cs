@@ -10,6 +10,9 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
+    /// <summary>
+    /// The camera
+    /// </summary>
     private Camera cam;
 
     [SerializeField]
