@@ -206,6 +206,52 @@ public class AIBehavior : MonoBehaviour
     /// </summary>
     async Task AIFortify()
     {
+        System.Random random = new System.Random();
+        List<Territory> possibleTerritories = new List<Territory>();
+        Territory selected = null;
+        foreach (Territory territory in player.controlledTerritories)
+        {
+            if (territory.counter.troopCount > 1)
+            {
+                possibleTerritories.Add(territory);
+            }
+        }
+        if (possibleTerritories.Count > 0)
+        {
+            selected = possibleTerritories[random.Next(0,possibleTerritories.Count)];
+        }
+
+        if (selected != null)
+        {
+            await Task.Delay(timeBetweenActions);
+            selected.OnMouseDown();
+
+            Territory neighbour = null;
+            foreach (Territory territory in selected.neighbourTerritories)
+            {
+                if(territory.controlledBy == player)
+                {
+                    neighbour = territory;
+                    break;
+                }
+            }
+            
+            if (neighbour != null)
+            {
+                await Task.Delay(timeBetweenActions);
+                neighbour.OnMouseDown();
+                
+                for (int i = 0; i < neighbour.counter.troopCount-1; i++)
+                {
+                    await Task.Delay(timeBetweenActions);
+                    turn.arrowUp.GetComponent<ReinforcementScript>().OnMouseDown();
+                }
+
+                await Task.Delay(timeBetweenActions);
+                turn.deployButton.GetComponent<ReinforcementScript>().OnMouseDown();
+            }
+        }
+        
         await Task.Delay(timeBetweenActions);
         turn.endTurnButton.onClick.Invoke();
     }
