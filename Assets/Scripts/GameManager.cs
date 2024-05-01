@@ -232,14 +232,21 @@ public class GameManager : MonoBehaviour
     private void Update() 
     {
         if (canUpdate){
+            Player playerToRemove = null;
             foreach (Player player in playerList)
             {
-                if (player.unitCount == 0)
+                if (player.unitCount <= 0)
                 {
-                    EliminatePlayer(player);
+                    playerToRemove = player;
                     Debug.Log($"Player: {player}, has been eliminated");
+                    foreach (Territory territory in player.controlledTerritories)
+                    {
+                        turn.myTurn.controlledTerritories.Add(territory);
+                        turn.myTurn.GiveTroops(territory.counter.troopCount);
+                    }
                 }
             }
+            EliminatePlayer(playerToRemove);
             if (playerList.Count <= 1)
             {
                 Player winner = playerList[0];

@@ -176,8 +176,18 @@ public class AIBehavior : MonoBehaviour
                 if (turn.attackTarget.controlledBy.IsAI)
                 {
                     waitForDefenseDiceSelected = new();
+                    await Task.Delay(timeBetweenActions);
                     int diceNumChoice2 = random.Next(1,turn.numberOfDefenseDice);
                     turn.defenseDiceNumbers[diceNumChoice2].onClick.Invoke();
+
+                    for (int j = 0; j < turn.numberOfAttackDice; j++)
+                    {
+                        await Task.Delay(timeBetweenActions);
+                        turn.attackerDice[j].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                    }
+
+                    await Task.Delay(timeBetweenActions);
+                    turn.attackAgainButton.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
                 }
                 else
                 {
