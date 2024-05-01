@@ -172,37 +172,39 @@ public class AIBehavior : MonoBehaviour
                 int diceNumChoice = random.Next(1,turn.numberOfAttackDice);
                 await Task.Delay(timeBetweenActions);
                 turn.attackDiceNumbers[diceNumChoice].onClick.Invoke();
-
-                if (turn.attackTarget.controlledBy.IsAI)
+                if(turn.attackTarget != null)
                 {
-                    waitForDefenseDiceSelected = new();
-                    await Task.Delay(timeBetweenActions);
-                    int diceNumChoice2 = random.Next(1,turn.numberOfDefenseDice);
-                    turn.defenseDiceNumbers[diceNumChoice2].onClick.Invoke();
-
-                    for (int j = 0; j < turn.numberOfAttackDice; j++)
+                    if (turn.attackTarget.controlledBy.IsAI)
                     {
+                        waitForDefenseDiceSelected = new();
                         await Task.Delay(timeBetweenActions);
-                        turn.attackerDice[j].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                        int diceNumChoice2 = random.Next(1,turn.numberOfDefenseDice);
+                        turn.defenseDiceNumbers[diceNumChoice2].onClick.Invoke();
+
+                        for (int j = 0; j < turn.numberOfAttackDice; j++)
+                        {
+                            await Task.Delay(timeBetweenActions);
+                            turn.attackerDice[j].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                        }
+
+                        await Task.Delay(timeBetweenActions);
+                        turn.attackAgainButton.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
                     }
-
-                    await Task.Delay(timeBetweenActions);
-                    turn.attackAgainButton.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
-                }
-                else
-                {
-                    waitForDefenseDiceSelected = new();
-                    await waitForDefenseDiceSelected.Task;
-                    Debug.Log("after");
-
-                    for (int j = 0; j < turn.numberOfAttackDice; j++)
+                    else
                     {
-                        await Task.Delay(timeBetweenActions);
-                        turn.attackerDice[j].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
-                    }
+                        waitForDefenseDiceSelected = new();
+                        await waitForDefenseDiceSelected.Task;
+                        Debug.Log("after");
 
-                    await Task.Delay(timeBetweenActions);
-                    turn.attackAgainButton.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                        for (int j = 0; j < turn.numberOfAttackDice; j++)
+                        {
+                            await Task.Delay(timeBetweenActions);
+                            turn.attackerDice[j].GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                        }
+
+                        await Task.Delay(timeBetweenActions);
+                        turn.attackAgainButton.GetComponent<UnityEngine.UI.Button>().onClick.Invoke();
+                    }
                 }
             }
         }
