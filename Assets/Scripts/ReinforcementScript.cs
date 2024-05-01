@@ -15,9 +15,7 @@ public class ReinforcementScript : MonoBehaviour
     public Counter counter;
 
     /// <summary>
-    /// The number of reinforcements available to be deployed to counters.
-    /// The initial number of troops in the counter at the start of the reinforcement phase.
-    /// The total number of deployed troops during the reinforcement phase.
+    /// Values for tracking the state of the counters/deployables
     /// </summary>
     
     public int availableReinforcements,initialCounterNum,deployedTroops;
@@ -28,9 +26,13 @@ public class ReinforcementScript : MonoBehaviour
     public Turn turn;
 
     /// <summary>
-    /// The GameObject representing the button to increase, decrease and deploy reinforcements.
+    /// The GameObjects representing the button to increase, decrease and deploy reinforcements.
     /// </summary>
     public GameObject upButton,downButton,deployButton;
+
+    /// <summary>
+    /// Sets the up, down and deploy buttons
+    /// </summary>
     private void Start() 
     {
         upButton = GameObject.Find("UpButton");
@@ -38,9 +40,10 @@ public class ReinforcementScript : MonoBehaviour
         deployButton = GameObject.Find("DeployButton");
     }
 
-     /// <summary>
+    /// <summary>
     /// Handles click events on this GameObject, performing different actions based on the object's name.
     /// Actions include incrementing or decrementing troop count, and deploying troops.
+    /// Performs similarly for if the turn mode is "Reinforcement" or "Fortify", however additional checks are made if in the fortify phase
     /// </summary>
     public void OnMouseDown() 
     {

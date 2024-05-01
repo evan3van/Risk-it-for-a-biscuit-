@@ -424,7 +424,7 @@ public class Turn : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggles the isDefenseDiceSelected field
+    /// Toggles the <see cref="isDefenseDiceSelected"/> field
     /// </summary>
     public void SetIsDefenseDiceActive()
     {
@@ -643,6 +643,10 @@ public class Turn : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the higest attack roll in the attack rolls list
+    /// </summary>
+    /// <returns>The higest attack roll</returns>
     private int GetHighestAttackRoll()
     {
         int highestAttackRoll = int.MinValue;
@@ -653,6 +657,11 @@ public class Turn : MonoBehaviour
         return highestAttackRoll;
     }
 
+    /// <summary>
+    /// Gets the next highest attack roll in the attack rolls list
+    /// </summary>
+    /// <param name="highestRoll1">The highest roll</param>
+    /// <returns>The next highest roll</returns>
     private int GetSecondHighestAttackRoll(int highestRoll1)
     {
         int highestAttackRoll2 = int.MinValue;
@@ -666,6 +675,11 @@ public class Turn : MonoBehaviour
         return highestAttackRoll2;
     }
 
+    /// <summary>
+    /// Handles if a player loses their territory during an attack to their opponent (either attack or defense)
+    /// </summary>
+    /// <param name="winner">The winning territory</param>
+    /// <param name="loser">The losing territory</param>
     public void HandleTerritoryCapture(Territory winner,Territory loser)
     {
         Player winnerPlayer = winner.controlledBy;
@@ -688,6 +702,9 @@ public class Turn : MonoBehaviour
         winnerPlayer.counters.Add(loser.counter);
     }
 
+    /// <summary>
+    /// A method to allow for another attack to occur, by reseting the attack phase
+    /// </summary>
     public void AttackAgain()
     {
         SetNumberOfAttackDice(1);
@@ -713,6 +730,9 @@ public class Turn : MonoBehaviour
         attackRolls = new List<int>();
     }
 
+    /// <summary>
+    /// Toggles the territory interact
+    /// </summary>
     public void TriggerTerritoryInteract()
     {
         territoryInteractToggle = true;
@@ -721,6 +741,9 @@ public class Turn : MonoBehaviour
         attackTarget = null;
     }
 
+    /// <summary>
+    /// Resets the fortify phase (for debugging)
+    /// </summary>
     public void ResetFortify()
     {
         if (selected != null)
@@ -734,12 +757,10 @@ public class Turn : MonoBehaviour
         selected = null;
         previousSelected = null;
     }
-
-    public void GiveCurrentPlayerCard()
-    {
-        myTurn.GiveCard();
-    }
     
+    /// <summary>
+    /// Triggers the AI to continue after the player has selected a defense dice option
+    /// </summary>
     public void AwaitPlayerSelection()
     {
         if (myTurn.IsAI)

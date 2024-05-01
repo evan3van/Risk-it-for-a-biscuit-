@@ -75,6 +75,10 @@ public class Territory : MonoBehaviour
     /// The original color of the territory before any highlight changes.
     /// </summary>
     public Color oldColor;
+
+    /// <summary>
+    /// Initialises references to the buttons and UI in each mode and creates arrows for this territory
+    /// </summary>
     private void Start() 
     {
         counter = transform.GetChild(0).GetComponent<Counter>();
@@ -92,6 +96,15 @@ public class Territory : MonoBehaviour
         arrows = new List<GameObject>();
         DrawArrows();
     }
+
+    /// <summary>
+    /// Performs an action based on the turn mode and if the territories can be interacted with or not.
+    /// If the mode is <see cref="Reinforcement"/>, the reinforcement UI is set active and troops can be deployed onto the territory.
+    /// If the mode is <see cref="Attack"/>, the arrows are drawn from this territory if it has been initially selected as the attacker and an
+    /// attack target can be selected, if this is the target, the attack button UI is toggled to trigger an attack.
+    /// If the mode is <see cref="Fortify"/>, checks are performed to determine if the territory is able to fortify or not
+    /// and if so arrows are drawn to neighbours which can then recieve troops depending on the available troops on this territory
+    /// </summary>
     public void OnMouseDown() 
     {
         if(turn.territoryInteractToggle)
@@ -417,6 +430,10 @@ public class Territory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Waits 5 seconds
+    /// </summary>
+    /// <returns>5 second wait</returns>
     IEnumerator Wait5()
     {
         turn.territoryInteractToggle = false;

@@ -42,14 +42,45 @@ public class Player : MonoBehaviour
     /// The sprite used to represent the player visually in the game.
     /// </summary>
     public Sprite sprite;
+
+    /// <summary>
+    /// Reference to the card manager
+    /// </summary>
     public CardManager cardManager;
+
+    /// <summary>
+    /// Reference to the turn
+    /// </summary>
     public Turn turn;
+
+    /// <summary>
+    /// Sets a check for if the player is AI
+    /// </summary>
     public bool IsAI = false;
+
+    /// <summary>
+    /// Any added on reinforcements from trading in cards
+    /// </summary>
     public int extraReinforcements = 0;
+
+    /// <summary>
+    /// This player's AI behaviour script (if it is an AI)
+    /// </summary>
     public AIBehavior aIBehavior;
+
+    /// <summary>
+    /// This player's mission card
+    /// </summary>
     public Sprite missionCard;
+
+    /// <summary>
+    /// The player's customised name
+    /// </summary>
     public string myName;
 
+    /// <summary>
+    /// Initialising the turn and card manager references
+    /// </summary>
     private void Start() 
     {
         turn = GameObject.Find("Turn").GetComponent<Turn>();
@@ -80,9 +111,11 @@ public class Player : MonoBehaviour
     public void GiveTroops(int number)
     {
         unitCount += number;
-        //More code to make something visually happen here
     }
 
+    /// <summary>
+    /// Forces the player to trade in their cards if possible, if not removes a card from their list
+    /// </summary>
     public void ForceTradeInCards()
     {
         bool canTradeInCards = false;
@@ -151,6 +184,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Trades in the player's cards and removes them from their list of cards.
+    /// </summary>
+    /// <param name="card1">Card to be removed</param>
+    /// <param name="card2">Card to be removed</param>
+    /// <param name="card3">Card to be removed</param>
     public void TradeInCards(Card card1,Card card2,Card card3)
     {
         turn.numOfTradedInSets++;
