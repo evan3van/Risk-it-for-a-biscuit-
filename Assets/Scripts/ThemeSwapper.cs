@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine.Audio;
+
 
 /// <summary>
 /// Manages the theme change from the main menu
@@ -53,8 +55,17 @@ public class ThemeSwapper : MonoBehaviour
     /// <summary>
     /// Sets the theme
     /// </summary>
+    
+    public AudioSource audioSource;  
+    public AudioMixerGroup audioMixerGroup;
+    public AudioClip defaultBackgroundSound;  
+    public AudioClip cyberpunkSound;
+
     private void Start() {
         Theme = "Normal";
+        audioSource.outputAudioMixerGroup = audioMixerGroup;
+        audioSource.clip = defaultBackgroundSound; 
+        audioSource.Play();
     }
 
     /// <summary>
@@ -75,6 +86,8 @@ public class ThemeSwapper : MonoBehaviour
             }
 
             background.GetComponent<UnityEngine.UI.Image>().sprite = defaultBackground;
+            audioSource.clip = defaultBackgroundSound;  
+            audioSource.Play();
         }
         else 
         {
@@ -89,6 +102,8 @@ public class ThemeSwapper : MonoBehaviour
             }
 
             background.GetComponent<UnityEngine.UI.Image>().sprite = cyberBackground;
+            audioSource.clip = cyberpunkSound;
+            audioSource.Play();
 
         }
     }
