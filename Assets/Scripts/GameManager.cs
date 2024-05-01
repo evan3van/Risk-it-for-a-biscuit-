@@ -115,11 +115,19 @@ public class GameManager : MonoBehaviour
             }
             playerSprites = themeSwapper.playerSprites;
         }
+
         if (GameObject.Find("CustomiseInfo") != null )
         {
             playerCustomiseScript = GameObject.Find("CustomiseInfo").GetComponent<PlayerCustomiseScript>();
             numOfPlayers = playerCustomiseScript.numberOfHumanPlayers+playerCustomiseScript.numberOfAIPlayers;
             playerNames = playerCustomiseScript.playerNames;
+        }
+        else
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                playerNames.Add("Player "+i);
+            }
         }
         
         foreach (Continent continent in continents)
@@ -192,24 +200,35 @@ public class GameManager : MonoBehaviour
     /// </summary> 
     private void InstantiateWorld()
     {
+        int numberOfHumanPlayers = numOfPlayers;
+        int AISpeed = 300;
+        if(playerCustomiseScript != null)
+        {
+            numberOfHumanPlayers = playerCustomiseScript.numberOfHumanPlayers;
+            AISpeed = playerCustomiseScript.AISpeed;
 
+        }
         
         for (int i = 0; i < numOfPlayers; i++)
         {
             GameObject playerObject = new GameObject("Player "+(i+1));
             Player player = playerObject.AddComponent<Player>();
             player.playerColor = playerColors[i];
-            if (i >= playerCustomiseScript.numberOfHumanPlayers)
+            if (i >= numberOfHumanPlayers)
             {
                 player.IsAI = true;
                 player.aIBehavior = playerObject.AddComponent<AIBehavior>();
-                if (playerCustomiseScript.AISpeed > 0)
+                if (AISpeed > 0 && playerCustomiseScript != null)
                 {
                     player.aIBehavior.timeBetweenActions = playerCustomiseScript.AISpeed;
                 }
-                else
+                else if(AISpeed == 0)
                 {
                     player.aIBehavior.timeBetweenActions = playerCustomiseScript.AISpeed+20;
+                }
+                else
+                {
+                    player.aIBehavior.timeBetweenActions= AISpeed;
                 }
             }
 
@@ -226,7 +245,7 @@ public class GameManager : MonoBehaviour
                 player.myName = "Player "+(i+1);
             }
 
-            if (playerCustomiseScript.chosenSprites.Count > i && player.IsAI == false)
+            if (playerCustomiseScript != null && playerCustomiseScript.chosenSprites.Count > i && player.IsAI == false)
             {
                 player.sprite = playerCustomiseScript.chosenSprites[i];
             }

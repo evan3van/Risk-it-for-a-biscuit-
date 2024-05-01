@@ -173,12 +173,9 @@ public class Territory : MonoBehaviour
                     if (turn.selected != this && counter.troopCount > 1)
                     {
                         turn.previousSelected = turn.selected;
+                        turn.selected = this;
                     }
-                    if (turn.previousSelected != null)
-                    {
-                        turn.previousSelected.HideArrows();
-                    }
-                    if (turn.selected != null && counter.troopCount > 1)
+                    if (turn.selected != null && turn.selected.counter.troopCount > 1)
                     {
                         foreach (Territory neighbour in turn.selected.neighbourTerritories)
                         {
@@ -186,6 +183,7 @@ public class Territory : MonoBehaviour
                             {
                                 turn.deployableTroops = turn.selected.counter.troopCount-1;
                                 turn.previousSelected = turn.selected;
+                                turn.previousSelected.HideArrows();
                                 turn.selected = this;
                                 turn.fortifyUI.SetActive(true);
                                 turn.territoryInteractToggle=false;
@@ -209,12 +207,12 @@ public class Territory : MonoBehaviour
                     }
                     if (!turn.fortifyUI.activeSelf)
                     {
-                        turn.selected = this;
                         turn.chooseSender.SetActive(false);
                         turn.sendTo.SetActive(true);
 
                         if (counter.troopCount > 1)
                         {
+                            turn.selected = this;
                             int possibleTerritories = 0;
                             foreach (Territory neighbour in turn.selected.neighbourTerritories)
                             {
@@ -243,6 +241,7 @@ public class Territory : MonoBehaviour
                             StartCoroutine(Wait5());
                         }
                     }
+                    turn.fortifyUI.SetActive(false);
                 }
             }
             

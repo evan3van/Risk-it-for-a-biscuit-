@@ -97,6 +97,10 @@ public class ReinforcementScript : MonoBehaviour
                 {
                     turn.territoryInteractToggle = false;
                 }
+                if (turn.turnMode == "Reinforcement" && turn.deployableTroops == 0)
+                {
+                    turn.territoryInteractToggle = false;
+                }
                 deployedTroops = 0;
             }
             else{Debug.Log("Button not found");}
