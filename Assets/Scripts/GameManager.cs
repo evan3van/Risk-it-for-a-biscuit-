@@ -158,13 +158,11 @@ public class GameManager : MonoBehaviour
             color = themeSwapper.themeColor;
         }
 
-        int numOfHumans = 1;
         if (GameObject.Find("CustomiseInfo") != null )
         {
             playerCustomiseScript = GameObject.Find("CustomiseInfo").GetComponent<PlayerCustomiseScript>();
             numOfPlayers = playerCustomiseScript.numberOfHumanPlayers+playerCustomiseScript.numberOfAIPlayers;
             playerNames = playerCustomiseScript.playerNames;
-            numOfHumans = playerCustomiseScript.numberOfHumanPlayers;
         }
         else
         {
@@ -187,26 +185,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
-        foreach (GameObject gameObject in allObjects)
+        if (GameObject.Find("CustomiseInfo") != null)
         {
-            if (gameObject.GetComponent<TextMeshPro>() != null)
+            int numOfHumans = playerCustomiseScript.numberOfHumanPlayers;
+            int numOfAI = playerCustomiseScript.numberOfAIPlayers;
+            if (numOfHumans == 1 && numOfAI == 0)
             {
-                gameObject.GetComponent<TextMeshPro>().color = color;
+                numOfPlayers = 2;
             }
-            else if (gameObject.GetComponent<TextMeshProUGUI>() != null)
-            {
-                gameObject.GetComponent<TextMeshProUGUI>().color = color;
-            }
-            else if(gameObject.GetComponent<TextMesh>() != null)
-            {
-                gameObject.GetComponent<TextMesh>().color = color;
-            }
-        }
-
-        if (numOfHumans == 1)
-        {
-            numOfPlayers=2;
         }
         if(numOfPlayers > 6)
         {
