@@ -235,15 +235,11 @@ public class GameManager : MonoBehaviour
             Player playerToRemove = null;
             foreach (Player player in playerList)
             {
-                if (player.unitCount <= 0)
+                if (player.controlledTerritories.Count <= 0)
                 {
                     playerToRemove = player;
                     Debug.Log($"Player: {player}, has been eliminated");
-                    foreach (Territory territory in player.controlledTerritories)
-                    {
-                        turn.myTurn.controlledTerritories.Add(territory);
-                        turn.myTurn.GiveTroops(territory.counter.troopCount);
-                    }
+                    break;
                 }
             }
             EliminatePlayer(playerToRemove);
@@ -407,23 +403,29 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        foreach (Territory territory in territoryList.ToArray())
+        System.Random random = new System.Random();
+        List<Territory> territoriesToRemove = new List<Territory>();
+        foreach (Territory territory in territoryList)
         {
-            
-            playerList[0].controlledTerritories.Add(territory);
+            int randomPlayer = random.Next(0,playerList.Count);
+            playerList[randomPlayer].controlledTerritories.Add(territory);
 
             
-            territory.GetComponent<SpriteRenderer>().color = playerList[0].playerColor;
+            territory.GetComponent<SpriteRenderer>().color = playerList[randomPlayer].playerColor;
 
             OnHoverHighlight highlight = territory.GetComponent<OnHoverHighlight>();
-            highlight.origionalColor = playerList[0].playerColor;
-            highlight.player = playerList[0];
+            highlight.origionalColor = playerList[randomPlayer].playerColor;
+            highlight.player = playerList[randomPlayer];
             highlight.currentTurn = turn;
 
-            territory.controlledBy = playerList[0];
+            territory.controlledBy = playerList[randomPlayer];
 
-            
-            territoryList.Remove(territory);
+            territoriesToRemove.Add(territory);
+        }
+
+        foreach (Territory territoryToRemove in territoriesToRemove)
+        {
+            territoryList.Remove(territoryToRemove);
         }
 
         
@@ -550,9 +552,9 @@ public class GameManager : MonoBehaviour
             {"North West Territory", new List<string> {"Alberta", "Ontario", "Greenland", "Alaska"}},
             {"Alaska", new List<string> {"North West Territory", "Alberta", "Kamchatka"}},
             {"New Zealand", new List<string> {"Eastern Australia"}},
-            {"Indonesia", new List<string> {"Siam", "New Guinea", "Western Australia"}},
+            {"Indonesia", new List<string> {"Siam", "New Guinea", "Western Australia","Philipines"}},
             {"New Guinea", new List<string> {"Indonesia", "Eastern Australia", "Western Australia"}},
-            {"Western Australia", new List<string> {"Indonesia", "Eastern Australia", "New Guinea"}},
+            {"Western Australia", new List<string> {"Indonesia", "Eastern Australia", "New Guinea","Philipines"}},
             {"Eastern Australia", new List<string> {"New Guinea", "Western Australia", "New Zealand"}},
             {"Ukraine", new List<string> {"Ural", "Afghanistan", "Middle East", "Southern Europe", "Northern Europe", "Scandinavia"}},
             {"Scandinavia", new List<string> {"Iceland", "Great Britain", "Northern Europe", "Ukraine"}},
@@ -568,7 +570,7 @@ public class GameManager : MonoBehaviour
             {"Yakutsk", new List<string> {"Siberia", "Irkutsk", "Kamchatka"}},
             {"Siberia", new List<string> {"Ural", "China", "Mongolia", "Irkutsk", "Yakutsk"}},
             {"China", new List<string> {"Siam", "India", "Afghanistan", "Ural", "Siberia", "Mongolia"}},
-            {"Siam", new List<string> {"India", "China", "Indonesia"}},
+            {"Siam", new List<string> {"India", "China", "Indonesia","Philipines"}},
             {"India", new List<string> {"Middle East", "Afghanistan", "China", "Siam"}},
             {"Afghanistan", new List<string> {"Ukraine", "Ural", "China", "India", "Middle East"}},
             {"Ural", new List<string> {"Ukraine", "Siberia", "China", "Afghanistan"}},
